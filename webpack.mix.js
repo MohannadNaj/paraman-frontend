@@ -9,10 +9,6 @@ if(process.env.NODE_ENV != 'temp-require')
 
 	mix.setResourceRoot('/vendor/parameters/');
 
-	if(! mix.inProduction()) {
-		require('./phpunit-watcher');
-	}
-
 	if( mix.inProduction()) {
 		mix.copy('node_modules/tinymce/skins', 'public/css/libs/tinymce/skins');
 		mix.copy('node_modules/tinymce/themes', 'public/css/libs/tinymce/themes');

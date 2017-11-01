@@ -1,26 +1,32 @@
 <template>
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="list-group categories--list">
-        <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
-          v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
-        <div class="list-group-item">
-          <button @click="toggleEditCategories" type="button" class="btn btn-default btn-sm">
-                    	Edit Categories
-                        <i class="fa fa-pencil" v-show="editCategoriesMode"></i>
-                    </button>
-        </div>
-        <div class="note-container" v-if="categories.length <= 1">
-          No Categories Found, Start by Adding one
-          <add-category></add-category>
-        </div>
+  <div>
+    <div v-if="needInstallation" class="row">
+      <div class="col-sm-12">
+        <installer></installer>
       </div>
     </div>
-    <div class="col-sm-9">
-      <parameters-list ref="parameters"></parameters-list>
+    <div v-if="!needInstallation" class="row">
+      <div class="col-sm-3">
+        <div class="list-group categories--list">
+          <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
+            v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
+          <div class="list-group-item">
+            <button @click="toggleEditCategories" type="button" class="btn btn-default btn-sm">
+                        Edit Categories
+                          <i class="fa fa-pencil" v-show="editCategoriesMode"></i>
+                      </button>
+          </div>
+          <div class="note-container" v-if="categories.length <= 1">
+            No Categories Found, Start by Adding one
+            <add-category></add-category>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <parameters-list ref="parameters"></parameters-list>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -28,6 +34,7 @@
 import parametersCategory from './parameters-category'
 import addCategory from './add-category'
 import parametersList from './parameters-list'
+import installer from './installer'
 
 import base from './mixins/parameters/base.js'
 
@@ -39,13 +46,16 @@ export default {
       parameters: [],
       openedCategory: null,
       categoriesParameters: [],
-      editCategoriesMode: false
+      editCategoriesMode: false,
+      needInstallation: false
     }
   },
   components: {
     'parameters-category': parametersCategory,
     'add-category': addCategory,
-    'parameters-list': parametersList
+    'parameters-list': parametersList,
+    'installer': installer,
+
   },
   mounted() {
     this.parameters = this.parameters_list
@@ -61,6 +71,9 @@ export default {
       this.$nextTick(this.openCategoryByHash)
     },
     registerEvents() {
+      EventBus.listen('need-installation', () => {
+        this.needInstallation = true
+      })
       EventBus.listen('opening-category', data => {
         this.deactivateCategories()
         this.openCategory(data)

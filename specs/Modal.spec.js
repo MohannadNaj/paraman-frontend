@@ -119,7 +119,6 @@ var showComponentInModal = (componentTag, done) => {
       expectEvent('modal.show.bs.modal')
       done()
     },
-    null,
     vm.getComponent()
   )
 }

@@ -70,15 +70,18 @@ describe('dropzone-upload Component', () => {
   it('modal still open if changes is saved without successful upload', (done) => {
     createVue()
     spy('saveChanges')
+    vm.modal.modal('show')
 
     EventBus.listen('modal.shown.bs.modal', () => {
       expect(vm.saveChanges.calledOnce).toBe(true)
       expect(vm.is_uploaded).toBe(false)
-      expect(vm.modal.attr('class')).toContain('in')
 
-      done()
+      setTimeout(() => {
+        notExpectEvent('modal.hide.bs.modal')
+        done()
+      }, 100)
     })
-    vm.modal.modal('show')
+
     vm.$el.querySelector('.dropzone-upload--button__save').click()
   })
 
@@ -160,11 +163,10 @@ describe('dropzone-upload Component', () => {
     createVue()
     EventBus.listen('modal.shown.bs.modal', () => {
       moxios.wait(() => {
-        then(()=> {
+        setTimeout(()=> {
           notExpectEvent('modal.hide.bs.modal')
-          expect(vm.modal.attr('class')).toContain('in')
           done()
-        })
+        }, 100)
       })
     })
 

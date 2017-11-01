@@ -145,7 +145,7 @@ export default {
       this.data_showFooter = false
       this.data_showComponent = true
 
-      this.hideComponentOnClose()
+      this.$nextTick(this.hideComponentOnClose)
 
       return this
     },

@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "axios": "^0.16.2",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "cross-env": "^5.0.1",
     "es6-promise": "^4.1.1",
     "html-script-hook": "^1.0.0",
@@ -46,6 +48,7 @@
     "bootstrap-material-design": "^4.0.0-beta.4",
     "diff": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "popper.js": "^1.12.6",
     "tinymce": "^4.6.5",
     "vue-notifyjs": "^0.1.7",
     "vue-router": "^2.7.0"

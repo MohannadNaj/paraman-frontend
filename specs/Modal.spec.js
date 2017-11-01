@@ -6,6 +6,7 @@ describe('Modal Component', () => {
 
     window.specComponent = Modal
     EventBus.clearHistory()
+    window.sinonSandbox = sinon.createSandbox()
   })
 
   it('sets the correct default data', () => {
@@ -85,26 +86,21 @@ describe('Modal Component', () => {
   })
 
   it('hide component after close', done => {
-    EventBus.listen('modal.hide.bs.modal', () => {
-      expectEvent('modal.hide.bs.modal')
-      done()
-    })
-
-    createVue()
-
-    vm.showComponent('change-paramCategory', 'some title')
-
-    then(() => {
-      expect(vm.$el.textContent).toContain('some title')
-    })
-    .then(() => {
-        expect(vm.$el.textContent).toContain(
-          vm.getComponent().$el.textContent
-        )
-      }, null, vm.getComponent())
-    .then(() => {
+    EventBus.listen('modal.shown.bs.modal', () => {
       vm.hideModal()
-    }, null, vm)
+    })
+
+    showComponentInModal('remove-parameter', () => {
+      spy('hideComponent')
+
+      EventBus.listen('modal.hidden.bs.modal', () => {
+        
+          expect(vm.data_showComponent).toBeFalsy()
+          expect(vm.hideComponent.callCount).toBe(1)
+          done()
+
+      })    
+    })
   })
 })
 

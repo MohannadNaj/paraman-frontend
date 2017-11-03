@@ -1,15 +1,10 @@
 import changeParamCategory from '../resources/assets/js/components/change-paramCategory'
 
 describe('change-paramCategory Component', () => {
-  beforeEach(() => {
-    if (window.vm) window.vm.$destroy()
 
-    moxios.install()
-    window.specComponent = changeParamCategory
-    EventBus.clearHistory()
-    window.sinonSandbox = sinon.createSandbox()
-    if (window.vm) window.vm.notificationStore.state = []
-  })
+  beforeEach(()=> commonBeforeEach(changeParamCategory))
+
+  afterEach(commonAfterEach)
 
   it(`check for empty string if parameter's category is null`, done => {
     // arrange

@@ -1,20 +1,10 @@
 import addParameter from '../resources/assets/js/components/add-parameter'
 
 describe('add-parameter Component', () => {
-  beforeEach(() => {
-    if (vm) vm.$destroy()
 
-    moxios.install()
-    window.specComponent = addParameter
-    EventBus.clearHistory()
-    window.sinonSandbox = sinon.createSandbox()
-    if (vm) vm.notificationStore.state = []
-  })
+  beforeEach(()=> commonBeforeEach(addParameter))
 
-  afterEach(() => {
-    moxios.uninstall()
-    sinonSandbox.restore()
-  })
+  afterEach(commonAfterEach)
 
   it(`load and list parameters types`, () => {
     // arrange

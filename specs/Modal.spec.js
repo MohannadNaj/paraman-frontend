@@ -1,13 +1,10 @@
 import Modal from '../resources/assets/js/components/Modal'
 
 describe('Modal Component', () => {
-  beforeEach(() => {
-    if (window.vm) window.vm.$destroy()
 
-    window.specComponent = Modal
-    EventBus.clearHistory()
-    window.sinonSandbox = sinon.createSandbox()
-  })
+  beforeEach(()=> commonBeforeEach(Modal))
+
+  afterEach(commonAfterEach)
 
   it('sets the correct default data', () => {
     expect(typeof Modal.data).toBe('function')

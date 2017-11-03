@@ -2,9 +2,7 @@ TestData = require('./testData.json')
 moxios = require('moxios')
 sinon = require('sinon')
 Promise = require('promise-polyfill')
-if (!window.Promise) {
-  window.Promise = Promise
-}
+
 require('./testUtils.js')
 require('./fakeDataHelper.js')
 

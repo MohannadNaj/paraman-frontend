@@ -1,23 +1,10 @@
 import dropzoneUpload from '../resources/assets/js/components/dropzone-upload'
 
 describe('dropzone-upload Component', () => {
-  beforeEach(() => {
-    if (window.vm) {
-      window.vm.$destroy()
-      window.vm = null
-    }
+  
+  beforeEach(()=> commonBeforeEach(dropzoneUpload))
 
-    moxios.install()
-    window.specComponent = dropzoneUpload
-    EventBus.clearHistory()
-    window.sinonSandbox = sinon.createSandbox()
-    if (window.vm) window.vm.notificationStore.state = []
-  })
-
-  afterEach(() => {
-    moxios.uninstall()
-    sinonSandbox.restore()
-  })
+  afterEach(commonAfterEach)
 
   it(`has a handleResponse method`, () => {
     createVue()

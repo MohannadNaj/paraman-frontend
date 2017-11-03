@@ -1,20 +1,10 @@
 import addCategory from '../resources/assets/js/components/add-category'
 
 describe('add-category Component', () => {
-  beforeEach(() => {
-    if (vm) vm.$destroy()
 
-    moxios.install()
-    window.specComponent = addCategory
-    EventBus.clearHistory()
-    window.sinonSandbox = sinon.createSandbox()
-    if (vm) vm.notificationStore.state = []
-  })
+  beforeEach(()=> commonBeforeEach(addCategory))
 
-  afterEach(() => {
-    moxios.uninstall()
-    sinonSandbox.restore()
-  })
+  afterEach(commonAfterEach)
 
   it(`validate category name before submit`, done => {
     // arrange

@@ -54,7 +54,7 @@ spy = (method, component = null) => {
   return window.sinonSandbox.spy(component, method)
 }
 
-window.submitFailedRequest = (response, target = 'parameters') => {
+submitFailedRequest = (response, target = 'parameters') => {
   moxios.stubRequest(window.Laravel.base_url + target, {
     status: 422,
     response: response
@@ -71,4 +71,33 @@ window.submitFailedRequest = (response, target = 'parameters') => {
       })
     }
   }
+}
+
+commonBeforeEach = (arg = null) => {
+  if (window.vm) {
+    window.vm.$destroy()
+  }
+
+  window.moxios.install()
+  window.EventBus.clearHistory()
+  window.sinonSandbox = sinon.createSandbox()
+  if (window.vm) window.vm.notificationStore.state = []
+
+  __resolveCommonEachArg(arg)
+}
+
+commonAfterEach = (arg = null) => {
+  window.moxios.uninstall()
+  window.sinonSandbox.restore()
+
+  __resolveCommonEachArg(arg)
+}
+
+__resolveCommonEachArg = (arg) => {
+  if(arg !== null) {
+    if(typeof arg == 'object')
+      window.specComponent = arg
+    else if(typeof arg == 'function')
+      arg()
+  }  
 }

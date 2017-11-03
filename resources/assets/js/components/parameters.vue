@@ -54,8 +54,7 @@ export default {
     'parameters-category': parametersCategory,
     'add-category': addCategory,
     'parameters-list': parametersList,
-    'installer': installer,
-
+    installer: installer
   },
   mounted() {
     this.parameters = this.parameters_list

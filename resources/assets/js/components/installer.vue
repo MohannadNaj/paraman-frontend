@@ -16,6 +16,7 @@
   </div>
 </template>
 <script>
+
 import _package from '../../../../package.json'
 
 export default {
@@ -24,17 +25,13 @@ export default {
       version: _package.version
     }
   },
-  components: {
-  },
+  components: {},
   mounted() {
     this.registerEvents()
   },
-  props: {
-
-  },
+  props: {},
   methods: {
-    registerEvents() {
-    },
+    registerEvents() {}
   }
 }
 

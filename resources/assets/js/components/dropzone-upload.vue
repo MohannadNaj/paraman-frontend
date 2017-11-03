@@ -103,7 +103,6 @@ export default {
         .then(response => {
           if (typeof response.data.path == 'undefined') return
 
-
           this.is_uploaded = false
           this.path = null
           if (this.handlerInstance != null) {

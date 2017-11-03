@@ -12,10 +12,8 @@ const app = new Vue({
     Helper.modal = this.$refs['modal']
     Helper.dropzoneModal = this.$refs['dropzone-modal']
 
-    if(window.Laravel.needInstallation)
-    {
-        EventBus.fire('need-installation')
+    if (window.Laravel.needInstallation) {
+      EventBus.fire('need-installation')
     }
-
   }
 })

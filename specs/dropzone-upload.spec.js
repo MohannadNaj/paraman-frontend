@@ -79,7 +79,7 @@ describe('dropzone-upload Component', () => {
       setTimeout(() => {
         notExpectEvent('modal.hide.bs.modal')
         done()
-      }, 100)
+      }, 10)
     })
 
     vm.$el.querySelector('.dropzone-upload--button__save').click()
@@ -166,7 +166,7 @@ describe('dropzone-upload Component', () => {
         setTimeout(()=> {
           notExpectEvent('modal.hide.bs.modal')
           done()
-        }, 100)
+        }, 10)
       })
     })
 

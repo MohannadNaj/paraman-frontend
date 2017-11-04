@@ -134,15 +134,14 @@ describe('dropzone-upload Component', () => {
 
     spy('$emit', EventBus)
 
-    // Assert
-    let assertion = () => {
-      expect(EventBus.$emit.calledWith('file-uploaded')).toBeTruthy()
+    EventBus.listen('file-uploaded', () => {
+      expect(EventBus.$emit.calledWith('file-uploaded'))
+      .toBeTruthy()
       done()
-    }
+    })
 
     // Act
     submitSuccessfulUpload()
-    moxios.wait( assertion )
   })
 
 

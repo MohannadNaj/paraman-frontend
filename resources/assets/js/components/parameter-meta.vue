@@ -8,7 +8,7 @@
     </span>
   </div>
   <div class="col-xs-4">
-    <button type="button" @click="showLogs" class="btn btn-default">
+    <button type="button" @click="showLogs()" class="btn btn-default parameter-meta--showLogs-button">
     <i class="fa fa-book"></i>
     Revisions: {{countLogs}}
     </button>
@@ -29,7 +29,7 @@
     </span>
   </div>
   <div class="col-xs-4">
-    <button type="button" @click="changeCategory" class="btn btn-default">
+    <button type="button" @click="changeCategory()" class="btn btn-default parameter-meta--changeCategory-button">
     Category
     <i class="fa fa-bookmark"></i>
     </button>
@@ -61,12 +61,17 @@ export default {
     },
     showLogs() {
       if (!this.hasLogs) return this.alert('No Revisions found', 'warning')
-      var modal = Helper.modal
-      modal.data_title = this.parameter.label + ' logs'
-      modal.data_html = $(this.$el)
-        .find('.logs-list')
-        .html()
-      modal.showModal()
+
+      this.mapLogsHtmlData(this.getModal())
+
+      this.getModal().showModal()
+    },
+    getModal() {
+      return Helper.modal
+    },
+    mapLogsHtmlData(component) {
+        component.data_title = this.parameter.label + ' logs',
+        component.data_html = $(this.$el).find('.logs-list').html()
     },
     parseValue(val, logField = 'value') {
       val = val == null ? '' : val.toString()

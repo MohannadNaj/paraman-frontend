@@ -4,7 +4,6 @@ window._ = require('lodash')
 // jQuery & Bootstrap
 try {
   window.$ = window.jQuery = require('jquery')
-
   require('bootstrap-material-design')
 } catch (e) {}
 

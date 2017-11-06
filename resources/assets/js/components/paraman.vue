@@ -33,7 +33,7 @@ export default {
         Helper.modal = this.$refs['modal']
         Helper.dropzoneModal = this.$refs['dropzone-modal']
 
-        if (window.Laravel.needInstallation) {
+        if (window.Laravel.needInstallation || window.Laravel.needMigration) {
           EventBus.fire('need-installation')
         }
     }

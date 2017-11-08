@@ -57,12 +57,12 @@ export default {
     installer: installer
   },
   mounted() {
-    this.parameters = this.parameters_list
+    this.parameters = this.parametersList
     this.registerEvents()
     this.loadParameters()
   },
   props: {
-    parameters_list: null
+    parametersList: null
   },
   methods: {
     loadParameters() {

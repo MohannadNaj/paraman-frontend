@@ -1,7 +1,7 @@
 <template>
     <div>
         <slot>
-            <parameters ref="all-parameters" :parameters_list='parametersList'></parameters>
+            <parameters ref="all-parameters" :parameters-list='parametersList'></parameters>
             <!-- Helpers -->
             <notifications></notifications>
             <modal ref="modal" id="modal"></modal>

@@ -14,7 +14,7 @@
         </ul>
       </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid installer-header">
       <div class="row installer-header--container">
         <div class="col-12 text-center installer-header--logo__container">
           <img class="rounded img-fluid installer-header--logo__image" src="../../img/paraman-logo.png" alt="Paraman Logo">
@@ -41,7 +41,7 @@
                   </p>
                   <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary">{{step.actionText}}</button>
                   <hr>
-                  <div v-text="step.response"></div>
+                  <div v-text="step.response" class="installer-header--steps__responseText"></div>
                 </div>
               </div>
             </div>
@@ -150,7 +150,10 @@ export default {
       axios
         .post(`${window.Laravel.base_url}parameters/migrate`)
         .then(response => {
-          if (response.data.output.toLowerCase().indexOf('migrated') === -1) {
+          let output = typeof response.data.output === 'string' ? response.data.output : ''
+          step.response = output
+
+          if (output.toLowerCase().indexOf('migrated') === -1) {
             console.log(response)
             return this.alert(
               'There is an error migrating the database',
@@ -158,7 +161,6 @@ export default {
             )
           }
 
-          step.response = response.data.output
           step.isDone = true
           this.alert('Database migrated successfully', 'success')
         })

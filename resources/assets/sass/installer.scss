@@ -26,6 +26,14 @@ body {
   .installer-header--steps__done {
     @extend .bg-success;
   }
+
+  .installer-header--steps__responseText {
+    @extend .pre-text;
+    @extend .hide-if-empty;
+
+    word-break: break-all;
+    border-radius: 0;
+  }
 }
 
 /*

@@ -139,12 +139,12 @@ export default {
     migrate(step) {
       axios.post(`${window.Laravel.base_url}parameters/migrate`)
       .then((response) => {
-        if(response.data.output.join('').indexOf('migrated') === -1) {
+        if(response.data.output.toLowerCase().indexOf('migrated') === -1) {
           console.log(response)
           return this.alert('There is an error migrating the database', 'error')
         }
 
-        step.response = response.data.output.join("\r\n")
+        step.response = response.data.output
         step.isDone = true
         this.alert('Database migrated successfully', 'success')
       })

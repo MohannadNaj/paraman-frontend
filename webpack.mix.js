@@ -4,6 +4,8 @@ if(process.env.NODE_ENV != 'temp-require')
 
 	mix.setPublicPath('public');
 
+	mix.sourceMaps(true)
+
 	mix.js('./resources/assets/js/app.js', 'js')
 	.sass('./resources/assets/sass/app.scss', 'css');
 

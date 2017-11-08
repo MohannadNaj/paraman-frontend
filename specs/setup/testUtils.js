@@ -6,16 +6,15 @@ expectEvent = (
 ) => {
   if (component == null) component = window.vm
 
-  component.$nextTick(() => {
     var expectedEvent = eventName
 
     var eventInHistory = EventBus[`get${eventType}History`]().filter(
       e => e == expectedEvent
     )
+
     if (expectPresent) return expect(expectedEvent).toEqual(eventInHistory[0])
 
     return expect(eventInHistory).toEqual([])
-  })
 }
 
 notExpectEvent = (eventName, component = null, eventType = 'Fire') => {

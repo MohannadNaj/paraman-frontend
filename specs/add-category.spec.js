@@ -44,9 +44,8 @@ describe('add-category Component', () => {
     // assert
     moxios.wait(() => {
       then(() => {
-      
         expectEvent('end-addCategory')
-        done()
+        then(done)
       })
     })
   })
@@ -75,13 +74,11 @@ describe('add-category Component', () => {
     vm.newCategoryName = 'new category'
     // act
     submitFailedRequest({}, 'parameters/addCategory')
-      // assert
-      .then(() => {
-        then(() => {
-          expectEvent('start-addCategory')
-          done()
-        })
-      })
+    // assert
+    .then(() => {
+        expectEvent('start-addCategory')
+        then(done)
+    })
   })
 
   it(`submit failed request: notify the user about the error`, done => {
@@ -101,15 +98,15 @@ describe('add-category Component', () => {
     // arrange
     createVue()
     vm.newCategoryName = 'new category'
+
+    // assert
+    EventBus.listen('end-addCategory', () => {
+      expectEvent('end-addCategory')
+      then(done)
+    })
+
     // act
     submitFailedRequest({}, 'parameters/addCategory')
-      // assert
-      .then(() => {
-        then(() => {
-          expectEvent('end-addCategory')
-          done()
-        })
-      })
   })
 
   it(`submit failed request: created-category event is not fired`, done => {
@@ -119,11 +116,11 @@ describe('add-category Component', () => {
     // act
     submitFailedRequest({}, 'parameters/addCategory')
       // assert
-      .then(() => {
-        then(() => {
+    .then(() => {
+        setTimeout(() => {
           notExpectEvent('created-category')
-          done()
-        })
-      })
+          then(done)
+        }, 10)
+    })
   })
 })

@@ -4,7 +4,6 @@ if(process.env.NODE_ENV != 'temp-require')
 
 	mix.setPublicPath('public');
 
-	mix.sourceMaps(true)
 
 	mix.js('./resources/assets/js/app.js', 'js')
 	.sass('./resources/assets/sass/app.scss', 'css');
@@ -22,8 +21,18 @@ if(process.env.NODE_ENV != 'temp-require')
 
 	if(! mix.inProduction())
 	{
+		mix.sourceMaps(true)
 		mix.disableNotifications()
-		mix.browserSync('http://localhost:8000')
-		require('./specs-watcher');
+		
+		console.log(process.argv);
+		
+		console.log("process.argv.filter(x => x.indexOf('no-browsersync') != -1).length", process.argv.filter(x => x.indexOf('no-browsersync') != -1).length);
+
+		if(process.argv.filter(x => x.indexOf('no-browsersync') != -1).length == 0)
+			mix.browserSync('http://localhost:8000')
+
+		if(process.argv.filter(x => x.indexOf('no-tests') != -1).length == 0)
+			require('./specs-watcher');
+
 	}
 }

@@ -131,7 +131,7 @@ export default {
           if (!response.data.status)
             return this.alert(
               'There is an error creating the database',
-              'error'
+              'danger'
             )
 
           console.log(response)
@@ -143,7 +143,7 @@ export default {
           var errorData = error.response.data
 
           console.log(errorData)
-          this.alert(`Error! check the console to see error details`, 'error')
+          this.alert(`Error! check the console to see error details`, 'danger')
         })
     },
     migrate(step) {
@@ -157,7 +157,7 @@ export default {
             console.log(response)
             return this.alert(
               'There is an error migrating the database',
-              'error'
+              'danger'
             )
           }
 
@@ -168,7 +168,7 @@ export default {
           var errorData = error.response
 
           console.log(errorData)
-          this.alert(`Error! check the console to see error details`, 'error')
+          this.alert(`Error! check the console to see error details`, 'danger')
         })
     }
   }

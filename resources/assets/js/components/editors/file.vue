@@ -45,6 +45,9 @@ export default {
       this.$nextTick(x => {
         this.dropzone_modal.handlerInstance = this
         this.dropzone_modal.modal.modal('show')
+        this.dropzone_modal.modal.one('hide.bs.modal', () => {
+          this.$parent.togglePreview()
+        })
         this.dropzone_modal.header_msg = this.parameter.label
         this.dropzone_modal.additionalParams = {
           parameter: this.parameter.id

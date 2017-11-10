@@ -70,7 +70,7 @@ export default {
     return {
       isDirty: false,
       errors: [],
-      previewMode: false,
+      previewMode: true,
       childComponent: null,
       originalParameter: window.Laravel.parametersColumns
     }

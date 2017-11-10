@@ -112,4 +112,18 @@
   margin: 0px !important;
 }
 
-@import "./installer"
+@import "./installer";
+
+.categories--list-item {
+    background: transparent;
+}
+
+.sidebar .nav a.categories--list__item.active {
+    &:hover, &:focus, & {
+        background: rgba(34, 34, 34, 0.58);
+    }
+}
+
+.code {
+    word-break: break-word;
+}

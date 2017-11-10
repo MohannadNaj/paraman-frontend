@@ -1,13 +1,14 @@
 <template>
 <div class="wrapper">
-  <div class="sidebar">
+  <installer v-if="needInstallation"></installer>
+  <div v-if="!needInstallation" class="sidebar">
       <div class="sidebar-wrapper">
           <div class="logo">
               <a href="http://www.creative-tim.com" class="simple-text">
                   Paraman
               </a>
           </div>
-          <ul v-if="!needInstallation" class="nav">
+          <ul class="nav">
               <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
                 v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
               <li>
@@ -23,16 +24,10 @@
           </ul>
       </div>
   </div>
-  <div class="main-panel">
-    <parameters-navbar></parameters-navbar>
+  <div v-if="!needInstallation" class="main-panel">
       <div class="content">
           <div class="container-fluid">
-            <div v-if="needInstallation" class="row">
-              <div class="col-sm-12">
-                <installer></installer>
-              </div>
-            </div>
-            <parameters-list v-if="!needInstallation" ref="parameters"></parameters-list>
+            <parameters-list ref="parameters"></parameters-list>
           </div>
       </div>
       <parameters-footer></parameters-footer>
@@ -47,7 +42,6 @@ import addCategory from './add-category'
 import parametersList from './parameters-list'
 import installer from './installer'
 import parametersFooter from './parameters-footer'
-import parametersNavbar from './parameters-navbar'
 
 import base from './mixins/parameters/base.js'
 
@@ -69,7 +63,6 @@ export default {
     'parameters-list': parametersList,
     installer: installer,
     'parameters-footer': parametersFooter,
-    'parameters-navbar': parametersNavbar,
   },
   mounted() {
     this.parameters = this.parametersList

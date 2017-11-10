@@ -1,32 +1,11 @@
 <template>
-
   <div>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Paraman</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="">
-              <a>{{version}}</a>
-            </li>
-          </ul>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </nav><!-- /.navbar -->
-    <div class="container-fluid installer-header">
+    <div class="container-fluid installer-header installer--container">
       <div class="row installer-header--container">
-        <div class="col-12 text-center installer-header--logo__container">
+        <div class="col-xs-12 text-center installer-header--logo__container">
           <img class="rounded img-fluid installer-header--logo__image" src="../../img/paraman-logo.png" alt="Paraman Logo">
         </div>
-        <div class="col-8 mt-4">
+        <div class="col-xs-8">
           <h2>Paraman Installer</h2>
           <h3>
             Paraman couldn't find a database to work on it.
@@ -34,17 +13,17 @@
           <hr>
         </div>
         <hr>
-        <div class="col-4"></div>
-        <div class="col-1"></div>
-        <div class="col-10">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
           <div class="row">
             <div v-for="step in steps" class="col-sm-4">
               <div :class="['card', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
                 <div class="card-body">
-                  <h4 class="card-title"><i :class="'mr-2 fa ' + step.icon"></i>{{step.title}}</h4>
+                  <h4 class="card-title"><i :class="'installer-header--steps__icon fa ' + step.icon"></i>{{step.title}}</h4>
                   <p class="card-text installer-header--steps__text">
                     {{step.text}}
-                    <code class="hide-if-empty" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>
+                    <code class="code hide-if-empty" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>
                   </p>
                   <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary">{{step.actionText}}</button>
                   <hr>
@@ -96,7 +75,8 @@ export default {
       ]
     }
   },
-  components: {},
+  components: {
+  },
   mounted() {
     this.registerEvents()
     this.setStepsState()

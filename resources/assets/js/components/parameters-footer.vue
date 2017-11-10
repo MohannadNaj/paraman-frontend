@@ -4,29 +4,12 @@
       <nav class="pull-left">
           <ul>
               <li>
-                  <a href="#">
-                      Home
-                  </a>
-              </li>
-              <li>
-                  <a href="#">
-                      Company
-                  </a>
-              </li>
-              <li>
-                  <a href="#">
-                      Portfolio
-                  </a>
-              </li>
-              <li>
-                  <a href="#">
-                      Blog
-                  </a>
+                  <a href="#">...</a>
               </li>
           </ul>
       </nav>
       <p class="copyright pull-right">
-          &copy; <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+          Paraman
       </p>
   </div>
 </footer>

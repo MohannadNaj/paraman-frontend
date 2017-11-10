@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a :class="['list-group-item', 'categories--list__item', isActive ? 'active':'', blocked ? 'block-list-group' : '']" :href="getTarget" v-on:click="openCategory">
+    <a :class="['', 'categories--list__item', isActive ? 'active':'', blocked ? 'block-list-group' : '']" :href="getTarget" v-on:click="openCategory">
           {{ getTitle }}
       <span class="badge">{{parameters.length}}</span>
     </a>

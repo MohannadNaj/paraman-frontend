@@ -1,6 +1,7 @@
 <template>
   <div>
     <slot>
+      <parameters-navbar></parameters-navbar>
       <parameters ref="all-parameters" :parameters-list='parametersList'></parameters>
       <!-- Helpers -->
       <notifications></notifications>
@@ -15,6 +16,7 @@
 import parameters from './parameters.vue'
 import modal from './modal.vue'
 import dropzoneUpload from './dropzone-upload.vue'
+import parametersNavbar from './parameters-navbar'
 
 export default {
   data() {
@@ -28,7 +30,8 @@ export default {
   components: {
     'dropzone-upload': dropzoneUpload,
     parameters: parameters,
-    modal: modal
+    modal: modal,
+    'parameters-navbar': parametersNavbar,
   },
   mounted() {
     Helper.modal = this.$refs['modal']

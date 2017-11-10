@@ -1,6 +1,24 @@
-.main-panel {
-    .navbar , .footer {
-        margin: 0px -15px;    
+.navbar , .footer {
+    margin: 0px -15px;    
+}
+
+.navbar {
+    z-index: 2;
+}
+
+.footer {
+    margin-top: 62px;
+
+    .container-fluid {
+        min-height: 62px;
     }
 }
 
+body, .wrapper {
+    min-height: calc(100vh - 62px);
+    height: calc(100vh - 62px);
+}
+
+.sidebar .sidebar-wrapper {
+    padding-top: 62px;
+}

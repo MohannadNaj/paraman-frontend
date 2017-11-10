@@ -1,6 +1,8 @@
 body {
-//  padding-top: 3.5rem;
   background: #dde6ef;
+}
+
+.installer--container {
 }
 
 .installer-header--container {
@@ -27,12 +29,18 @@ body {
     @extend .bg-success;
   }
 
+  .installer-header--steps__icon {
+      margin: 2px 6px;
+      font-size: 24px;
+  }
+
   .installer-header--steps__responseText {
     @extend .pre-text;
     @extend .hide-if-empty;
 
     word-break: break-all;
     border-radius: 0;
+    white-space: pre-line;
   }
 }
 

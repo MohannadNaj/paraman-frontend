@@ -23,10 +23,6 @@ if(process.env.NODE_ENV != 'temp-require')
 	{
 		mix.sourceMaps(true)
 		mix.disableNotifications()
-		
-		console.log(process.argv);
-		
-		console.log("process.argv.filter(x => x.indexOf('no-browsersync') != -1).length", process.argv.filter(x => x.indexOf('no-browsersync') != -1).length);
 
 		if(process.argv.filter(x => x.indexOf('no-browsersync') != -1).length == 0)
 			mix.browserSync('http://localhost:8000')

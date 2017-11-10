@@ -7,13 +7,16 @@
 // Font Awesome
 @import "node_modules/font-awesome/scss/font-awesome";
 
-@import "./../../../third_party/light-bootstrap-dashboard/assets/css/animate.min.css";
-@import "./../../../third_party/light-bootstrap-dashboard/assets/css/light-bootstrap-dashboard.css";
-@import "./../../../third_party/light-bootstrap-dashboard/assets/css/pe-icon-7-stroke.css";
-
 
 // Dropzone
 @import "./libs/dropzone.min";
+
+// Light Bootstrap Dashboard
+@import "./../../../third_party/light-bootstrap-dashboard/assets/css/animate.min";
+@import "./../../../third_party/light-bootstrap-dashboard/assets/css/light-bootstrap-dashboard";
+@import "./../../../third_party/light-bootstrap-dashboard/assets/css/pe-icon-7-stroke";
+
+@import "lbd-fix";
 
 
 .notifications {
@@ -101,10 +104,6 @@
         cursor: default;
         background: rgba(215, 215, 215, 0.4);
     }
-}
-
-footer {
-  padding: 30px 0;
 }
 
 .no-margin {

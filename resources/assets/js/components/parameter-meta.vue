@@ -1,13 +1,6 @@
 <template>
-  <div class="row">
-    <div class="col-xs-4">
-      <i class="glyphicon glyphicon-calendar"></i>
-      <span class="meta-label">
-        updated
-        {{parameter.humanizedUpdatedAt}}
-      </span>
-    </div>
-    <div class="col-xs-4">
+  <div class="row parameter-meta--container">
+    <div class="col-xs-6">
       <button type="button" @click="showLogs()" class="btn btn-default parameter-meta--showLogs-button">
       <i class="fa fa-book"></i>
       Revisions: {{countLogs}}
@@ -28,14 +21,21 @@
         </div>
       </span>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-6">
       <button type="button" @click="changeCategory()" class="btn btn-default parameter-meta--changeCategory-button">
       Category
       <i class="fa fa-bookmark"></i>
       </button>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-6">
       <input class="form-control" onclick="this.select();" readonly="" v-on:input="preventChange" :value="getPHPCode">
+    </div>
+    <div class="col-xs-6">
+      <i class="glyphicon glyphicon-calendar"></i>
+      <span class="meta-label">
+        updated
+        {{parameter.humanizedUpdatedAt}}
+      </span>
     </div>
   </div>
 </template>
@@ -64,6 +64,7 @@ export default {
 
       this.mapLogsHtmlData(this.getModal())
 
+      this.getModal().data_showFooter = false
       this.getModal().showModal()
     },
     getModal() {

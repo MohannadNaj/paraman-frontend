@@ -14,34 +14,34 @@
 </style>
 <template>
   <div>
-    <div :class="['panel','parameter',markIfDirty,'no-margin']">
-      <div class="panel-heading">
-        <h3 class="panel-title">
+    <div :class="['card','parameter',markIfDirty,'no-margin']">
+      <div class="header">
+        <h3 class="title container-fluid">
           <div>
             {{originalParameter.label}}
             <span class="pull-right">
-                            <span v-if="isDirty && previewMode" class="label label-warning">
-                                Unsaved Changes!
-                            </span>
-            <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="btn btn-default btn-sm">
-                                <i class="fa fa-undo"></i>
-                            </button>
-            <button v-if="isDirty && !previewMode" @click="submit" type="button" class="btn btn-default btn-sm parameter--button_undo">
-                                <i class="fa fa-floppy-o"></i>
-                            </button>
-            <span class="badge">{{originalParameter.type}}</span>
-            <button @click="togglePreview" type="button" class="btn btn-default btn-sm parameter--button_edit">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-            <button @click="removeParameter" type="button" class="btn btn-danger btn-sm parameter--button_remove">
-                                <i class="fa fa-times-circle"></i>
-                            </button>
+                <span v-if="isDirty && previewMode" class="label label-warning">
+                    Unsaved Changes!
+                </span>
+                <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="btn btn-default btn-sm">
+                    <i class="fa fa-undo"></i>
+                </button>
+                <button v-if="isDirty && !previewMode" @click="submit" type="button" class="btn btn-default btn-sm parameter--button_undo">
+                    <i class="fa fa-floppy-o"></i>
+                </button>
+                <span class="badge">{{originalParameter.type}}</span>
+                <button @click="togglePreview" type="button" class="btn btn-default btn-sm parameter--button_edit">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button @click="removeParameter" type="button" class="btn btn-danger btn-sm parameter--button_remove">
+                    <i class="fa fa-times-circle"></i>
+                </button>
             </span>
             &nbsp;
           </div>
         </h3>
       </div>
-      <div class="panel-body">
+      <div class="content">
         <form v-if="originalParameter.type != null" v-on:submit.prevent="submit">
           <component :parameter="originalParameter" :is="getEditorComponentName" :ref="getEditorComponentRef"></component>
           <ul class="list-group" v-show="errors.length > 0">
@@ -49,7 +49,7 @@
           </ul>
         </form>
       </div>
-      <div class="panel-footer">
+      <div class="footer">
         <parameter-meta :parameter.sync="originalParameter"></parameter-meta>
       </div>
     </div>
@@ -174,7 +174,7 @@ export default {
       return this.originalParameter.id + this.getEditorComponentName
     },
     markIfDirty() {
-      return this.isDirty ? 'panel-warning' : 'panel-default'
+      return this.isDirty ? 'warning-bg' : 'default-bg'
     }
   }
 }

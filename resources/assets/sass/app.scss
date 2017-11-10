@@ -15,7 +15,7 @@
 
 // Light Bootstrap Dashboard
 @import "./../../../third_party/light-bootstrap-dashboard/assets/css/animate.min";
-@import "./../../../third_party/light-bootstrap-dashboard/assets/css/light-bootstrap-dashboard";
+@import "./../../../third_party/light-bootstrap-dashboard/assets/sass/light-bootstrap-dashboard";
 @import "./../../../third_party/light-bootstrap-dashboard/assets/css/pe-icon-7-stroke";
 
 @import "lbd-fix";
@@ -126,4 +126,17 @@
 
 .code {
     word-break: break-word;
+}
+
+.warning-bg {
+    background: rgba($warning-bg, 0.1);
+}
+
+.default-bg {
+    background: rgba($default-bg, 0.1);
+}
+
+.row.parameter-meta--container {
+    text-align: center;
+    display: block !important;
 }

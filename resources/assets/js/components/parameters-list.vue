@@ -9,15 +9,17 @@
   <div class="container-fluid parameters-list">
     <div class="row">
       <div class="col-md-12">
-        <div v-if="parameters.length > 0" class="panel panel-default">
-          <div class="panel-heading">
-            {{ title }}
-            <span class="pull-right">
-                            <span class="badge">{{ parameters.length }}</span>
-            <button type="button" class="btn btn-success btn-sm parameters-list--button__add" @click="add">+</button>
-            </span>
+        <div v-if="parameters.length > 0" class="card">
+          <div class="header">
+            <h4 class="title">
+              {{ title }}
+              <span class="pull-right">
+                <span class="badge">{{ parameters.length }}</span>
+                <button type="button" class="btn btn-success btn-sm parameters-list--button__add" @click="add">+</button>
+              </span>
+            </h4>
           </div>
-          <div class="parameters panel-body">
+          <div class="parameters content">
             <ul class="list-group">
               <parameter class="list-group-item meta-list-group-item" v-for="parameter in parameters" :parameter="parameter" :ref="'parameter'+parameter.id" :key="parameter.id"></parameter>
             </ul>

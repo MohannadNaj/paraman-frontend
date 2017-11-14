@@ -1,10 +1,10 @@
 <template>
 <div class="wrapper">
   <installer v-if="needInstallation"></installer>
-  <div v-if="!needInstallation" class="sidebar">
+  <div v-if="!needInstallation" class="sidebar parameters-sidebar--container">
       <div class="sidebar-wrapper">
           <div class="logo">
-              <a href="http://www.creative-tim.com" class="simple-text">
+              <a class="simple-text">
                   Paraman
               </a>
           </div>

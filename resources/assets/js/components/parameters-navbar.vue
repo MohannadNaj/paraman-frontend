@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-inverse navbar-fixed">
+  <nav class="navbar navbar-inverse navbar-fixed parameters-navbar--container">
       <div class="container-fluid">
           <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">

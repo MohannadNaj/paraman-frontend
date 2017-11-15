@@ -48,6 +48,7 @@
   "dependencies": {
     "diff": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "material-shadows": "^3.0.1",
     "popper.js": "^1.12.6",
     "roboto-fontface": "^0.8.0",
     "tinymce": "^4.6.5",

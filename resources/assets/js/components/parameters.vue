@@ -25,6 +25,7 @@
       </div>
   </div>
   <div v-if="!needInstallation" class="main-panel">
+      <parameters-navbar></parameters-navbar>
       <div class="content">
           <div class="container-fluid">
             <parameters-list ref="parameters"></parameters-list>
@@ -42,6 +43,7 @@ import addCategory from './add-category'
 import parametersList from './parameters-list'
 import installer from './installer'
 import parametersFooter from './parameters-footer'
+import parametersNavbar from './parameters-navbar'
 
 import base from './mixins/parameters/base.js'
 
@@ -63,6 +65,7 @@ export default {
     'parameters-list': parametersList,
     installer: installer,
     'parameters-footer': parametersFooter,
+    'parameters-navbar': parametersNavbar,
   },
   mounted() {
     this.parameters = this.parametersList

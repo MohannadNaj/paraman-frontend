@@ -3,7 +3,7 @@
 }
 
 .navbar {
-    z-index: 2;
+//    z-index: 2;
 }
 
 footer.footer {
@@ -15,10 +15,10 @@ footer.footer {
 }
 
 body, .wrapper {
-    min-height: calc(100vh - 62px);
-    height: calc(100vh - 62px);
+    min-height: 100vh;
+    height: 100vh;
 }
 
 .sidebar .sidebar-wrapper {
-    padding-top: 62px;
+//    padding-top: 62px;
 }

@@ -2,7 +2,7 @@
   <li>
     <a :class="['', 'categories--list__item', isActive ? 'active':'', blocked ? 'block-list-group' : '']" :href="getTarget" v-on:click="openCategory">
           {{ getTitle }}
-      <span class="badge">{{parameters.length}}</span>
+      <span class="badge categories--list__badge">{{parameters.length}}</span>
     </a>
   </li>
 </template>

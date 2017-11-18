@@ -208,3 +208,9 @@ $sidebar-active-bg: rgba(255, 255, 255, 0.23);
         }
     }
 }
+
+.categories--list__badge {
+    position: absolute;
+    right: 2px;
+    top: calc(50% - 8px);
+}

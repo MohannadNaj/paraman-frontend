@@ -168,3 +168,31 @@
 .display-block {
     display: block
 }
+
+.parameters-sidebar--logo {
+    height: 120px;
+}
+.parameters-sidebar--logo__img {
+    height: 100px;
+    width: 100px;
+    float: left;
+}
+
+.parameters-sidebar--logo__text {
+    float: right;
+    margin-top: 30px;
+}
+
+$sidebar-active-bg: rgba(255, 255, 255, 0.23);
+
+.parameters-category--list {
+    .parameters-category--item {
+        .parameters-category--editCategory-button__active {
+            background: $sidebar-active-bg;
+
+            &:hover, &:focus, &:active {
+                background: $sidebar-active-bg;
+            }
+        }
+    }
+}

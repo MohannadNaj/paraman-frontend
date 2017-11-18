@@ -3,18 +3,21 @@
   <installer v-if="needInstallation"></installer>
   <div v-if="!needInstallation" class="sidebar parameters-sidebar--container">
       <div class="sidebar-wrapper">
-          <div class="logo">
-              <a class="simple-text">
+          <div class="logo parameters-sidebar--logo">
+              <img class="parameters-sidebar--logo__img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
+              <a class="parameters-sidebar--logo__text simple-text">
                   Paraman
               </a>
           </div>
-          <ul class="nav">
+          <ul class="nav parameters-category--list">
               <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
                 v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
-              <li>
-                <a @click="toggleEditCategories" href="javascript:void(0);">
+              <li class="parameters-category--item">
+                <a @click="toggleEditCategories"
+                :class="['parameters-category--editCategory-button ', editCategoriesMode ? 'parameters-category--editCategory-button__active' : '']"
+                href="javascript:void(0);">
                   Edit Categories
-                    <i class="fa fa-pencil" v-show="editCategoriesMode"></i>
+                    <i class="fa fa-pencil"></i>
                 </a>
               </li>
               <li class="note-container" v-if="categories.length <= 1">

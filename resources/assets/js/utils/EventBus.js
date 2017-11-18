@@ -24,9 +24,7 @@ window.EventBus = new class {
       },
 
       recordFire(event, data = null) {
-        var recordedEvent = {}
-        recordedEvent[event] = data
-        this.fireHistory.push(recordedEvent)
+        this.fireHistory.push(this.prepareEventRecord(event, data))
       },
 
       getFireHistory() {
@@ -38,9 +36,13 @@ window.EventBus = new class {
       },
 
       recordListen(event, data = null) {
-        var recordedEvent = {}
+        this.listenHistory.push(this.prepareEventRecord(event, data))
+      },
+
+      prepareEventRecord(event, data) {
+        let recordedEvent = {}
         recordedEvent[event] = data
-        this.listenHistory.push(recordedEvent)
+        return recordedEvent
       },
 
       getListenHistory() {

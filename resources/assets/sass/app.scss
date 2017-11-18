@@ -196,3 +196,15 @@ $sidebar-active-bg: rgba(255, 255, 255, 0.23);
         }
     }
 }
+
+.parameter--label {
+    display: inline-block;
+
+    &__editable {
+        border-bottom: 2px solid black;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

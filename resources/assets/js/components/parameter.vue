@@ -18,7 +18,8 @@
       <div class="header">
         <h3 class="title container-fluid">
           <div>
-            {{originalParameter.label}}
+            <div :contenteditable="!previewMode"
+              @keyup="keyupLabelInput" :class="['parameter--label', !previewMode ? 'parameter--label__editable':'']">{{originalParameter.label}}</div>
             <span class="pull-right">
                 <span v-if="isDirty && previewMode" class="label label-warning">
                     Unsaved Changes!
@@ -118,15 +119,37 @@ export default {
 
       this.$on('save-change', this.submit)
     },
-    submit() {
-      if (!this.isDirty) return null
+    keyupLabelInput(event) {
+      if(event.target.innerText.length > 255)
+        event.target.innerText = event.target.innerText.substr(0, 255)
+
+      if((event.which || event.keyCode) == 13) {
+        this.parameter.label = $.trim(event.target.innerText)
+        event.target.innerText = this.parameter.label
+        this.submitLabel()
+      }
+    },
+    submitLabel() {
+      this.submit(this.parameter.label)
+    },
+    submit(label = false) {
+      let appendLabel = typeof label === 'string'
+
+      if (!this.isDirty && !appendLabel) return null
+
+      let requestParams = {
+            value: this.childComponent.paramValue
+          }
+
+      if(typeof label === 'string')
+        requestParams.label = label
+
+//      requestParams.label = this.parameter.label
 
       axios
         .patch(
           window.Laravel.base_url + 'parameters/' + this.originalParameter.id,
-          {
-            value: this.childComponent.paramValue
-          }
+          requestParams
         )
         .then(response => {
           this.parameterChanged(response.data)

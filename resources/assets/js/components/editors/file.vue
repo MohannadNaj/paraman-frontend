@@ -26,7 +26,8 @@ import EditorMixin from './../mixins/editors/base.js'
 export default {
   data() {
     return {
-      dropzone_modal: ''
+      dropzone_modal: '',
+      lastTimeOpened: null,
     }
   },
   mixins: [EditorMixin],
@@ -42,9 +43,13 @@ export default {
     this.$on('previewMode-change', function(previewMode) {
       if (previewMode) return null
 
+      if((parseInt((new Date).getTime() / 1000) - this.lastTimeOpened) < 3)
+        return null
+
       this.$nextTick(x => {
         this.dropzone_modal.handlerInstance = this
         this.dropzone_modal.modal.modal('show')
+        this.lastTimeOpened = parseInt((new Date).getTime() / 1000)
         this.dropzone_modal.modal.one('hide.bs.modal', () => {
           this.$parent.togglePreview()
         })

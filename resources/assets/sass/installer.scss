@@ -34,6 +34,14 @@ body {
 
   .installer-header--steps__done {
     @extend .bg-success;
+
+    &:after {
+      content: "\2713";
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      font-size: 22px;
+    }
   }
 
   .installer-header--steps__icon {
@@ -43,15 +51,13 @@ body {
   }
 
   .installer-step--navigation {
-    .installer-header--steps__icon {
-      margin-left: 4px;
-    }
   }
 
   .installer-header--steps__responseText {
     @extend .pre-text;
     @extend .hide-if-empty;
 
+    margin-left: 0px;
     word-break: break-all;
     border-radius: 0;
     white-space: pre-line;
@@ -102,18 +108,11 @@ body {
   min-height: 130px;
   @extend .clickable;
 
-  .installer-header--steps {
-    padding-left: 15px;
-    border-radius: 25px;    
+  .installer-step--title {
+    padding: 15px;
   }
-}
 
-.installer-header--steps {
-  padding: 3px;
-}
-
-.installer-step--navigation__active {
-  .installer-header--steps {
+  &__active .installer-step--title {
     background: #80dbca;
   }
 }

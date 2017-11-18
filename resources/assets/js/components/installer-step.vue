@@ -4,14 +4,14 @@
 <template>
   <div  :class="[summaryView ? '': 'card', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
     <div class="card-body">
-      <h4 class="card-title installer-step--title">
+      <h4 class="card-title installer-step--title text-center">
         <div class="installer-step--icon--container">
             <i :class="'installer-header--steps__icon fa ' + step.icon"></i>
         </div>
         {{step.title}}
       </h4>
       <div v-if="! summaryView" class="card-text">
-        <div class="installer-header--steps__text text-center">
+        <div class="installer-header--steps__text">
             {{step.text}}
             <code class="code hide-if-empty" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>            
         </div>

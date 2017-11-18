@@ -52,9 +52,7 @@ window.EventBus = new class {
       },
 
       clearHistory() {
-        this.getListenHistory().forEach(event => {
-          this.$off(event)
-        })
+        this.$off()
         this.listenHistory = []
         this.fireHistory = []
       }

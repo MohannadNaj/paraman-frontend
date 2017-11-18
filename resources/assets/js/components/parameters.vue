@@ -6,7 +6,7 @@
           <div class="logo parameters-sidebar--logo">
               <img class="parameters-sidebar--logo__img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
               <a class="parameters-sidebar--logo__text simple-text">
-                  Paraman
+                  Paraman<br>{{version}}
               </a>
           </div>
           <ul class="nav parameters-category--list">
@@ -47,6 +47,7 @@ import parametersList from './parameters-list'
 import installer from './installer'
 import parametersFooter from './parameters-footer'
 import parametersNavbar from './parameters-navbar'
+import _package from '../../../../package.json'
 
 import base from './mixins/parameters/base.js'
 
@@ -54,6 +55,7 @@ export default {
   mixins: [base],
   data() {
     return {
+      version: _package.version,
       categories: [],
       parameters: [],
       openedCategory: null,

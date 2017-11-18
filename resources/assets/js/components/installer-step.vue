@@ -2,16 +2,23 @@
 
 </style>
 <template>
-  <div :class="['card', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
+  <div  :class="[summaryView ? '': 'card', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
     <div class="card-body">
-      <h4 class="card-title"><i :class="'installer-header--steps__icon fa ' + step.icon"></i>{{step.title}}</h4>
-      <p class="card-text installer-header--steps__text">
-        {{step.text}}
-        <code class="code hide-if-empty" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>
-      </p>
-      <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary">{{step.actionText}}</button>
-      <hr>
-      <div v-text="step.response" class="installer-header--steps__responseText"></div>
+      <h4 class="card-title installer-step--title">
+        <div class="installer-step--icon--container">
+            <i :class="'installer-header--steps__icon fa ' + step.icon"></i>
+        </div>
+        {{step.title}}
+      </h4>
+      <div v-if="! summaryView" class="card-text">
+        <div class="installer-header--steps__text text-center">
+            {{step.text}}
+            <code class="code hide-if-empty" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>            
+        </div>
+        <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary">{{step.actionText}}</button>
+        <hr>
+        <div v-text="step.response" class="installer-header--steps__responseText"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +27,7 @@
 export default {
     props: {
         step: {default: () => {} },
+        summaryView: {default: false},
     },
     data() {
         return {
@@ -30,9 +38,10 @@ export default {
         getProperty(property, data = null) {
           property = this.$parent[property]
 
-          if (typeof property === 'function')
+          if (typeof property === 'function') {
             // execute then return
-            return property(data)
+            return property(data)            
+          }
 
           return property
         },

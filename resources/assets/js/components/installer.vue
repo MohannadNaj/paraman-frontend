@@ -23,7 +23,7 @@
         </div>
         <div class="col-sm-8 col-sm-offset-2 mt-2">
           <div class="row">
-            <div @click="setActiveStep(step.action)" v-for="(step, index) in steps" :class="['col-sm-6', 'installer-step--navigation', step.isActive ? 'installer-step--navigation__active':'']">
+            <div @click="setActiveStep(step.action)" v-for="(step, index) in steps" :class="['col-sm-4', 'installer-step--navigation', step.isActive ? 'installer-step--navigation__active':'']">
               <installer-step :summary-view="true" :step.sync="step"></installer-step>
             </div>
           </div>
@@ -37,10 +37,24 @@
 import _package from '../../../../package.json'
 import installerStep from './installer-step'
 
+let originalRefreshStep = {
+          title: `Go !`,
+          icon: 'fa-refresh',
+          text: `Refresh and start using Paraman!`,
+          actionText: `Refresh`,
+          isDone: false,
+          action: 'refresh',
+          response: null,
+          isActive: false,
+          shouldRefresh: true,
+        };
+
 export default {
   data() {
     return {
       version: _package.version,
+      refreshCountInterval: null,
+      refreshTimer: null,
       steps: [
         {
           title: `Create the database!`,
@@ -63,7 +77,7 @@ export default {
           action: 'migrate',
           response: null,
           isActive: false,
-        }
+        },
       ]
     }
   },
@@ -103,7 +117,31 @@ export default {
 
       return property
     },
-    registerEvents() {},
+    registerEvents() {
+      EventBus.listen('activated-installerStep', this.activatedStep)
+    },
+    activatedStep(data) {
+      if(data.old != null && data.old.action === 'refresh') {
+        clearTimeout(this.refreshTimer)
+        clearInterval(this.refreshCountInterval)
+        this.removeRefreshStep()
+        this.fillRefreshStep()
+      } else if(data.new.action === 'refresh') {
+
+        let step = this.getStepByAction('refresh')
+        let seconds = 10
+
+        this.refreshCountInterval = setInterval(() => {
+          if(this.proceedRefresh())
+            step.text = `${originalRefreshStep.text}, ${seconds--} s`
+        }, 1000)
+
+        this.refreshTimer = setTimeout(()=> {
+          clearInterval(this.refreshCountInterval)
+          this[step.action]()
+        }, seconds * 1000)
+      }
+    },
     setStepsState() {
       this.getStepByAction('createDatabase').isDone = !window
         .Laravel.needInstallation
@@ -118,13 +156,27 @@ export default {
         this.setActiveStep('createDatabase')
     },
     setActiveStep(action) {
+      let activeStep = this.getActiveStep
+
+      if(activeStep != null && action === activeStep.action)
+        return 
+
+      if(activeStep && activeStep.action === 'refresh')
+        activeStep.shouldRefresh = false
+
+      if(action === 'refresh')
+        this.getStepByAction('refresh').shouldRefresh = true
+
       this.steps.map((step) => {
         // step.isActive = step.action === action
 
         step.isActive = false
 
-        if(step.action === action)
-          step.isActive = true
+        if(step.action !== action)
+          return null
+
+        step.isActive = true
+        EventBus.fire('activated-installerStep', {new: step, old: activeStep})
       })
     },
     getStepByAction(action) {
@@ -169,6 +221,7 @@ export default {
 
           step.isDone = true
           this.alert('Database migrated successfully', 'success')
+          this.finalizeInstallation()
         })
         .catch(error => {
           var errorData = error.response
@@ -176,7 +229,28 @@ export default {
           console.log(errorData)
           this.alert(`Error! check the console to see error details`, 'danger')
         })
-    }
+    },
+    removeRefreshStep() {
+      if(this.getStepByAction('refresh') !== null)
+        this.steps.splice(this.steps.findIndex(x => x.action == 'refresh'), 1)
+    },
+    fillRefreshStep() {
+      this.steps.push(Object.assign({}, originalRefreshStep))
+    },
+    finalizeInstallation() {
+      this.fillRefreshStep()
+
+      this.$nextTick(() => {
+        this.setActiveStep('refresh')
+      })
+    },
+    proceedRefresh() {
+      return this.getActiveStep.action === 'refresh' && this.getActiveStep.shouldRefresh
+    },
+    refresh() {
+      if(this.getActiveStep.action === 'refresh')
+        window.location.reload(true)
+    },
   }
 }
 

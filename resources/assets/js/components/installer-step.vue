@@ -2,7 +2,7 @@
 
 </style>
 <template>
-  <div  :class="[summaryView ? '': 'card', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
+  <div  :class="[summaryView ? '': 'card installer-box', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
     <div class="card-body">
       <h4 class="card-title installer-step--title text-center">
         <div class="installer-step--icon--container">
@@ -13,7 +13,7 @@
       <div v-if="! summaryView" class="card-text">
         <div class="installer-header--steps__text">
             {{step.text}}
-            <code class="code hide-if-empty" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>            
+            <code class="code hide-if-empty display-block text-left" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>            
         </div>
         <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary">{{step.actionText}}</button>
         <hr>

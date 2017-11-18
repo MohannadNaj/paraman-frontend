@@ -1,5 +1,5 @@
 body {
-  background: #white;
+  background: white;
 }
 
 .installer--container {
@@ -32,6 +32,13 @@ body {
     white-space: pre-line;
   }
 
+  .card.installer-header--steps {
+    min-height: 330px;
+    max-height: 500px;
+    overflow: auto;
+    background: white;
+    margin-top: -15px;
+  }
   .installer-header--steps__done {
     @extend .bg-success;
 
@@ -90,6 +97,7 @@ body {
 .installer-header--heading {
   color: #000000;
   font-weight: 500;
+  padding-bottom: 15px;
 
   &__inline {
     padding-bottom: 5px;

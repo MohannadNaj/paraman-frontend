@@ -128,7 +128,7 @@
 }
 
 .code {
-    word-break: break-word;
+    word-break: break-all;
 }
 
 .warning-bg {
@@ -163,4 +163,8 @@
 
 .clickable {
     cursor: pointer;
+}
+
+.display-block {
+    display: block
 }

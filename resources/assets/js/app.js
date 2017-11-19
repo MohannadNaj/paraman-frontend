@@ -1,4 +1,3 @@
-require('./core')
 require('./bootstrap')
 
 Vue.component('paraman', require('./components/paraman.vue'))

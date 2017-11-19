@@ -1,28 +1,6 @@
-// Variables
-@import "variables";
-
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-// Font Awesome
-@import "node_modules/font-awesome/scss/font-awesome";
-
-// Roboto Font
-@import "node_modules/roboto-fontface/css/roboto/sass/roboto-fontface";
-
-// Material Shadows
-@import "node_modules/material-shadows/material-shadows";
-
-// Dropzone
-@import "./libs/dropzone.min";
-
-// Light Bootstrap Dashboard
-@import "../../../third_party/light-bootstrap-dashboard/assets/css/animate.min";
-@import "../../../third_party/light-bootstrap-dashboard/assets/sass/light-bootstrap-dashboard";
-@import "../../../third_party/light-bootstrap-dashboard/assets/css/pe-icon-7-stroke";
+@import "core";
 
 @import "lbd-fix";
-
 
 .notifications {
 	@import "node_modules/vue-notifyjs/themes/default.scss";

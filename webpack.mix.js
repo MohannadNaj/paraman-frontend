@@ -4,9 +4,10 @@ if(process.env.NODE_ENV != 'temp-require')
 
 	mix.setPublicPath('public');
 
+	mix.js('./resources/assets/js/core.js', 'js')
 
 	mix.js('./resources/assets/js/app.js', 'js')
-	.sass('./resources/assets/sass/app.scss', 'css');
+	.sass('./resources/assets/sass/app.scss', 'css')
 
 	mix.setResourceRoot('/vendor/parameters/');
 

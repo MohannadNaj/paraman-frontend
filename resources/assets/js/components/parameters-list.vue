@@ -15,7 +15,7 @@
               {{ title }}
               <span class="pull-right">
                 <span class="badge">{{ parameters.length }}</span>
-                <button type="button" class="btn btn-success btn-sm parameters-list--button__add" @click="add">+</button>
+              <button type="button" class="btn btn-success btn-sm parameters-list--button__add" @click="add">+</button>
               </span>
             </h4>
           </div>

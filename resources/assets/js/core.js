@@ -24,7 +24,7 @@ var tinymce = require('tinymce/tinymce')
 window.JsDiff = require('diff')
 
 // Light-Bootstrap-Dashboard
-require ("../../../third_party/light-bootstrap-dashboard/assets/js/chartist.min.js")
-require ("../../../third_party/light-bootstrap-dashboard/assets/js/bootstrap-select.js")
-require ("../../../third_party/light-bootstrap-dashboard/assets/js/bootstrap-notify.js")
-require ("../../../third_party/light-bootstrap-dashboard/assets/js/light-bootstrap-dashboard.js")
+require('../../../third_party/light-bootstrap-dashboard/assets/js/chartist.min.js')
+require('../../../third_party/light-bootstrap-dashboard/assets/js/bootstrap-select.js')
+require('../../../third_party/light-bootstrap-dashboard/assets/js/bootstrap-notify.js')
+require('../../../third_party/light-bootstrap-dashboard/assets/js/light-bootstrap-dashboard.js')

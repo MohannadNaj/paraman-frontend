@@ -1,42 +1,40 @@
 <template>
-<div class="wrapper">
-  <installer v-if="needInstallation"></installer>
-  <div v-if="!needInstallation" class="sidebar parameters-sidebar--container">
+  <div class="wrapper">
+    <installer v-if="needInstallation"></installer>
+    <div v-if="!needInstallation" class="sidebar parameters-sidebar--container">
       <div class="sidebar-wrapper">
-          <div class="logo parameters-sidebar--logo">
-              <img class="parameters-sidebar--logo__img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
-              <a class="parameters-sidebar--logo__text simple-text">
+        <div class="logo parameters-sidebar--logo">
+          <img class="parameters-sidebar--logo__img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
+          <a class="parameters-sidebar--logo__text simple-text">
                   Paraman<br>{{version}}
               </a>
-          </div>
-          <ul class="nav parameters-category--list">
-              <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
-                v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
-              <li class="parameters-category--item">
-                <a @click="toggleEditCategories"
-                :class="['parameters-category--editCategory-button ', editCategoriesMode ? 'parameters-category--editCategory-button__active' : '']"
-                href="javascript:void(0);">
+        </div>
+        <ul class="nav parameters-category--list">
+          <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
+            v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
+          <li class="parameters-category--item">
+            <a @click="toggleEditCategories" :class="['parameters-category--editCategory-button ', editCategoriesMode ? 'parameters-category--editCategory-button__active' : '']" href="javascript:void(0);">
                   Edit Categories
                     <i class="fa fa-pencil"></i>
                 </a>
-              </li>
-              <li class="note-container" v-if="categories.length <= 1">
-                No Categories Found, Start by Adding one
-                <add-category></add-category>
-              </li>
-          </ul>
+          </li>
+          <li class="note-container" v-if="categories.length <= 1">
+            No Categories Found, Start by Adding one
+            <add-category></add-category>
+          </li>
+        </ul>
       </div>
-  </div>
-  <div v-if="!needInstallation" class="main-panel">
+    </div>
+    <div v-if="!needInstallation" class="main-panel">
       <parameters-navbar></parameters-navbar>
       <div class="content">
-          <div class="container-fluid">
-            <parameters-list ref="parameters"></parameters-list>
-          </div>
+        <div class="container-fluid">
+          <parameters-list ref="parameters"></parameters-list>
+        </div>
       </div>
       <parameters-footer></parameters-footer>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -67,7 +65,7 @@ export default {
     'parameters-list': parametersList,
     installer: installer,
     'parameters-footer': parametersFooter,
-    'parameters-navbar': parametersNavbar,
+    'parameters-navbar': parametersNavbar
   },
   mounted() {
     this.parameters = this.parametersList
@@ -102,7 +100,7 @@ export default {
         this.confirmedRemoveParameter
       )
     },
-        createdParameter(parameter) {
+    createdParameter(parameter) {
       this.parameters.push(parameter)
       this.loadParameters()
     },
@@ -201,7 +199,12 @@ export default {
     },
     prepareCategories() {
       this.categories = []
-      var categoriesKeys = _.keys(_.groupBy(this.parameters.filter(x=>x.is_category != true), 'category_id'))
+      var categoriesKeys = _.keys(
+        _.groupBy(
+          this.parameters.filter(x => x.is_category != true),
+          'category_id'
+        )
+      )
 
       var definedCategories = this.parameters.filter(x => x.is_category == true)
 
@@ -340,7 +343,10 @@ export default {
             'Error in updating parameter (' + parameter_id + ')'
           var errorData = error.response.data
           Helper.checkCommonErrors(errorData, errorMessage)
-          EventBus.fire('changed-paramCategory', { data: data, ok: false })
+          EventBus.fire('changed-paramCategory', {
+            data: data,
+            ok: false
+          })
         })
     },
     changeParamCategory(data) {

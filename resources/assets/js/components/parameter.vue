@@ -18,23 +18,22 @@
       <div class="header">
         <h3 class="title container-fluid">
           <div>
-            <div :contenteditable="!previewMode"
-              @keyup="keyupLabelInput" :class="['parameter--label', !previewMode ? 'parameter--label__editable':'']">{{originalParameter.label}}</div>
+            <div :contenteditable="!previewMode" @keyup="keyupLabelInput" :class="['parameter--label', !previewMode ? 'parameter--label__editable':'']">{{originalParameter.label}}</div>
             <span class="pull-right">
                 <span v-if="isDirty && previewMode" class="label label-warning">
                     Unsaved Changes!
                 </span>
-                <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="btn btn-default btn-sm">
+            <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="btn btn-default btn-sm">
                     <i class="fa fa-undo"></i>
                 </button>
-                <button v-if="isDirty && !previewMode" @click="submit" type="button" class="btn btn-default btn-sm parameter--button_undo">
+            <button v-if="isDirty && !previewMode" @click="submit" type="button" class="btn btn-default btn-sm parameter--button_undo">
                     <i class="fa fa-floppy-o"></i>
                 </button>
-                <span class="badge">{{originalParameter.type}}</span>
-                <button @click="togglePreview" type="button" class="btn btn-default btn-sm parameter--button_edit">
+            <span class="badge">{{originalParameter.type}}</span>
+            <button @click="togglePreview" type="button" class="btn btn-default btn-sm parameter--button_edit">
                     <i class="fa fa-pencil"></i>
                 </button>
-                <button @click="removeParameter" type="button" class="btn btn-danger btn-sm parameter--button_remove">
+            <button @click="removeParameter" type="button" class="btn btn-danger btn-sm parameter--button_remove">
                     <i class="fa fa-times-circle"></i>
                 </button>
             </span>
@@ -120,10 +119,10 @@ export default {
       this.$on('save-change', this.submit)
     },
     keyupLabelInput(event) {
-      if(event.target.innerText.length > 255)
+      if (event.target.innerText.length > 255)
         event.target.innerText = event.target.innerText.substr(0, 255)
 
-      if((event.which || event.keyCode) == 13) {
+      if ((event.which || event.keyCode) == 13) {
         this.parameter.label = $.trim(event.target.innerText)
         event.target.innerText = this.parameter.label
         this.submitLabel()
@@ -138,13 +137,12 @@ export default {
       if (!this.isDirty && !appendLabel) return null
 
       let requestParams = {
-            value: this.childComponent.paramValue
-          }
+        value: this.childComponent.paramValue
+      }
 
-      if(typeof label === 'string')
-        requestParams.label = label
+      if (typeof label === 'string') requestParams.label = label
 
-//      requestParams.label = this.parameter.label
+      //      requestParams.label = this.parameter.label
 
       axios
         .patch(

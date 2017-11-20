@@ -15,28 +15,28 @@
                 <div class="col-xs-6"><b>Old:</b>{{parseValue(log.old)}}</div>
                 <div class="col-xs-6"><b>New:</b>{{parseValue(log.new)}}</div>
                 <div class="col-xs-12"><b>Diff:</b><span v-html="getDiff(log)"></span></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </span>
-    </div>
-    <div class="col-xs-6">
-      <button type="button" @click="changeCategory()" class="btn btn-default parameter-meta--changeCategory-button">
+  </div>
+  </li>
+  </ul>
+  </div>
+  </span>
+  </div>
+  <div class="col-xs-6">
+    <button type="button" @click="changeCategory()" class="btn btn-default parameter-meta--changeCategory-button">
       Category
       <i class="fa fa-bookmark"></i>
       </button>
-    </div>
-    <div class="col-xs-6">
-      <input class="form-control" onclick="this.select();" readonly="" v-on:input="preventChange" :value="getPHPCode">
-    </div>
-    <div class="col-xs-6">
-      <i class="glyphicon glyphicon-calendar"></i>
-      <span class="meta-label">
+  </div>
+  <div class="col-xs-6">
+    <input class="form-control" onclick="this.select();" readonly="" v-on:input="preventChange" :value="getPHPCode">
+  </div>
+  <div class="col-xs-6">
+    <i class="glyphicon glyphicon-calendar"></i>
+    <span class="meta-label">
         updated
         {{parameter.humanizedUpdatedAt}}
       </span>
-    </div>
+  </div>
   </div>
 </template>
 

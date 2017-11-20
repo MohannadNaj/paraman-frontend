@@ -28,7 +28,7 @@ export default {
   components: {
     'dropzone-upload': dropzoneUpload,
     parameters: parameters,
-    modal: modal,
+    modal: modal
   },
   mounted() {
     Helper.modal = this.$refs['modal']

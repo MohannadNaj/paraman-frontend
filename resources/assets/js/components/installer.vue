@@ -38,16 +38,16 @@ import _package from '../../../../package.json'
 import installerStep from './installer-step'
 
 let originalRefreshStep = {
-          title: `Go !`,
-          icon: 'fa-refresh',
-          text: `Refresh and start using Paraman!`,
-          actionText: `Refresh`,
-          isDone: false,
-          action: 'refresh',
-          response: null,
-          isActive: false,
-          shouldRefresh: true,
-        };
+  title: `Go !`,
+  icon: 'fa-refresh',
+  text: `Refresh and start using Paraman!`,
+  actionText: `Refresh`,
+  isDone: false,
+  action: 'refresh',
+  response: null,
+  isActive: false,
+  shouldRefresh: true
+}
 
 export default {
   data() {
@@ -65,7 +65,7 @@ export default {
           isDone: false,
           action: 'createDatabase',
           response: null,
-          isActive: false,
+          isActive: false
         },
         {
           title: `Migrate the database!`,
@@ -76,13 +76,13 @@ export default {
           isDone: false,
           action: 'migrate',
           response: null,
-          isActive: false,
-        },
+          isActive: false
+        }
       ]
     }
   },
   components: {
-    'installer-step': installerStep,
+    'installer-step': installerStep
   },
   mounted() {
     this.registerEvents()
@@ -103,8 +103,8 @@ export default {
       return this.steps.find(x => x.isActive === true)
     },
     hasActiveStep() {
-      return typeof this.getActiveStep !== "undefined"
-    },
+      return typeof this.getActiveStep !== 'undefined'
+    }
   },
   props: {},
   methods: {
@@ -121,62 +121,60 @@ export default {
       EventBus.listen('activated-installerStep', this.activatedStep)
     },
     activatedStep(data) {
-      if(data.old != null && data.old.action === 'refresh') {
+      if (data.old != null && data.old.action === 'refresh') {
         clearTimeout(this.refreshTimer)
         clearInterval(this.refreshCountInterval)
         this.removeRefreshStep()
         this.fillRefreshStep()
-      } else if(data.new.action === 'refresh') {
-
+      } else if (data.new.action === 'refresh') {
         let step = this.getStepByAction('refresh')
         let seconds = 10
 
         this.refreshCountInterval = setInterval(() => {
-          if(this.proceedRefresh())
+          if (this.proceedRefresh())
             step.text = `${originalRefreshStep.text}, ${seconds--} s`
         }, 1000)
 
-        this.refreshTimer = setTimeout(()=> {
+        this.refreshTimer = setTimeout(() => {
           clearInterval(this.refreshCountInterval)
           this[step.action]()
         }, seconds * 1000)
       }
     },
     setStepsState() {
-      this.getStepByAction('createDatabase').isDone = !window
-        .Laravel.needInstallation
+      this.getStepByAction('createDatabase').isDone = !window.Laravel
+        .needInstallation
 
-      this.getStepByAction('migrate').isDone = !window.Laravel
-        .needMigration
+      this.getStepByAction('migrate').isDone = !window.Laravel.needMigration
 
-      if(! this.getStepByAction('migrate').isDone)
-        this.setActiveStep('migrate')
+      if (!this.getStepByAction('migrate').isDone) this.setActiveStep('migrate')
 
-      if(! this.getStepByAction('createDatabase').isDone)
+      if (!this.getStepByAction('createDatabase').isDone)
         this.setActiveStep('createDatabase')
     },
     setActiveStep(action) {
       let activeStep = this.getActiveStep
 
-      if(activeStep != null && action === activeStep.action)
-        return 
+      if (activeStep != null && action === activeStep.action) return
 
-      if(activeStep && activeStep.action === 'refresh')
+      if (activeStep && activeStep.action === 'refresh')
         activeStep.shouldRefresh = false
 
-      if(action === 'refresh')
+      if (action === 'refresh')
         this.getStepByAction('refresh').shouldRefresh = true
 
-      this.steps.map((step) => {
+      this.steps.map(step => {
         // step.isActive = step.action === action
 
         step.isActive = false
 
-        if(step.action !== action)
-          return null
+        if (step.action !== action) return null
 
         step.isActive = true
-        EventBus.fire('activated-installerStep', {new: step, old: activeStep})
+        EventBus.fire('activated-installerStep', {
+          new: step,
+          old: activeStep
+        })
       })
     },
     getStepByAction(action) {
@@ -208,7 +206,8 @@ export default {
       axios
         .post(`${window.Laravel.base_url}parameters/migrate`)
         .then(response => {
-          let output = typeof response.data.output === 'string' ? response.data.output : ''
+          let output =
+            typeof response.data.output === 'string' ? response.data.output : ''
           step.response = output
 
           if (output.toLowerCase().indexOf('migrated') === -1) {
@@ -231,7 +230,7 @@ export default {
         })
     },
     removeRefreshStep() {
-      if(this.getStepByAction('refresh') !== null)
+      if (this.getStepByAction('refresh') !== null)
         this.steps.splice(this.steps.findIndex(x => x.action == 'refresh'), 1)
     },
     fillRefreshStep() {
@@ -245,12 +244,14 @@ export default {
       })
     },
     proceedRefresh() {
-      return this.getActiveStep.action === 'refresh' && this.getActiveStep.shouldRefresh
+      return (
+        this.getActiveStep.action === 'refresh' &&
+        this.getActiveStep.shouldRefresh
+      )
     },
     refresh() {
-      if(this.getActiveStep.action === 'refresh')
-        window.location.reload(true)
-    },
+      if (this.getActiveStep.action === 'refresh') window.location.reload(true)
+    }
   }
 }
 

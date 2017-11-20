@@ -51,7 +51,7 @@ module.exports = {
     },
     prepareCategories() {
       this.categories = []
-      var categoriesKeys = _.keys(_.groupBy(this.parameters, 'category_id'))
+      var categoriesKeys = _.keys(_.groupBy(this.parameters.filter(x=>x.is_category != true), 'category_id'))
 
       var definedCategories = this.parameters.filter(x => x.is_category == true)
 
@@ -63,15 +63,8 @@ module.exports = {
         this.categories.push(this.prepareCategory(key))
       })
       this.extractCategoriesParameters()
-      this.clearEmptyCategories()
 
       if (this.editCategoriesMode) this.enableEditCategoriesMode()
-    },
-    clearEmptyCategories() {
-      let emptyCategoryIndex = this.categories
-          .findIndex(x=> x.parameters.length == 0 && typeof x.relatedParameter === 'undefined')
-      if(emptyCategoryIndex != -1)
-        this.categories.splice(emptyCategoryIndex, 1)
     },
     prepareCategory(key) {
       if (key == 'null') key = null

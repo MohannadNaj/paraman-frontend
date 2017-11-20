@@ -8,6 +8,6 @@ require('./fakeDataHelper.js')
 
 window.Laravel = TestData.clientData
 
-require('../../resources/assets/js/core.js')
-require('../../resources/assets/js/bootstrap.js')
+require('../../src/js/core.js')
+require('../../src/js/bootstrap.js')
 Vue.config.productionTip = false

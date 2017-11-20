@@ -34,7 +34,7 @@
 </template>
 <script>
 
-import _package from '../../../../package.json'
+import _package from '../../../package.json'
 import installerStep from './installer-step'
 
 let originalRefreshStep = {

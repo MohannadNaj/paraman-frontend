@@ -1,4 +1,4 @@
-import Modal from '../resources/assets/js/components/Modal'
+import Modal from '../src/js/components/Modal'
 
 describe('Modal Component', () => {
 

@@ -1,4 +1,4 @@
-import addCategory from '../resources/assets/js/components/add-category'
+import addCategory from '../src/js/components/add-category'
 
 describe('add-category Component', () => {
 

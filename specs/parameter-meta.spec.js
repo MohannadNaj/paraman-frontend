@@ -1,4 +1,4 @@
-import parameterMeta from '../resources/assets/js/components/parameter-meta'
+import parameterMeta from '../src/js/components/parameter-meta'
 
 describe('parameter-meta Component', () => {
   var fakeModal;

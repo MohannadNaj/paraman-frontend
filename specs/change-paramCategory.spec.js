@@ -1,4 +1,4 @@
-import changeParamCategory from '../resources/assets/js/components/change-paramCategory'
+import changeParamCategory from '../src/js/components/change-paramCategory'
 
 describe('change-paramCategory Component', () => {
 

@@ -12,4 +12,3 @@ require('./utils/EventBus')
 require('./vue-components')
 require('./tinymce-plugins')
 
-//require ("./../../../third_party/light-bootstrap-dashboard/assets/js/demo.js")

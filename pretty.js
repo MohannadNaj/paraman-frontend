@@ -29,7 +29,7 @@ const unformatted = [
         'acronym', 'address', 'big', 'dt', 'ins', 'strike', 'tt',
     ];
 
-const files = process.argv[2] || 'resources/assets/js/**/*.{vue,js}'
+const files = process.argv[2] || 'src/js/**/*.{vue,js}'
 
 glob(files, function(er, files) {
   files.forEach(file => {

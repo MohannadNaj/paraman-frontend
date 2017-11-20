@@ -1,4 +1,4 @@
-import addParameter from '../resources/assets/js/components/add-parameter'
+import addParameter from '../src/js/components/add-parameter'
 
 describe('add-parameter Component', () => {
 

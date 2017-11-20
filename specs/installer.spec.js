@@ -1,4 +1,4 @@
-import installer from '../resources/assets/js/components/installer'
+import installer from '../src/js/components/installer'
 
 xdescribe('installer Component', () => {
   var fakeModal;

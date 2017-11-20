@@ -45,7 +45,7 @@ import parametersList from './parameters-list'
 import installer from './installer'
 import parametersFooter from './parameters-footer'
 import parametersNavbar from './parameters-navbar'
-import _package from '../../../../package.json'
+import _package from '../../../package.json'
 
 export default {
   data() {

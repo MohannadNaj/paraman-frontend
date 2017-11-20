@@ -1,4 +1,4 @@
-import dropzoneUpload from '../resources/assets/js/components/dropzone-upload'
+import dropzoneUpload from '../src/js/components/dropzone-upload'
 
 describe('dropzone-upload Component', () => {
   

@@ -15,7 +15,7 @@ window.axios = require('axios')
 window.Vue = require('vue')
 
 // Dropzone
-window.Dropzone = require('./libs/dropzone.min')
+window.Dropzone = require('dropzone')
 
 // TinyMCE
 var tinymce = require('tinymce/tinymce')

@@ -1,4 +1,4 @@
-var files = ['specs/setup/index.js','specs/**/*.spec.js'];
+var files = ['node_modules/babel-polyfill/dist/polyfill.min.js', 'specs/setup/index.js','specs/**/*.spec.js'];
 
 var OLD_NODE_ENV = process.env.NODE_ENV;
 process.env.NODE_ENV = 'temp-require'
@@ -45,7 +45,8 @@ module.exports = function (config) {
     webpack: webpackConfig,
     // avoid walls of useless text
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
+      stats: 'errors-only'
     },
     colors: true,
     reporters: ['spec','notify'],

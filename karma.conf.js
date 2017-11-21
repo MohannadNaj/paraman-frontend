@@ -53,6 +53,9 @@ module.exports = function (config) {
       reportEachFailure: true,
       reportSuccess: true,
     },
+    specReporter: {
+      suppressSkipped: true,
+    },
     singleRun: process.env.NODE_ENV !== 'testing'
   })
 }

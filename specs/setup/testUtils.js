@@ -47,6 +47,10 @@ then = (callback,  component = null) => {
   return { then: then }
 }
 
+next = (callback, timeout = 0) => {
+  return setTimeout(callback, timeout)
+}
+
 spy = (method, component = null) => {
   if (component == null) component = window.vm
 

@@ -44,7 +44,7 @@ then = (callback,  component = null) => {
   component.$nextTick(() => {
     callback()
   })
-  return { then: then, next: then }
+  return { then: then }
 }
 
 spy = (method, component = null) => {

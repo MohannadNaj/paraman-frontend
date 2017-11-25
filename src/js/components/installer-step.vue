@@ -14,7 +14,7 @@
           {{step.text}}
           <code class="code hide-if-empty display-block text-left" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>
         </div>
-        <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary">{{step.actionText}}</button>
+        <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary installer-header--step-action__btn">{{step.actionText}}</button>
         <hr>
         <div v-text="step.response" class="installer-header--steps__responseText"></div>
       </div>

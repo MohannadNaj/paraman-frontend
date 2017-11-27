@@ -1,7 +1,9 @@
-let cmd = 'npm run karma-watch';
-const exec = require('child_process').exec;
+let cmd = 'npm'
+let cmdArgs = ['run','karma-watch'];
+let spawn = require('cross-spawn');
 
-console.info(`running "${cmd}"..`);
-var execProcess = exec(cmd);
-execProcess.stdout.pipe(process.stdout);
+console.info(`running "${cmd} ${cmdArgs.join(" ")}"..`);
+
+let child = spawn(cmd, cmdArgs, { stdio: 'inherit' });
+
 

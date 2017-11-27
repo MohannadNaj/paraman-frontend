@@ -1,5 +1,4 @@
 import installer from '../src/js/components/installer'
-import _package from '../package.json'
 
 describe('installer Component', () => {
   beforeEach(()=> {
@@ -17,9 +16,11 @@ describe('installer Component', () => {
     window.vm.$el.querySelector('.installer-header--step-action__btn').click()
   }
 
+  let dbPath = `path/to/database/file`
+
   let stubs = {
     success: {
-       createDBRequest(response = {status: true, path: 'path/to/database/file'}) {
+       createDBRequest(response = {status: true, path: dbPath}) {
         moxios.stubRequest(`${window.Laravel.base_url}parameters/createDB`, {
           status: 200,
           response: response
@@ -54,13 +55,6 @@ describe('installer Component', () => {
     .toBe('function')
     expect(typeof vm._computedWatchers.getActiveStep)
     .toBe('object')
-  })
-
-  it('shows package version', () => {
-    createVue()
-
-    expect(vm.$el.textContent)
-    .toContain(_package.version)
   })
 
   it(`has 'createDatabase' and 'migrate' steps`, () => {
@@ -174,6 +168,24 @@ describe('installer Component', () => {
     next(() => {
       expect(vm.notificationStore.state[0].message)
       .toContain('created')
+      done()
+    },10)
+  })
+
+  it(`show database path after successful 'createDatabase' request`, (done) => {
+    window.Laravel.needInstallation = true
+    window.Laravel.needMigration = true
+
+    createVue()
+
+    then(() => {
+      stubs.success.createDBRequest()
+      clickAction()
+    })
+    
+    next(() => {
+      expect(vm.$el.textContent)
+      .toContain(dbPath)
       done()
     },10)
   })

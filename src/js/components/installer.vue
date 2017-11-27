@@ -190,7 +190,6 @@ export default {
               'danger'
             )
 
-          console.log(response)
           step.response = `database file: ${response.data.path}`
           step.isDone = true
           this.alert('Database created successfully', 'primary')

@@ -104,3 +104,7 @@ __resolveCommonEachArg = (arg) => {
       arg()
   }  
 }
+
+log =(...args) => {
+  console.log(...args)
+}

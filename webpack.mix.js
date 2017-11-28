@@ -1,3 +1,5 @@
+let fs = require('fs-extra')
+
 if(process.env.NODE_ENV != 'temp-require')
 {
 	let mix = require('laravel-mix');
@@ -10,6 +12,10 @@ if(process.env.NODE_ENV != 'temp-require')
 	.sass('./src/sass/app.scss', 'css')
 
 	mix.setResourceRoot('/vendor/parameters/');
+
+    mix.then((stats) => {
+    	fs.copy('./dist','./vendor/parameters')
+    })
 
 	if( mix.inProduction()) {
 		mix.copy('node_modules/tinymce/skins', 'dist/css/libs/tinymce/skins');

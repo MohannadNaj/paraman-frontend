@@ -13,7 +13,8 @@
     "karma-watch": "cross-env NODE_ENV=testing FORCE_COLOR=true karma start karma.conf.js",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "pretty": "node pretty.js",
-    "tdd": "cross-env NODE_ENV=testing FORCE_COLOR=true node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "tdd": "cross-env NODE_ENV=testing FORCE_COLOR=true node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "serve": "http-server ./ -p 8081"
   },
   "devDependencies": {
     "axios": "^0.16.2",
@@ -25,6 +26,7 @@
     "cross-env": "^5.0.1",
     "dropzone": "^5.2.0",
     "es6-promise": "^4.1.1",
+    "fs-extra": "^4.0.2",
     "html-script-hook": "^1.0.0",
     "jasmine-core": "^2.8.0",
     "jquery": "^3.1.1",
@@ -51,6 +53,7 @@
   "dependencies": {
     "diff": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "http-server": "^0.10.0",
     "material-shadows": "^3.0.1",
     "popper.js": "^1.12.6",
     "roboto-fontface": "^0.8.0",

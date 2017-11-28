@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <title>Laravel</title>
+
+    <!-- Styles -->
+    <link href="dist/css/app.css" rel="stylesheet">
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {  
+            "needInstallation":false,
+            "needMigration":false,
+            "csrfToken":"Pi2cUotHwcDlHMsC9qAo01EqgBx5paNe8JCKBWxT",
+            "appName":"Laravel",
+            "images_dir":"storage",
+            "base_url":"http:\/\/localhost:8081\/",
+            "parametersColumns":{  
+              "id":null,
+              "name":null,
+              "label":null,
+              "type":null,
+              "is_category":null,
+              "category_id":null,
+              "value":null,
+              "meta":null,
+              "created_at":null,
+              "updated_at":null
+            },
+            "parametersTypes":[  
+              "textfield",
+              "text",
+              "file",
+              "integer",
+              "boolean"
+            ]
+        };
+    </script>
+
+</head>
+<body>
+    <div class="container-fluid" id="app">
+        <paraman :parameters-list='[]'></paraman>
+    </div>
+    <script src="dist/js/core.js"></script>
+    <script src="dist/js/app.js"></script>
+</body>
+</html>

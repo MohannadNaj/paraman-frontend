@@ -1,9 +1,10 @@
 {
-    "/specs/add-parameter.spec.js": "/specs/add-parameter.spec.js",
     "/specs/setup/index.js": "/specs/setup/index.js",
+    "/specs/paraman.spec.js": "/specs/paraman.spec.js",
     "/specs/Modal.spec.js": "/specs/Modal.spec.js",
     "/specs/installer.spec.js": "/specs/installer.spec.js",
     "/specs/change-paramCategory.spec.js": "/specs/change-paramCategory.spec.js",
+    "/specs/add-parameter.spec.js": "/specs/add-parameter.spec.js",
     "/specs/add-category.spec.js": "/specs/add-category.spec.js",
     "/specs/dropzone-upload.spec.js": "/specs/dropzone-upload.spec.js",
     "/specs/parameter-meta.spec.js": "/specs/parameter-meta.spec.js"

@@ -20,6 +20,7 @@
 import parametersList from './parameters-list'
 import parametersSidebar from './parameters-sidebar'
 import installer from './installer'
+import CategoriesBuilder from './../CategoriesBuilder'
 import parametersNavbar from './parameters-navbar'
 
 export default {
@@ -119,79 +120,20 @@ export default {
         component.parameter = parameter
       })
     },
-    extractCategoriesParameters() {
-      var categoriesIds = _.map(this.categories, x => x.target)
-      this.categoriesParameters = _.filter(this.parameters, parameter => {
-        return categoriesIds.indexOf(parameter.id.toString()) != -1
-      })
-
-      _.each(this.categories, category => {
-        category.parameters = _.filter(category.parameters, parameter => {
-          return categoriesIds.indexOf(parameter.id.toString()) == -1
-        })
-      })
-
-      this.categories.push({
-        target: 'categories',
-        blocked: false,
-        title: 'Categories',
-        parameters: this.categoriesParameters,
-        isCategoriesGroup: true
-      })
-    },
     prepareCategories() {
-      this.categories = []
-      var categoriesKeys = _.keys(
-        _.groupBy(
-          this.parameters.filter(x => x.is_category != true),
-          'category_id'
-        )
-      )
-
-      var definedCategories = this.parameters.filter(x => x.is_category == true)
-
-      _.forEach(definedCategories, cat => {
-        if (categoriesKeys.indexOf(cat.id.toString()) == -1)
-          categoriesKeys.push(cat.id.toString())
-      })
-      _.forEach(categoriesKeys, key => {
-        this.categories.push(this.prepareCategory(key))
-      })
-      this.extractCategoriesParameters()
+      let categoriesBuilder = new CategoriesBuilder(this.parameters)
+      this.categories = categoriesBuilder.buildCategories()
 
       this.$nextTick(() => {
-        if (this.$refs['sidebar'].editCategoriesMode) this.$refs['sidebar'].enableEditCategoriesMode()
+        if (typeof this.$refs['sidebar'] != "undefined" &&
+          this.$refs['sidebar'].editCategoriesMode)
+          this.$refs['sidebar'].enableEditCategoriesMode()
       })
     },
-    prepareCategory(key) {
-      if (key == 'null') key = null
-
-      var preparedCategory = {}
-      var categoryRelatedParameter = _.findLast(
-        this.parameters,
-        x => x.id == key
-      )
-      var title = ''
-
-      if (
-        categoryRelatedParameter == null ||
-        categoryRelatedParameter.value.length == 0
-      )
-        title = 'Unnamed Category'
-      else title = categoryRelatedParameter.value
-
-      preparedCategory.isCategoriesGroup = false
-      preparedCategory.blocked = false
-      preparedCategory.title = title
-      preparedCategory.target = key == null ? '' : key
-      preparedCategory.parameters = _.filter(
-        this.parameters,
-        x => x.category_id == key
-      )
-      preparedCategory.relatedParameter = categoryRelatedParameter
-      return preparedCategory
-    },
     getCategoriesRefs() {
+      if(typeof this.$refs['sidebar'] == "undefined")
+        return []
+
       return _.keys(this.$refs['sidebar'].$refs).filter(
         x => x.indexOf('_parameter_category') > -1
       )
@@ -218,18 +160,28 @@ export default {
 
       var categories = this.getCategoriesRefs()
 
+      // if we found the hash category in the references, open it and stop
       if (categories.indexOf(hash + '_parameter_category') > -1) {
+        // since "..._parameter_category" refs in the "parameters-list"
+        // was in a for loop, it will return array and should be retrieved by
+        // the key. but we will get the first one only.
         var categoryToOpen = this.$refs['sidebar'].$refs[hash + '_parameter_category'][0]
 
         if (categoryToOpen != undefined) return categoryToOpen.openCategory()
       }
 
+      // if the hash category is not found, and there is no categories at all.
+      // open add parameter
       if (categories[0] == undefined) return EventBus.fire('open-addParameter')
 
+      // if the hash category is not found, but there is categories, open the
+      // first category.
       var categoryToOpen = this.$refs['sidebar'].$refs[categories[0]][0]
 
       if (categoryToOpen != undefined) return categoryToOpen.openCategory()
 
+      // if the hash category is not found, and the first category is not
+      // defined correctly, but we know there is categories, open add parameter
       return EventBus.fire('open-addParameter')
     },
     createdCategory(data) {

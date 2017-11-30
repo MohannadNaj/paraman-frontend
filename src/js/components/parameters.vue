@@ -2,28 +2,7 @@
   <div class="wrapper">
     <installer v-if="needInstallation"></installer>
     <div v-if="!needInstallation" class="sidebar parameters-sidebar--container">
-      <div class="sidebar-wrapper">
-        <div class="logo parameters-sidebar--logo">
-          <img class="parameters-sidebar--logo__img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
-          <a class="parameters-sidebar--logo__text simple-text">
-                  Paraman<br>{{version}}
-              </a>
-        </div>
-        <ul class="nav parameters-category--list">
-          <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
-            v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
-          <li class="parameters-category--item">
-            <a @click="toggleEditCategories" :class="['parameters-category--editCategory-button ', editCategoriesMode ? 'parameters-category--editCategory-button__active' : '']" href="javascript:void(0);">
-                  Edit Categories
-                    <i class="fa fa-pencil"></i>
-                </a>
-          </li>
-          <li class="note-container" v-if="categories.length <= 1">
-            No Categories Found, Start by Adding one
-            <add-category></add-category>
-          </li>
-        </ul>
-      </div>
+      <parameters-sidebar ref="sidebar" :categories.sync="categories"></parameters-sidebar>
     </div>
     <div v-if="!needInstallation" class="main-panel">
       <parameters-navbar></parameters-navbar>
@@ -38,28 +17,23 @@
 
 <script>
 
-import parametersCategory from './parameters-category'
-import addCategory from './add-category'
 import parametersList from './parameters-list'
+import parametersSidebar from './parameters-sidebar'
 import installer from './installer'
 import parametersNavbar from './parameters-navbar'
-import _package from '../../../package.json'
 
 export default {
   data() {
     return {
-      version: _package.version,
       categories: [],
       parameters: [],
       openedCategory: null,
       categoriesParameters: [],
-      editCategoriesMode: false,
       needInstallation: false
     }
   },
   components: {
-    'parameters-category': parametersCategory,
-    'add-category': addCategory,
+    'parameters-sidebar': parametersSidebar,
     'parameters-list': parametersList,
     installer: installer,
     'parameters-navbar': parametersNavbar
@@ -165,35 +139,6 @@ export default {
         isCategoriesGroup: true
       })
     },
-    enableEditCategoriesMode() {
-      _.each(this.categories, category => {
-        category.blocked = true
-      })
-
-      var categoriesCategory = _.find(this.categories, category => {
-        return category.isCategoriesGroup
-      })
-      categoriesCategory.blocked = false
-      this.$nextTick(x => {
-        this.$refs[
-          categoriesCategory.target + '_parameter_category'
-        ][0].openCategory()
-      })
-    },
-    disableEditCategoriesMode() {
-      _.each(this.categories, category => {
-        category.blocked = false
-      })
-
-      this.$nextTick(x => {
-        this.openCategoryByHash(
-          this.openedCategory == null || this.openedCategory == ''
-            ? this.categories[0].target
-            : this.openedCategory
-        )
-        EventBus.fire('disabled-editCategoriesMode')
-      })
-    },
     prepareCategories() {
       this.categories = []
       var categoriesKeys = _.keys(
@@ -214,7 +159,9 @@ export default {
       })
       this.extractCategoriesParameters()
 
-      if (this.editCategoriesMode) this.enableEditCategoriesMode()
+      this.$nextTick(() => {
+        if (this.$refs['sidebar'].editCategoriesMode) this.$refs['sidebar'].enableEditCategoriesMode()
+      })
     },
     prepareCategory(key) {
       if (key == 'null') key = null
@@ -245,20 +192,20 @@ export default {
       return preparedCategory
     },
     getCategoriesRefs() {
-      return _.keys(this.$refs).filter(
+      return _.keys(this.$refs['sidebar'].$refs).filter(
         x => x.indexOf('_parameter_category') > -1
       )
     },
     deactivateCategories() {
       var categories = this.getCategoriesRefs()
       _.each(categories, categoryRef => {
-        var category = this.$refs[categoryRef][0]
+        var category = this.$refs['sidebar'].$refs[categoryRef][0]
         if (category) category.deActivate()
       })
     },
     openCategory(data) {
       EventBus.fire('open-category', data)
-      this.$refs[data.target + '_parameter_category'][0].activate()
+      this.$refs['sidebar'].$refs[data.target + '_parameter_category'][0].activate()
       window.location.hash = data.target
       var categoriesCategory = _.find(this.categories, category => {
         return category.isCategoriesGroup
@@ -272,14 +219,14 @@ export default {
       var categories = this.getCategoriesRefs()
 
       if (categories.indexOf(hash + '_parameter_category') > -1) {
-        var categoryToOpen = this.$refs[hash + '_parameter_category'][0]
+        var categoryToOpen = this.$refs['sidebar'].$refs[hash + '_parameter_category'][0]
 
         if (categoryToOpen != undefined) return categoryToOpen.openCategory()
       }
 
       if (categories[0] == undefined) return EventBus.fire('open-addParameter')
 
-      var categoryToOpen = this.$refs[categories[0]][0]
+      var categoryToOpen = this.$refs['sidebar'].$refs[categories[0]][0]
 
       if (categoryToOpen != undefined) return categoryToOpen.openCategory()
 
@@ -363,19 +310,6 @@ export default {
         // modal.getComponent().init()
         component.init()
       })
-    },
-    shouldShowCategory(category) {
-      if (category.isCategoriesGroup) {
-        if (this.editCategoriesMode) return true
-        else return false
-      }
-      return true
-    },
-    toggleEditCategories() {
-      this.editCategoriesMode = !this.editCategoriesMode
-      if (!this.editCategoriesMode) return this.disableEditCategoriesMode()
-
-      this.enableEditCategoriesMode()
     }
   }
 }

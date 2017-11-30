@@ -2,11 +2,11 @@
 </style>
 <template>
   <div class="addParameter">
-    <form class="form-horizontal addParameter--form" role="form" v-on:submit.prevent="submit">
+    <form class="form-horizontal addParameter__form" role="form" v-on:submit.prevent="submit">
       <div class="form-group">
-        <label class="control-label col-sm-2">Name</label>
-        <div class="col-sm-4">
-          <input type="text" class="form-control addParameter--form-input__name" v-model="data.name" placeholder="parameter_name">
+        <label class="control-label col-sm-3">Name</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control addParameter__form-input-name" v-model="data.name" placeholder="parameter_name">
           <div v-if="showErrors" class="help-block">
             <ul>
               <li v-for="message in errors.name_errors">{{message}}</li>
@@ -15,9 +15,9 @@
         </div>
       </div>
       <div class="form-group ">
-        <label class="control-label col-sm-2">Label</label>
-        <div class="col-sm-4">
-          <input type="text" class="form-control addParameter--form-input__label" v-model="data.label" placeholder="parameter_label">
+        <label class="control-label col-sm-3">Label</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control addParameter__form-input-label" v-model="data.label" placeholder="parameter_label">
           <div v-if="showErrors" class="help-block">
             <ul>
               <li v-for="message in errors.label_errors">{{message}}</li>
@@ -26,11 +26,11 @@
         </div>
       </div>
       <div class="form-group ">
-        <label class="control-label col-sm-2">
+        <label class="control-label col-sm-3">
 							Type
 						</label>
-        <div class="col-sm-4">
-          <select v-model="data.type" class="form-control addParameter--form-input__type">
+        <div class="col-sm-6">
+          <select v-model="data.type" class="form-control addParameter__form-input-type">
 								<option v-for="(type,index) in parametersTypes" v-text="type" :value="type"></option>
 							</select>
           <div v-if="showErrors" class="help-block">

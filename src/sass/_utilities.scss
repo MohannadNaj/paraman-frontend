@@ -1,0 +1,70 @@
+.pre-text {
+    outline-color: #a6a6a6;
+    display: block;
+    background: rgb(233, 233, 233);
+    width: fit-content;
+    padding: 2px 12px;
+    font-family: monospace;
+    color: black;
+    border: 1px solid #eee;
+    border-left: 0;
+    border-top-right-radius: 10px;
+}
+
+.hide-if-empty:empty{
+    display:none
+}
+
+.break-word {
+    word-wrap: break-word;
+}
+
+.note-container {
+    border-radius: 10px;
+    border: 2px solid black;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+.block-list-group {
+    filter: blur(2px);
+
+    &:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: default;
+        background: rgba(215, 215, 215, 0.4);
+    }
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.warning-bg {
+    background: rgba($warning-bg, 0.1);
+}
+
+.default-bg {
+    background: rgba($default-bg, 0.1);
+}
+
+
+.clickable {
+    cursor: pointer;
+}
+
+.display-block {
+    display: block
+}
+
+.code {
+    word-break: break-all;
+}

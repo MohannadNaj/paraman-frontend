@@ -1,0 +1,15 @@
+.notifications {
+    @import "node_modules/vue-notifyjs/themes/default.scss";
+
+    // Alternative Colors: https://bootsnipp.com/snippets/featured/cool-alerts-alternate-color
+    .alert-primary { border-color: #694D9F;background: #694D9F;color: #fff; }
+    .alert-info { border-color: #B4E1E4;background: #81c7e1;color: #fff; }
+    .alert-danger { border-color: #B63E5A;background: #E26868;color: #fff; }
+    .alert-warning { border-color: #F3F3EB;background: #D4A974;color: #fff; }  // Modified BG
+    .alert-success { border-color: #19B99A;background: #20A286;color: #fff; }
+
+    .alert.open {
+        z-index: 1060; // To get on top of modal backdrop overlay + modal document
+        opacity: 0.8;
+    }
+}

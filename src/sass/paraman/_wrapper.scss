@@ -1,0 +1,7 @@
+body {
+  background: white;
+}
+
+.wrapper {
+    background: change-color(desaturate($alternate-color, 20%), $lightness: 95);
+}

@@ -1,0 +1,17 @@
+
+.row.parameter-meta--container {
+    text-align: center;
+    display: block !important;
+}
+
+.parameter--label {
+    display: inline-block;
+
+    &__editable {
+        border-bottom: 2px solid black;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

@@ -1,66 +1,116 @@
-body {
-  background: white;
+.installer-box {
+  @include z-depth(4);
+  padding: 1rem;
+  background: lighten(desaturate($base-color, 30%), 50%);
 }
 
-.installer--container {
-}
+.installer {
+  padding-top: 1rem;
 
-.installer-header--container {
-  // overriding the nested (row > col) margins so we can stretch the container width to page's width
-  left: -15px;
-  right: -15px;
-/*   background-color: #101923;
-  background-image: url(../img/gear-wheel-310906_960_720.png); */
-  position: absolute;
-  margin: 0;
-  height: 100%;
-  padding-top: 50px;
-
-  .installer-header--logo__container {
-    background: #304e54;
+  &__header-container {
+    @extend .installer-box;
+    left: -1rem;
+    right: -1rem;
+    margin: 0;
+    height: 100%;
+    color: darken($base-color, 20%);
+    font-weight: 500;
+    padding-bottom: 1rem;
+  }
+  &__header-text {
+    padding-bottom: 5px;
+    border-bottom: 5px dotted adjust-hue($base-color, -60deg);
+  }
+  &__logo-caption {
+    margin-top: -36px;
+    font-size: 2rem;
+    color: $base-color;
   }
 
-  .installer-header--logo__image {
+  &__logo-image {
     @include z-depth(8);
 
     min-height: 300px;
     max-height: 450px;
     max-width: 100%;
   }
+  &__step-navigation {
+    min-height: 130px;
+    @extend .clickable;
 
-  .installer-header--steps__text {
-    white-space: pre-line;
+    &--done .installer-step__title,
+    &--active .installer-step__title {
+      background: lighten(desaturate($base-color, 10%), 50%);
+    }
+
+    &--active .installer-step__title {
+      @include z-depth(4);
+      transition: .3s;
+    }
+  }
+}
+
+.installer-step {
+  &__button--action {
+    background: $alternate-color;
+    color: white;
+    font-size: 2rem;
+    margin: 1rem;
+    width: 200px;
+  }
+  &__button--action:hover,
+  &__button--action:focus,
+  &__button--action:active {
+    background: lighten($alternate-color, 10%);
+    color: white;
   }
 
-  .card.installer-header--steps {
-    min-height: 330px;
-    max-height: 500px;
-    overflow: auto;
-    background: white;
-    margin-top: -15px;
-  }
-  .installer-header--steps__done {
-    @extend .bg-success;
+  &__container {
+    &--detailed {
+      @extend .installer-box;
 
-    &:after {
-      content: "\2713";
-      position: absolute;
-      top: 28px;
-      right: 28px;
-      font-size: 22px;
+      min-height: 360px;
+      max-height: 500px;
+      overflow: auto;
+      background: white;
+      margin-top: -1rem;
+    }
+
+    &--done {
+      &:after { // the "done" check mark ✓
+        content: "\2713";
+        position: absolute;
+        top: 28px;
+        right: 28px;
+        font-size: 22px;
+      }
     }
   }
 
-  .installer-header--steps__icon {
+
+  &__icon-container {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 50%;
+    color: white;
+    background: $base-color;
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+    @include z-depth(4);
+  }
+
+  &__icon {
     margin-top: 1px;
     font-size: 27px;
-    margin-left: -4px;    
+    margin-left: -4px;
   }
 
-  .installer-step--navigation {
+  &__text {
+    white-space: pre-line;
   }
 
-  .installer-header--steps__responseText {
+  &__text--response {
     @extend .pre-text;
     @extend .hide-if-empty;
 
@@ -69,58 +119,24 @@ body {
     border-radius: 0;
     white-space: pre-line;
   }
-}
 
-.installer-box {
-  @include z-depth(4);
-  padding: 1rem;
-  background: #d2eaee;
-}
+  &__title {
+    font-size: 24px;
+    padding: 1rem;
+    text-align: center;
+  }
 
+  @media (min-width: $screen-xs-min) { //480px & greater
+    &__container--detailed &__title {
+      width: 350px;
+      display: inline-block;
+      text-align: left;
+    }
 
-.installer-step--title {
-  font-size: 24px;
-}
-
-.installer-step--icon--container {
-    display: inline-block;
-    padding: 10px;
-    border-radius: 50%;
-    color: white;
-    background: #325058;
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
-    @include z-depth(4);
-}
-
-.installer-header--heading {
-  color: #000000;
-  font-weight: 500;
-  padding-bottom: 15px;
-
-  &__inline {
-    padding-bottom: 5px;
-    border-bottom: 5px dotted #26963c;
+    &__container--detailed &__icon {
+      margin-left: 4px;
+    }
   }
 }
 
-
-.installer-header--logo__caption {
-  margin-top: -36px;
-  font-size: 2rem;
-  color: #101923;
-}
-
-.installer-step--navigation {
-  min-height: 130px;
-  @extend .clickable;
-
-  .installer-step--title {
-    padding: 15px;
-  }
-
-  &__active .installer-step--title {
-    background: #80dbca;
-  }
-}
+// 

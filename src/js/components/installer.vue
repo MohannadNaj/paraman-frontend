@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="container-fluid installer-header installer--container">
-      <div class="row installer-header--container">
-        <div class="col-sm-6 text-center">
-          <img class="rounded img-fluid installer-header--logo__image" src="../../img/paraman-logo.png" alt="Paraman Logo">
-          <div class="installer-header--logo__caption">v{{version}}</div>
+    <div class="installer container-fluid">
+      <div class="installer__container row">
+        <div class="col-lg-6 text-center">
+          <img class="installer__logo-image rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
+          <div class="installer__logo-caption">v{{version}}</div>
         </div>
-        <div class="col-sm-6 text-center">
-          <div class="installer-header--heading installer-box">
-            <h2><span class="installer-header--heading__inline">Paraman Installer</span></h2>
+        <div class="col-lg-6 text-center">
+          <div class="installer__header-container">
+            <h2><span class="installer__header-text">Paraman Installer</span></h2>
             <h3>
               Paraman couldn't find a database to work on it.
             </h3>
@@ -23,7 +23,7 @@
         </div>
         <div class="col-sm-8 col-sm-offset-2 mt-2">
           <div class="row">
-            <div @click="setActiveStep(step.action)" v-for="(step, index) in steps" :class="['col-sm-4', 'installer-step--navigation', step.isActive ? 'installer-step--navigation__active':'']">
+            <div @click="setActiveStep(step.action)" v-for="(step, index) in steps" :class="['installer__step-navigation', step.isActive ? 'installer__step-navigation--active':'', step.isDone ? 'installer__step-navigation--done':'', 'col-sm-4']">
               <installer-step :summary-view="true" :step.sync="step"></installer-step>
             </div>
           </div>

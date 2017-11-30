@@ -2,6 +2,13 @@
 
 @import "lbd-fix";
 
+body {
+  background: white;
+}
+
+.wrapper {
+    background: change-color(desaturate($alternate-color, 20%), $lightness: 95);
+}
 .notifications {
 	@import "node_modules/vue-notifyjs/themes/default.scss";
 

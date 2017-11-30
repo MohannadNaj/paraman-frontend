@@ -1,7 +1,7 @@
 import paraman from '../../src/js/components/paraman'
 import _package from '../../package.json'
 
-fdescribe('functional: onload', () => {
+describe('functional: onload', () => {
   beforeEach(()=> {
     commonBeforeEach(paraman)
     window.Laravel.installationData = {

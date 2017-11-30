@@ -13,7 +13,7 @@ describe('installer Component', () => {
 
 
   let clickAction = () => {
-    window.vm.$el.querySelector('.installer-header--step-action__btn').click()
+    window.vm.$el.querySelector('.installer-step__button--action').click()
   }
 
   let dbPath = `path/to/database/file`
@@ -93,7 +93,7 @@ describe('installer Component', () => {
     .toBeTruthy()
 
     then(() => {
-      expect(vm.$el.querySelector('.installer-header--steps__done'))
+      expect(vm.$el.querySelector('.installer-step__container--done'))
       .toBeDefined()
       done()
     })

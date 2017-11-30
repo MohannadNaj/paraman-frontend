@@ -1,22 +1,22 @@
 <style scoped>
 </style>
 <template>
-  <div :class="[summaryView ? '': 'card installer-box', 'installer-header--steps', step.isDone ? 'installer-header--steps__done':'']">
+  <div :class="['installer-step__container', summaryView ? '': 'installer-step__container--detailed', step.isDone ? 'installer-step__container--done':'']">
     <div class="card-body">
-      <h4 class="card-title installer-step--title text-center">
-        <div class="installer-step--icon--container">
-          <i :class="'installer-header--steps__icon fa ' + step.icon"></i>
+      <h4 class="installer-step__title card-title">
+        <div class="installer-step__icon-container">
+          <i :class="'installer-step__icon fa ' + step.icon"></i>
         </div>
         {{step.title}}
       </h4>
       <div v-if="! summaryView" class="card-text">
-        <div class="installer-header--steps__text">
+        <div class="installer-step__text">
           {{step.text}}
           <code class="code hide-if-empty display-block text-left" v-if="typeof step['codeProperty'] !== 'undefined'" v-text="getProperty(step.codeProperty)"></code>
         </div>
-        <button href="#" @click="getProperty(step.action, step)" class="btn btn-outline-primary installer-header--step-action__btn">{{step.actionText}}</button>
+        <button href="#" @click="getProperty(step.action, step)" class="installer-step__button--action btn btn-outline-primary">{{step.actionText}}</button>
         <hr>
-        <div v-text="step.response" class="installer-header--steps__responseText"></div>
+        <div v-text="step.response" class="installer-step__text--response"></div>
       </div>
     </div>
   </div>

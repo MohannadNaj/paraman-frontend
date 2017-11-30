@@ -26,7 +26,7 @@ if(process.env.NODE_ENV != 'temp-require')
 		mix.disableNotifications()
 
 		if(process.argv.filter(x => x.indexOf('no-browsersync') != -1).length == 0)
-			mix.browserSync('http://localhost:8000')
+			mix.browserSync({proxy: 'http://localhost:8000', files: ['./dist/**/*.*'], injectChanges: true})
 
 		if(process.argv.filter(x => x.indexOf('no-tests') != -1).length == 0)
 			require('./specs-watcher');

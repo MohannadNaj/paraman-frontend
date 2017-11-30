@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-md-12">
         <div v-if="parameters.length > 0" class="card">
-          <div class="header">
+          <div class="parameters-list--header header">
             <h4 class="title">
               {{ title }}
               <span class="pull-right">

@@ -4,8 +4,10 @@ if(process.env.NODE_ENV != 'temp-require')
 
 	mix.setPublicPath('dist');
 
-	mix.js('./src/js/core.js', 'js')
-	.sass('./src/sass/core.scss', 'css')
+	if( mix.inProduction()) {
+		mix.js('./src/js/core.js', 'js')
+		.sass('./src/sass/core.scss', 'css')
+	}
 
 	mix.js('./src/js/app.js', 'js')
 	.sass('./src/sass/app.scss', 'css')

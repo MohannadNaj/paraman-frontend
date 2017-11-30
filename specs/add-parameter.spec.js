@@ -24,18 +24,15 @@ describe('add-parameter Component', () => {
     // arrange
     createVue()
 
+    let failedResponse = {"message":"The given data was invalid.","errors":{"name":["The name field is required."],"label":["The label field is required."]}}
     // act
-    submitFailedRequest({
-      label: ['The label field is required.'],
-      name: ['first validation error.', 'second validation error']
-    })
+    submitFailedRequest(failedResponse)
       // assert
       .then(() => {
         expect(vm.$el.textContent).toContain('The label field is required')
 
-        expect(vm.$el.textContent).toContain('first validation')
+        expect(vm.$el.textContent).toContain('The name field is required')
 
-        expect(vm.$el.textContent).toContain('second validation')
         done()
       })
   })

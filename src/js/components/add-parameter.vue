@@ -101,17 +101,15 @@ export default {
           EventBus.fire('created-parameter', response.data.parameter)
         })
         .catch(error => {
-          // TODO: should be laravel 5.5 compliant
           var errorMessage = 'Error in adding parameter'
           var errorData = error.response.data
-
           if (typeof errorData == 'string') {
             if (Helper.isTokenException(errorData)) {
               errorMessage += Helper.getTokenExceptionMessage()
             }
           } else if (typeof errorData == 'object') {
             var errorsCollection = {}
-            _.each(errorData, (fieldErrors, fieldName) => {
+            _.each(errorData.errors, (fieldErrors, fieldName) => {
               errorsCollection[fieldName + '_errors'] = fieldErrors
             })
             this.errors = errorsCollection

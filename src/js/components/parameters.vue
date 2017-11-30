@@ -32,7 +32,6 @@
           <parameters-list ref="parameters"></parameters-list>
         </div>
       </div>
-      <parameters-footer></parameters-footer>
     </div>
   </div>
 </template>
@@ -43,7 +42,6 @@ import parametersCategory from './parameters-category'
 import addCategory from './add-category'
 import parametersList from './parameters-list'
 import installer from './installer'
-import parametersFooter from './parameters-footer'
 import parametersNavbar from './parameters-navbar'
 import _package from '../../../package.json'
 
@@ -64,7 +62,6 @@ export default {
     'add-category': addCategory,
     'parameters-list': parametersList,
     installer: installer,
-    'parameters-footer': parametersFooter,
     'parameters-navbar': parametersNavbar
   },
   mounted() {

@@ -1,4 +1,9 @@
-@import "core";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+@import "../../third_party/light-bootstrap-dashboard/assets/sass/lbd/_variables";
+@import "variables";
+
+// Material Shadows
+@import "node_modules/material-shadows/material-shadows";
 
 @import "lbd-fix";
 

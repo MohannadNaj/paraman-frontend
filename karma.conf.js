@@ -48,6 +48,9 @@ module.exports = function (config) {
       noInfo: true,
       stats: 'errors-only'
     },
+    proxies: {
+      '/images':'/dist/images'
+    },
     colors: true,
     reporters: ['spec','notify'],
     notifyReporter: {

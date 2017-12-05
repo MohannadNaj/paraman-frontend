@@ -173,6 +173,29 @@ describe('functional: onload', () => {
     }, 10)
   })
 
+  it(`default to "add parameter" if a category exist`, (done) => {
+    paramanVue([TestData.categories[0]])
+
+    next(() => {
+      expect(vm.$el.querySelector('.parameters-list').textContent.toLowerCase())
+      .toContain('no parameters added')
+
+      done()
+    }, 10)
+  })
+
+  it(`show "add category" in the sidebar if there is no categories`, (done) => {
+    paramanVue([])
+
+    next(() => {
+      // 
+      expect(vm.$el.querySelector('.sidebar').textContent.toLowerCase())
+      .toContain('no categories found')
+
+      done()
+    }, 10)
+  })
+
   it(`set the location hash to the default loaded category (first one)`, (done) => {
 
     let activeCategory = TestData.categories[0]

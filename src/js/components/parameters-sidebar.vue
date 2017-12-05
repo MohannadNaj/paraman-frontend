@@ -1,21 +1,21 @@
 <template>
-  <div class="sidebar-wrapper">
-    <div class="logo parameters-sidebar--logo">
-      <img class="parameters-sidebar--logo__img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
-      <a class="parameters-sidebar--logo__text simple-text">
+  <div class="parameters-sidebar__container sidebar-wrapper">
+    <div class="parameters-sidebar__logo logo">
+      <img class="parameters-sidebar__logo-img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
+      <a class="parameters-sidebar__logo-text simple-text">
               Paraman<br>{{version}}
           </a>
     </div>
-    <ul class="nav parameters-category--list">
+    <ul class="parameters-sidebar__category-list nav">
       <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
         v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
-      <li class="parameters-category--item">
-        <a @click="toggleEditCategories" :class="['parameters-category--editCategory-button ', editCategoriesMode ? 'parameters-category--editCategory-button__active' : '']" href="javascript:void(0);">
+      <li class="parameters-sidebar__category-list-item parameters-sidebar__category-list-item--edit-categories">
+        <a @click="toggleEditCategories" :class="['parameters-sidebar__button-category-edit', editCategoriesMode ? 'parameters-sidebar__button-category-edit--active' : '']" href="javascript:void(0);">
               Edit Categories
-                <i class="fa fa-pencil"></i>
+                <i class="parameters-sidebar__icon fa fa-pencil"></i>
             </a>
       </li>
-      <li class="note-container" v-if="categories.length <= 1">
+      <li class="parameters-sidebar__category-list-item parameters-sidebar__category-list-item--not-found" v-if="categories.length <= 1">
         No Categories Found, Start by Adding one
         <add-category></add-category>
       </li>

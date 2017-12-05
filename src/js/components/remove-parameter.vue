@@ -1,15 +1,15 @@
 <style scoped>
 </style>
 <template>
-  <div class="container-fluid">
+  <div class="remove-parameter__container container-fluid">
     <div class="jumbotron">
-      <p>
+      <p class="remove-parameter__text remove-parameter__text--confirm">
         Are you sure you want to remove parameter: <b>{{ parameter.name }}</b>?
       </p>
-      <div class="btn btn-default" @click="cancel">
+      <div class="remove-parameter__button remove-parameter__button--cancel btn btn-default" @click="cancel">
         No
       </div>
-      <div class="btn btn-primary" @click="remove">
+      <div class="remove-parameter__button remove-parameter__button--remove btn btn-primary" @click="remove">
         Yes
       </div>
     </div>

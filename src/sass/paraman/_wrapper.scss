@@ -2,6 +2,6 @@ body {
   background: white;
 }
 
-.wrapper {
-    background: change-color(desaturate($alternate-color, 20%), $lightness: 95);
+.parameters__container {
+    background: change-color(desaturate($accent-color, 20%), $lightness: 95);
 }

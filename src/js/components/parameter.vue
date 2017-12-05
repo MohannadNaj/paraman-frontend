@@ -14,42 +14,42 @@
 </style>
 <template>
   <div>
-    <div :class="['card','parameter',markIfDirty,'no-margin']">
-      <div class="header">
-        <h3 class="title container-fluid">
+    <div :class="['parameter','card',markIfDirty,'no-margin']">
+      <div class="parameter__header header">
+        <h3 class="parameter__title-container title container-fluid">
           <div>
-            <div :contenteditable="!previewMode" @keyup="keyupLabelInput" :class="['parameter--label', !previewMode ? 'parameter--label__editable':'']">{{originalParameter.label}}</div>
-            <span class="pull-right">
-                <span v-if="isDirty && previewMode" class="label label-warning">
+            <div :contenteditable="!previewMode" @keyup="keyupLabelInput" :class="['parameter__parameter-label', !previewMode ? 'parameter__parameter-label--editable':'']">{{originalParameter.label}}</div>
+            <span class="parameter__controls-container pull-right">
+                <span v-if="isDirty && previewMode" class="parameter__label parameter__label--unsaved label label-warning">
                     Unsaved Changes!
                 </span>
-            <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="btn btn-default btn-sm">
-                    <i class="fa fa-undo"></i>
+            <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="parameter__button parameter__button--undo btn btn-default btn-sm">
+                    <i class="parameter__icon fa fa-undo"></i>
                 </button>
-            <button v-if="isDirty && !previewMode" @click="submit" type="button" class="btn btn-default btn-sm parameter--button_undo">
-                    <i class="fa fa-floppy-o"></i>
+            <button v-if="isDirty && !previewMode" @click="submit" type="button" class="parameter__button parameter__button--save btn btn-default btn-sm">
+                    <i class="parameter__icon fa fa-floppy-o"></i>
                 </button>
-            <span class="badge">{{originalParameter.type}}</span>
-            <button @click="togglePreview" type="button" class="btn btn-default btn-sm parameter--button_edit">
-                    <i class="fa fa-pencil"></i>
+            <span class="parameter__badge badge">{{originalParameter.type}}</span>
+            <button @click="togglePreview" type="button" class="parameter__button parameter__button--edit btn btn-default btn-sm">
+                    <i class="parameter__icon fa fa-pencil"></i>
                 </button>
-            <button @click="removeParameter" type="button" class="btn btn-danger btn-sm parameter--button_remove">
-                    <i class="fa fa-times-circle"></i>
+            <button @click="removeParameter" type="button" class="parameter__button parameter__button--remove btn btn-danger btn-sm">
+                    <i class="parameter__icon fa fa-times-circle"></i>
                 </button>
             </span>
             &nbsp;
           </div>
         </h3>
       </div>
-      <div class="content">
-        <form v-if="originalParameter.type != null" v-on:submit.prevent="submit">
+      <div class="parameter__body content">
+        <form class="parameter__form" v-if="originalParameter.type != null" v-on:submit.prevent="submit">
           <component :parameter="originalParameter" :is="getEditorComponentName" :ref="getEditorComponentRef"></component>
-          <ul class="list-group" v-show="errors.length > 0">
-            <li class="list-group-item list-group-item-danger" v-for="error in errors" v-html="parseError(error)"></li>
+          <ul class="parameter__list parameter__errors-container list-group" v-show="errors.length > 0">
+            <li class="parameter__list-item parameter__list-item--danger list-group-item list-group-item-danger" v-for="error in errors" v-html="parseError(error)"></li>
           </ul>
         </form>
       </div>
-      <div class="footer">
+      <div class="parameter__footer footer">
         <parameter-meta :parameter.sync="originalParameter"></parameter-meta>
       </div>
     </div>

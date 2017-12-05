@@ -40,7 +40,7 @@ describe('parameter-meta Component', () => {
         parameter: TestData.modified_parameters[0]
     })
 
-    vm.$el.querySelector('.parameter-meta--changeCategory-button').click()
+    vm.$el.querySelector('.parameter-meta__button-change-category').click()
     then(() => {
         expectEvent('change-paramCategory')
         done()
@@ -74,7 +74,7 @@ describe('parameter-meta Component', () => {
 
     spy('showLogs')
 
-    vm.$el.querySelector('.parameter-meta--showLogs-button').click()
+    vm.$el.querySelector('.parameter-meta__button-show-logs').click()
     
     expect(vm.showLogs.calledOnce)
     .toBe(true)
@@ -87,7 +87,7 @@ describe('parameter-meta Component', () => {
 
     Helper.modal = fakeModal
 
-    vm.$el.querySelector('.parameter-meta--showLogs-button').click()
+    vm.$el.querySelector('.parameter-meta__button-show-logs').click()
 
     expect(vm.getModal().data_html)
     .toContain(parameter.meta.logs[0].old)

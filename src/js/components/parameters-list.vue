@@ -1,31 +1,31 @@
 <style scoped>
-.meta-list-group-item {
+.parameters-list__list-item {
   padding: 0px;
   box-shadow: 0px 1px 2px black;
   margin-bottom: 20px;
 }
 </style>
 <template>
-  <div class="container-fluid parameters-list">
+  <div class="parameters-list container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div v-if="parameters.length > 0" class="card">
-          <div class="parameters-list--header header">
-            <h4 class="title">
+          <div class="parameters-list__header header">
+            <h4 class="parameters-list__title title">
               {{ title }}
               <span class="pull-right">
-                <span class="badge">{{ parameters.length }}</span>
-              <button type="button" class="btn btn-success btn-sm parameters-list--button__add" @click="add">+</button>
+                <span class="parameters-list__badge badge">{{ parameters.length }}</span>
+              <button type="button" class="parameters-list__button parameters-list__button--add btn btn-success btn-sm" @click="add">+</button>
               </span>
             </h4>
           </div>
-          <div class="parameters content">
-            <ul class="list-group">
-              <parameter class="list-group-item meta-list-group-item" v-for="parameter in parameters" :parameter="parameter" :ref="'parameter'+parameter.id" :key="parameter.id"></parameter>
+          <div class="parameters-list__body content">
+            <ul class="parameters-list__list list-group">
+              <parameter class="parameters-list__list-item list-group-item" v-for="parameter in parameters" :parameter="parameter" :ref="'parameter'+parameter.id" :key="parameter.id"></parameter>
             </ul>
           </div>
         </div>
-        <div class="note-container" v-if="parameters.length == 0">
+        <div class="parameters-list__add-container parameters-list__add-container--not-found" v-if="parameters.length == 0">
           <add-category v-if="isCategoriesGroup"></add-category>
           <div v-if="!isCategoriesGroup">
             No Parameters Added, start by adding one

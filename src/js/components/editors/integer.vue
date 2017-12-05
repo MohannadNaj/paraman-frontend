@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div v-if="previewMode">
-      <span style="background: #eee;">{{ paramValue }}</span>
+  <div class="editor-integer__container">
+    <div class="editor-integer__value-container" v-if="previewMode">
+      <span class="editor-integer__label" style="background: #eee;">{{ paramValue }}</span>
     </div>
-    <div v-if="!previewMode">
-      <input type="number" class="form-control editor" v-model="paramValue">
+    <div class="editor-integer__input-container" v-if="!previewMode">
+      <input type="number" class="editor-integer__input form-control editor" v-model="paramValue">
     </div>
   </div>
 </template>

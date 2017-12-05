@@ -100,11 +100,11 @@ describe('functional: onload', () => {
       expectEvent('opening-category')
 
       // first category's name
-      expect(vm.$el.querySelector('.parameters-list--header').textContent)
+      expect(vm.$el.querySelector('.parameters-list__header').textContent)
       .toContain(activeCategory.value)
 
       // first category's parameters length
-      expect(vm.$el.querySelector('.parameters-list--header').textContent)
+      expect(vm.$el.querySelector('.parameters-list__header').textContent)
       .toContain(activeCategoryParameters.length)
 
       // first category's parameters data
@@ -138,11 +138,11 @@ describe('functional: onload', () => {
       expectEvent('opening-category')
 
       // location-hash category's name
-      expect(vm.$el.querySelector('.parameters-list--header').textContent)
+      expect(vm.$el.querySelector('.parameters-list__header').textContent)
       .toContain(activeCategory.value)
 
       // location-hash category's parameters length
-      expect(vm.$el.querySelector('.parameters-list--header').textContent)
+      expect(vm.$el.querySelector('.parameters-list__header').textContent)
       .toContain(activeCategoryParameters.length)
 
       // location-hash category's parameters data
@@ -166,7 +166,7 @@ describe('functional: onload', () => {
 
     next(() => {
       // 
-      expect(vm.$el.querySelector('.parameters-list--header').textContent.toLowerCase())
+      expect(vm.$el.querySelector('.parameters-list__header').textContent.toLowerCase())
       .not.toContain('categories')
 
       done()

@@ -1,13 +1,13 @@
 
-.row.parameter-meta--container {
+.row.parameter-meta__container {
     text-align: center;
     display: block !important;
 }
 
-.parameter--label {
+.parameter__parameter-label {
     display: inline-block;
 
-    &__editable {
+    &--editable {
         border-bottom: 2px solid black;
 
         &:focus {

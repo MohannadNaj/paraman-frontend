@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div class="parameters__container wrapper">
     <installer v-if="needInstallation"></installer>
-    <div v-if="!needInstallation" class="sidebar parameters-sidebar--container">
+    <div v-if="!needInstallation" class="sidebar parameters__sidebar-container">
       <parameters-sidebar ref="sidebar" :categories.sync="categories"></parameters-sidebar>
     </div>
-    <div v-if="!needInstallation" class="main-panel">
+    <div v-if="!needInstallation" class="parameters__main main-panel">
       <parameters-navbar></parameters-navbar>
-      <div class="content">
+      <div class="parameters__body content">
         <div class="container-fluid">
           <parameters-list ref="parameters"></parameters-list>
         </div>

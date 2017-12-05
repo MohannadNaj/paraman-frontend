@@ -69,7 +69,7 @@ describe('dropzone-upload Component', () => {
       }, 10)
     })
 
-    vm.$el.querySelector('.dropzone-upload--button__save').click()
+    clickSubmit()
   })
 
   it('on successful upload: hide modal', (done) => {
@@ -178,5 +178,9 @@ let submitUpload = (requestStub = {}, is_uploaded = true) => {
   
   vm.is_uploaded = is_uploaded
 
-  vm.$el.querySelector('.dropzone-upload--button__save').click()
+  clickSubmit()
+}
+
+let clickSubmit = () => {
+  vm.$el.querySelector('.dropzone-upload__button--submit').click()
 }

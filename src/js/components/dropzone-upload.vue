@@ -1,23 +1,23 @@
 <template>
   <div>
-    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+    <div class="dropzone-upload modal fade" :id="modalId" tabindex="-1" role="dialog">
+      <div class="dropzone-upload__container modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" :id="modalId + 'Label'">{{ header_msg }}</h4>
+          <div class="dropzone-upload__header modal-header">
+            <button type="button" class="dropzone-upload__close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="dropzone-upload__title modal-title" :id="modalId + 'Label'">{{ header_msg }}</h4>
           </div>
-          <div class="modal-body">
+          <div class="dropzone-upload__body modal-body">
             <div class="row">
               <div class="col-xs-12">
-                <form v-bind:action="target_action" id="dropzone-upload" class="text-center dropzone">
+                <form v-bind:action="target_action" id="dropzone-upload" class="dropzone-upload__form text-center dropzone">
                 </form>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button @click="saveBtn" type="button" class="btn btn-primary dropzone-upload--button__save">Save Changes</button>
+          <div class="dropzone-upload__footer modal-footer">
+            <button type="button" class="dropzone-upload__button dropzone-upload__button--close btn btn-default" data-dismiss="modal">Close</button>
+            <button @click="saveBtn" type="button" class="dropzone-upload__button dropzone-upload__button--action dropzone-upload__button--submit btn btn-primary">Save Changes</button>
           </div>
         </div>
       </div>

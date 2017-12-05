@@ -19,7 +19,7 @@ describe('add-category Component', () => {
 
     then(() => {
       expect(
-        vm.$el.querySelector('.addCategory--button__submit').disabled
+        vm.$el.querySelector('.add-category__button--submit').disabled
       ).toBe(true)
 
       notExpectEvent('start-addCategory')

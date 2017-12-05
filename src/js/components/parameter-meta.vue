@@ -1,15 +1,15 @@
 <template>
-  <div class="row parameter-meta--container">
+  <div class="parameter-meta__container row">
     <div class="col-xs-6">
-      <button type="button" @click="showLogs()" class="btn btn-default parameter-meta--showLogs-button">
+      <button type="button" @click="showLogs()" class="btn btn-default parameter-meta__button-show-logs">
       <i class="fa fa-book"></i>
       Revisions: {{countLogs}}
       </button>
       <span v-if="hasLogs">
-        <div class="logs-list hidden">
-          <ul class="list-group break-word">
-            <li v-for="log in reverseLogs" class="list-group-item">
-              <div class="row">
+        <div class="parameter-meta__logs-container hidden">
+          <ul class="parameter-meta__logs-list list-group break-word">
+            <li v-for="log in reverseLogs" class="parameter-meta__logs-list-item list-group-item">
+              <div class="parameter-meta__log-container row">
                 <div class="col-xs-6"><b>Date:</b>{{log.date}}</div>
                 <div class="col-xs-6"><b>Field:</b>{{log.field}}</div>
                 <div class="col-xs-6"><b>Old:</b>{{parseValue(log.old)}}</div>
@@ -21,16 +21,16 @@
   </div>
   </span>
   </div>
-  <div class="col-xs-6">
-    <button type="button" @click="changeCategory()" class="btn btn-default parameter-meta--changeCategory-button">
+  <div class="parameter-meta__container-category col-xs-6">
+    <button type="button" @click="changeCategory()" class="parameter-meta__button parameter-meta__button-change-category btn btn-default">
       Category
       <i class="fa fa-bookmark"></i>
       </button>
   </div>
-  <div class="col-xs-6">
-    <input class="form-control" onclick="this.select();" readonly="" v-on:input="preventChange" :value="getPHPCode">
+  <div class="parameter-meta__container-code col-xs-6">
+    <input class="parameter-meta__input parameter-meta__input--code form-control" onclick="this.select();" readonly="" v-on:input="preventChange" :value="getPHPCode">
   </div>
-  <div class="col-xs-6">
+  <div class="parameter-meta__container-timestamps col-xs-6">
     <i class="glyphicon glyphicon-calendar"></i>
     <span class="meta-label">
         updated
@@ -73,7 +73,7 @@ export default {
     mapLogsHtmlData(component) {
       ;(component.data_title = this.parameter.label + ' logs'),
         (component.data_html = $(this.$el)
-          .find('.logs-list')
+          .find('.parameter-meta__logs-container')
           .html())
     },
     parseValue(val, logField = 'value') {

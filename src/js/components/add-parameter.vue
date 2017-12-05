@@ -1,12 +1,12 @@
 <style scoped>
 </style>
 <template>
-  <div class="addParameter">
-    <form class="form-horizontal addParameter__form" role="form" v-on:submit.prevent="submit">
-      <div class="form-group">
-        <label class="control-label col-sm-3">Name</label>
+  <div class="add-parameter">
+    <form class="form-horizontal add-parameter__form" role="form" v-on:submit.prevent="submit">
+      <div class="add-parameter__form-group form-group">
+        <label class="add-parameter__form-label control-label col-sm-3">Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control addParameter__form-input-name" v-model="data.name" placeholder="parameter_name">
+          <input type="text" class="add-parameter__form-input add-parameter__form-input--for-name form-control" v-model="data.name" placeholder="parameter_name">
           <div v-if="showErrors" class="help-block">
             <ul>
               <li v-for="message in errors.name_errors">{{message}}</li>
@@ -15,9 +15,9 @@
         </div>
       </div>
       <div class="form-group ">
-        <label class="control-label col-sm-3">Label</label>
+        <label class="add-parameter__form-label control-label col-sm-3">Label</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control addParameter__form-input-label" v-model="data.label" placeholder="parameter_label">
+          <input type="text" class="add-parameter__form-input add-parameter__form-input--for-label form-control" v-model="data.label" placeholder="parameter_label">
           <div v-if="showErrors" class="help-block">
             <ul>
               <li v-for="message in errors.label_errors">{{message}}</li>
@@ -26,11 +26,11 @@
         </div>
       </div>
       <div class="form-group ">
-        <label class="control-label col-sm-3">
+        <label class="add-parameter__form-label control-label col-sm-3">
 							Type
 						</label>
         <div class="col-sm-6">
-          <select v-model="data.type" class="form-control addParameter__form-input-type">
+          <select v-model="data.type" class="add-parameter__form-input add-parameter__form-input--for-type add-parameter__form-select form-control">
 								<option v-for="(type,index) in parametersTypes" v-text="type" :value="type"></option>
 							</select>
           <div v-if="showErrors" class="help-block">
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="col-sm-offset-1 btn btn-primary addParameter--button__submit">Submit</button>
+      <button type="submit" class="col-sm-offset-1 btn btn-primary add-parameter__button add-parameter__button--action add-parameter__button--submit">Submit</button>
     </form>
   </div>
 </template>

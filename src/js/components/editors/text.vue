@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div v-if="previewMode">
+  <div class="editor-text__container">
+    <div class="editor-text__value-container" v-if="previewMode">
       {{ parseText(this.paramValue) }}
     </div>
-    <div v-show="!previewMode">
-      <textarea :id="tinymceId" v-model="paramValue" class="editor form-control"></textarea>
+    <div class="editor-text__input-container" v-show="!previewMode">
+      <textarea :id="tinymceId" v-model="paramValue" class="editor-text__input editor-text__textarea editor form-control"></textarea>
     </div>
   </div>
 </template>

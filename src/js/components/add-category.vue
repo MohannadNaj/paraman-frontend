@@ -1,13 +1,13 @@
 <style scoped>
 </style>
 <template>
-  <div>
-    <form method="POST" role="form" v-on:submit.prevent="submit">
-      <div class="form-group">
-        <label>New Category?</label>
-        <input type="text" class="form-control" v-model="newCategoryName">
+  <div class="add-category__container">
+    <form method="POST" role="form" class="add-category__form" v-on:submit.prevent="submit">
+      <div class="add-category__form-group form-group">
+        <label class="add-category__form-label">New Category?</label>
+        <input type="text" class="add-category__input form-control" v-model="newCategoryName">
       </div>
-      <button type="submit" :disabled="!validCategoryName" class="btn btn-primary addCategory--button__submit">Add+</button>
+      <button type="submit" :disabled="!validCategoryName" class="btn btn-primary add-category__button add-category__button--action add-category__button--submit">Add+</button>
     </form>
   </div>
 </template>

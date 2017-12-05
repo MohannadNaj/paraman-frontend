@@ -7,7 +7,7 @@
           <div class="installer__logo-caption">v{{version}}</div>
         </div>
         <div class="col-lg-6 text-center">
-          <div class="installer__header-container">
+          <div class="installer__header">
             <h2><span class="installer__header-text">Paraman Installer</span></h2>
             <h3>
               Paraman couldn't find a database to work on it.

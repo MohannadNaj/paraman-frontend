@@ -52,7 +52,7 @@
 
 .installer-step {
   &__button--action {
-    background: $alternate-color;
+    background: $accent-color;
     color: white;
     font-size: 2rem;
     margin: 1rem;
@@ -61,7 +61,7 @@
   &__button--action:hover,
   &__button--action:focus,
   &__button--action:active {
-    background: lighten($alternate-color, 10%);
+    background: lighten($accent-color, 10%);
     color: white;
   }
 

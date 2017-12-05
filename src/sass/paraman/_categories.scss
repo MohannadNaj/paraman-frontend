@@ -1,8 +1,4 @@
-.categories--list-item {
-    background: transparent;
-}
-
-.sidebar .nav a.categories--list__item.active {
+.sidebar .nav a.parameters-category__list-item--active {
     &:hover, &:focus, & {
         background: rgba(34, 34, 34, 0.58);
     }
@@ -11,9 +7,9 @@
 
 $sidebar-active-bg: rgba(255, 255, 255, 0.23);
 
-.parameters-category--list {
-    .parameters-category--item {
-        .parameters-category--editCategory-button__active {
+.parameters-sidebar__category-list {
+    .parameters-sidebar__category-list-item {
+        .parameters-sidebar__button-category-edit--active {
             background: $sidebar-active-bg;
 
             &:hover, &:focus, &:active {
@@ -24,8 +20,14 @@ $sidebar-active-bg: rgba(255, 255, 255, 0.23);
 }
 
 
-.categories--list__badge {
+.parameters-category__badge {
     position: absolute;
     right: 2px;
-    top: calc(50% - 8px);
+    top: calc(50% - 15px);
+    width: 32px;
+    height: 32px;
+    padding-top: 10px;
+    padding-left: 6px;
+    font-size: 1.5rem;
+    background: #314e56;
 }

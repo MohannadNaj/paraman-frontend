@@ -8,12 +8,12 @@
 }
 </style>
 <template>
-  <div>
+  <div class="editor-file__container">
     <div>
-      <img class="uploaded-img" v-if="isImage" :src="getImageSrc()" />
-      <div v-else>
-        <i class="fa fa-file-o"></i>
-        <a :href="getImageSrc()">{{paramValue}}</a>
+      <img class="editor-file__img uploaded-img" v-if="isImage" :src="getImageSrc()" />
+      <div class="editor-file__link-container" v-else>
+        <i class="editor-file__icon fa fa-file-o"></i>
+        <a class="editor-file__anchor editor-file__text" :href="getImageSrc()">{{paramValue}}</a>
       </div>
     </div>
   </div>

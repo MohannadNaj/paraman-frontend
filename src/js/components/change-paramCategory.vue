@@ -1,13 +1,13 @@
 <style scoped>
 </style>
 <template>
-  <div class="">
-    <div class="list-group">
-      <button type="button" v-for="category in categories" v-if="!category.isCategoriesGroup" @click="choseCategory(category)" :class="['list-group-item', paramBelongsToCategory(category) ? 'list-group-item-success':'']">
-						<i :class="['fa', paramBelongsToCategory(category) ? 'fa-check-square-o': 'fa-square-o']"></i>
+  <div class="change-category__container">
+    <div class="change-category__list list-group">
+      <button type="button" v-for="category in categories" v-if="!category.isCategoriesGroup" @click="choseCategory(category)" :class="['change-category__list-item','list-group-item', paramBelongsToCategory(category) ? 'change-category__list--success list-group-item-success':'']">
+						<i :class="['change-category__icon','fa', paramBelongsToCategory(category) ? 'fa-check-square-o': 'fa-square-o']"></i>
 						{{category.title}}
 					</button>
-      <div class="list-group-item">
+      <div class="list-group-item change-category__list-item change-category__add-category-container">
         <add-category></add-category>
       </div>
     </div>

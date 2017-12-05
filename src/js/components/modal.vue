@@ -4,13 +4,13 @@
   <div>
     <!-- Modal -->
     <div class="modal fade" :id="data_id" tabindex="-1" role="dialog" :aria-labelledby="data_id + 'Label'">
-      <div class="modal-dialog" role="document">
+      <div class="modal__container modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" :aria-label="data_close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" :id="data_id + 'Label'">{{data_title}}</h4>
+          <div class="modal__header modal-header">
+            <button type="button" class="modal__close close" data-dismiss="modal" :aria-label="data_close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal__title modal-title" :id="data_id + 'Label'">{{data_title}}</h4>
           </div>
-          <div class="modal-body">
+          <div class="modal__body modal-body">
             {{data_body}}
             <div v-html="data_html"></div>
             <div v-if="data_showComponent">
@@ -18,8 +18,8 @@
             </div>
           </div>
           <div class="modal-footer" v-if="data_showFooter">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{data_close}}</button>
-            <button type="button" class="btn btn-primary" id="modal-submit" v-on:click="submit" data-dismiss="modal">{{data_save}}</button>
+            <button type="button" class="modal__button modal__button--close btn btn-default" data-dismiss="modal">{{data_close}}</button>
+            <button type="button" class="modal__button modal__button--action modal__button--submit btn btn-primary" id="modal-submit" v-on:click="submit" data-dismiss="modal">{{data_save}}</button>
           </div>
         </div>
       </div>

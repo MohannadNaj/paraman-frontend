@@ -16,30 +16,7 @@
   <div>
     <div :class="['parameter','card',markIfDirty,'no-margin']">
       <div class="parameter__header header">
-        <h3 class="parameter__title-container title container-fluid">
-          <div>
-            <div :contenteditable="!previewMode" @keyup="keyupLabelInput" :class="['parameter__parameter-label', !previewMode ? 'parameter__parameter-label--editable':'']">{{originalParameter.label}}</div>
-            <span class="parameter__controls-container pull-right">
-                <span v-if="isDirty && previewMode" class="parameter__label parameter__label--unsaved label label-warning">
-                    Unsaved Changes!
-                </span>
-            <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="parameter__button parameter__button--undo btn btn-default btn-sm">
-                    <i class="parameter__icon fa fa-undo"></i>
-                </button>
-            <button v-if="isDirty && !previewMode" @click="submit" type="button" class="parameter__button parameter__button--save btn btn-default btn-sm">
-                    <i class="parameter__icon fa fa-floppy-o"></i>
-                </button>
-            <span class="parameter__badge badge">{{originalParameter.type}}</span>
-            <button @click="togglePreview" type="button" class="parameter__button parameter__button--edit btn btn-default btn-sm">
-                    <i class="parameter__icon fa fa-pencil"></i>
-                </button>
-            <button @click="removeParameter" type="button" class="parameter__button parameter__button--remove btn btn-danger btn-sm">
-                    <i class="parameter__icon fa fa-times"></i>
-                </button>
-            </span>
-            &nbsp;
-          </div>
-        </h3>
+        <parameter-header :original-parameter.sync="originalParameter"></parameter-header>
       </div>
       <div class="parameter__body content">
         <form class="parameter__form" v-if="originalParameter.type != null" v-on:submit.prevent="submit">
@@ -64,18 +41,20 @@ import editorFile from './editors/file'
 import editorInteger from './editors/integer'
 import editorText from './editors/text'
 import editorTextfield from './editors/textfield'
+import parameterHeader from './parameter-header'
 
 export default {
   data() {
     return {
       isDirty: false,
-      errors: [],
       previewMode: true,
+      errors: [],
       childComponent: null,
       originalParameter: window.Laravel.parametersColumns
     }
   },
   components: {
+    'parameter-header': parameterHeader,
     'parameter-meta': parameterMeta,
     'editor-boolean': editorBoolean,
     'editor-file': editorFile,

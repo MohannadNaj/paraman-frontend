@@ -7,6 +7,7 @@ describe('paraman Component', () => {
             databasePath: 'databasePath',
             migrationPaths: 'migrationPaths'
         }
+    window.Laravel.logo = null
   })
 
   afterEach(commonAfterEach)
@@ -65,4 +66,24 @@ describe('paraman Component', () => {
       done()
     })
   })
+
+  it(`fire 'custom-logo' event if it uses custom logo`, (done) => {
+    EventBus.listen('custom-logo', done)
+
+    window.Laravel.logo = {}
+
+    paramanVue([])
+  })
+
+  it(`event 'custom-logo' isn't fired if logo isn't set`, (done) => {
+    window.Laravel.logo = null
+
+    paramanVue([])
+
+    next(()=>{
+      notExpectEvent('custom-logo')
+      done()
+    }, 10)
+  })
+
 })

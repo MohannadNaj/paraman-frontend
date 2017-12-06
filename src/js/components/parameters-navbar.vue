@@ -8,7 +8,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               </button>
-        <a class="parameters-navbar__branhd navbar-brand" href="#">Paraman</a>
+        <a class="parameters-navbar__branhd navbar-brand" href="#" v-text="brand"></a>
       </div>
       <div class="parameters-navbar__collapse collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
@@ -23,9 +23,19 @@
 
 export default {
   data() {
-    return {}
+    return {
+      brand: 'Paraman'
+    }
   },
-  mounted() {}
+  mounted() {
+    EventBus.listen('custom-logo', this.useCustomLogo)
+  },
+  methods: {
+    useCustomLogo(data) {
+      if(data.text)
+        this.brand = data.text
+    }
+  }
 }
 
 </script>

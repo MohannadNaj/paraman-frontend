@@ -19,3 +19,16 @@
     margin-right: 15px;
     margin-top: 15px;
 }
+
+
+.parameters-category__badge {
+    position: absolute;
+    right: 2px;
+    top: calc(50% - 17px);
+    width: 32px;
+    height: 32px;
+    padding-top: 10px;
+    padding-left: 6px;
+    font-size: 1.5rem;
+    background: #314e56;
+}

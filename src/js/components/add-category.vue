@@ -7,7 +7,7 @@
         <label class="add-category__form-label">New Category?</label>
         <input type="text" class="add-category__input form-control" v-model="newCategoryName">
       </div>
-      <button type="submit" :disabled="!validCategoryName" class="btn btn-primary add-category__button add-category__button--action add-category__button--submit">Add+</button>
+      <button type="submit" :disabled="!validCategoryName" class="add-category__button add-category__button--action add-category__button--submit btn btn-primary rounded-btn">Add+</button>
     </form>
   </div>
 </template>

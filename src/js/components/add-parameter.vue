@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group ">
+      <div class="add-parameter__form-group form-group">
         <label class="add-parameter__form-label control-label col-sm-3">Label</label>
         <div class="col-sm-6">
           <input type="text" class="add-parameter__form-input add-parameter__form-input--for-label form-control" v-model="data.label" placeholder="parameter_label">
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group ">
+      <div class="add-parameter__form-group form-group">
         <label class="add-parameter__form-label control-label col-sm-3">
 							Type
 						</label>
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="col-sm-offset-1 btn btn-primary add-parameter__button add-parameter__button--action add-parameter__button--submit">Submit</button>
+      <button type="submit" class="add-parameter__button add-parameter__button--action add-parameter__button--submit col-sm-offset-1 btn btn-primary rounded-btn">Add</button>
     </form>
   </div>
 </template>

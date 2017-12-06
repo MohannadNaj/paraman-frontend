@@ -37,6 +37,10 @@ export default {
     if (window.Laravel.needInstallation || window.Laravel.needMigration) {
       EventBus.fire('need-installation')
     }
+
+    if (window.Laravel.logo) {
+      EventBus.fire('custom-logo', window.Laravel.logo)
+    }
   }
 }
 

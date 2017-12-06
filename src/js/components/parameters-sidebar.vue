@@ -1,10 +1,12 @@
 <template>
   <div class="parameters-sidebar__container sidebar-wrapper">
     <div class="parameters-sidebar__logo logo">
-      <img class="parameters-sidebar__logo-img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo">
-      <a class="parameters-sidebar__logo-text simple-text">
-              Paraman<br>{{version}}
-          </a>
+        <img class="parameters-sidebar__logo-img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo" v-if="logoImage.length == 0">
+        <img class="parameters-sidebar__logo-img rounded img-fluid" :src="logoImage" v-if="logoImage.length != 0">
+        <a v-if="logoText.length == 0" class="parameters-sidebar__logo-text simple-text">
+            Paraman<br>{{version}}
+        </a>
+        <a v-if="logoText.length != 0" class="parameters-sidebar__logo-text simple-text" v-text="logoText"></a>
     </div>
     <ul class="parameters-sidebar__category-list nav">
       <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
@@ -36,7 +38,9 @@ export default {
   data() {
     return {
       version: _package.version,
-      editCategoriesMode: false
+      editCategoriesMode: false,
+      logoText: '',
+      logoImage: ''
     }
   },
   props: {
@@ -46,9 +50,13 @@ export default {
     }
   },
   mounted() {
-    
+    EventBus.listen('custom-logo', this.useCustomLogo)
   },
   methods: {
+    useCustomLogo(data) {
+      this.logoImage = data.image || ""
+      this.logoText = data.text || ""
+    },
     shouldShowCategory(category) {
       if (category.isCategoriesGroup) {
         if (this.editCategoriesMode) return true

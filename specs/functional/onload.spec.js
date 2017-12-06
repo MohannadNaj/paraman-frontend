@@ -210,6 +210,55 @@ describe('functional: onload', () => {
       done()
     }, 10)
   })
+
+  it(`can configure the logo: image and text`, (done) => {
+    window.Laravel.logo = {
+      text: 'foo bar',
+      image: '/path/to/img'
+    }
+    paramanVue([])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameters-sidebar__logo').textContent)
+      .toContain(`foo bar`)
+
+      expect(vm.$el.querySelector('.parameters-navbar').textContent)
+      .toContain(`foo bar`)
+
+      expect(vm.$el.querySelector('.parameters-sidebar__logo').innerHTML)
+      .toContain(`/path/to/img`)
+
+      expectEvent('custom-logo')
+
+      window.Laravel.logo = null
+      done()
+    }, 10)
+  })
+
+  it(`can configure the logo: text only`, (done) => {
+    window.Laravel.logo = {
+      text: 'foo bar'
+    }
+    paramanVue([])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameters-sidebar__logo').textContent)
+      .toContain(`foo bar`)
+
+      expect(vm.$el.querySelector('.parameters-navbar').textContent)
+      .toContain(`foo bar`)
+
+      expect(vm.$el.querySelector('.parameters-sidebar__logo').innerHTML.toLowerCase())
+      .toContain('paraman logo')
+
+      expectEvent('custom-logo')
+
+      window.Laravel.logo = null
+      done()
+    }, 10)
+  })
 })
 
 let textContent = () => {return window.vm.$el.textContent}

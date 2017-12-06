@@ -1,7 +1,7 @@
 <template>
   <div class="parameter-meta__container row">
     <div class="col-xs-6">
-      <button type="button" @click="showLogs()" class="btn btn-default parameter-meta__button-show-logs">
+      <button type="button" @click="showLogs()" class="parameter-meta__button-show-logs btn btn-default rounded-btn">
       <i class="fa fa-book"></i>
       Revisions: {{countLogs}}
       </button>
@@ -22,7 +22,7 @@
   </span>
   </div>
   <div class="parameter-meta__container-category col-xs-6">
-    <button type="button" @click="changeCategory()" class="parameter-meta__button parameter-meta__button-change-category btn btn-default">
+    <button type="button" @click="changeCategory()" class="parameter-meta__button parameter-meta__button-change-category btn btn-default rounded-btn">
       Category
       <i class="fa fa-bookmark"></i>
       </button>

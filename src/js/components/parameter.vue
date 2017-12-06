@@ -34,7 +34,7 @@
                     <i class="parameter__icon fa fa-pencil"></i>
                 </button>
             <button @click="removeParameter" type="button" class="parameter__button parameter__button--remove btn btn-danger btn-sm">
-                    <i class="parameter__icon fa fa-times-circle"></i>
+                    <i class="parameter__icon fa fa-times"></i>
                 </button>
             </span>
             &nbsp;

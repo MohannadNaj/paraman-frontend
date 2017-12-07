@@ -86,7 +86,7 @@ describe('functional: onload', () => {
       })
       expectEvent('opening-category')
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`open the first category and shows it's parameters data`, (done) => {
@@ -116,7 +116,7 @@ describe('functional: onload', () => {
       })
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`open the category in the location hash and shows it's parameters data`, (done) => {
@@ -154,7 +154,7 @@ describe('functional: onload', () => {
       })
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`if the location hash is 'categories' ignore it`, (done) => {
@@ -170,7 +170,7 @@ describe('functional: onload', () => {
       .not.toContain('categories')
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`default to "add parameter" if a category exist`, (done) => {
@@ -181,7 +181,7 @@ describe('functional: onload', () => {
       .toContain('no parameters added')
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`show "add category" in the sidebar if there is no categories`, (done) => {
@@ -193,7 +193,7 @@ describe('functional: onload', () => {
       .toContain('no categories found')
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`set the location hash to the default loaded category (first one)`, (done) => {
@@ -208,7 +208,7 @@ describe('functional: onload', () => {
       .toBe(`#${activeCategory.id}`)
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`can configure the logo: image and text`, (done) => {
@@ -233,7 +233,7 @@ describe('functional: onload', () => {
 
       window.Laravel.logo = null
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`can configure the logo: text only`, (done) => {
@@ -257,7 +257,7 @@ describe('functional: onload', () => {
 
       window.Laravel.logo = null
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`integrate custom components`, (done) => {
@@ -273,7 +273,7 @@ describe('functional: onload', () => {
       .toContain(`foo bar`)
 
       done()
-    }, 10)
+    }, 20)
   })
 
   it(`integrate custom components with custom settings: hide header and keep footer`, (done) => {

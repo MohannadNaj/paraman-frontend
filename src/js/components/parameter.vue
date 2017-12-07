@@ -14,19 +14,19 @@
 </style>
 <template>
   <div>
-    <div :class="['parameter','card',markIfDirty,'no-margin']">
-      <div class="parameter__header header">
+    <div :class="['parameter','card',markIfDirty,'no-margin',customCssClass]">
+      <div v-if="showHeader" class="parameter__header header">
         <parameter-header :original-parameter.sync="originalParameter"></parameter-header>
       </div>
       <div class="parameter__body content">
         <form class="parameter__form" v-if="originalParameter.type != null" v-on:submit.prevent="submit">
           <component :parameter="originalParameter" :is="getEditorComponentName" :ref="getEditorComponentRef"></component>
-          <ul class="parameter__list parameter__errors-container list-group" v-show="errors.length > 0">
+          <ul v-if="showErrors" class="parameter__list parameter__errors-container list-group" v-show="errors.length > 0">
             <li class="parameter__list-item parameter__list-item--danger list-group-item list-group-item-danger" v-for="error in errors" v-html="parseError(error)"></li>
           </ul>
         </form>
       </div>
-      <div class="parameter__footer footer">
+      <div v-if="showFooter" class="parameter__footer footer">
         <parameter-meta :parameter.sync="originalParameter"></parameter-meta>
       </div>
     </div>
@@ -36,11 +36,7 @@
 <script>
 
 import parameterMeta from './parameter-meta'
-import editorBoolean from './editors/boolean'
-import editorFile from './editors/file'
-import editorInteger from './editors/integer'
-import editorText from './editors/text'
-import editorTextfield from './editors/textfield'
+import editors from '../settings/editors'
 import parameterHeader from './parameter-header'
 
 export default {
@@ -56,11 +52,11 @@ export default {
   components: {
     'parameter-header': parameterHeader,
     'parameter-meta': parameterMeta,
-    'editor-boolean': editorBoolean,
-    'editor-file': editorFile,
-    'editor-integer': editorInteger,
-    'editor-text': editorText,
-    'editor-textfield': editorTextfield
+    'editor-boolean': editors.boolean,
+    'editor-file': editors.file,
+    'editor-integer': editors.integer,
+    'editor-text': editors.text,
+    'editor-textfield': editors.textfield
   },
   props: {
     parameter: {
@@ -175,6 +171,29 @@ export default {
     },
     markIfDirty() {
       return this.isDirty ? 'warning-bg' : 'default-bg'
+    },
+    customSettings() {
+      return window.Laravel.components[this.getEditorComponentName] || {}
+    },
+    showHeader() {
+      if(this.customSettings.header != null)
+        return this.customSettings.header
+      return true
+    },
+    showErrors() {
+      if(this.customSettings.errors != null)
+        return this.customSettings.errors
+      return true
+    },
+    showFooter() {
+      if(this.customSettings.footer != null)
+        return this.customSettings.footer
+      return true
+    },
+    customCssClass() {
+      if(this.customSettings.cssContainer != null)
+        return this.customSettings.cssContainer
+      return ''
     }
   }
 }

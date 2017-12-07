@@ -7,6 +7,7 @@ if (token) {
 }
 
 window.Laravel = window.Laravel || {}
+window.Laravel.components = window.Laravel.components || {}
 
 require('./utils/EventBus')
 require('./vue-components')

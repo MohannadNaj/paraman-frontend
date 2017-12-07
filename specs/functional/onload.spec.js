@@ -259,6 +259,79 @@ describe('functional: onload', () => {
       done()
     }, 10)
   })
+
+  it(`integrate custom components`, (done) => {
+    Vue.component('editor-custom', {template:'<i>foo bar</i>'})
+
+    let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
+
+    paramanVue([customizedParam])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter').textContent)
+      .toContain(`foo bar`)
+
+      done()
+    }, 10)
+  })
+
+  it(`integrate custom components with custom settings: hide header and keep footer`, (done) => {
+    Vue.component('editor-custom', {template:'<i>foo bar</i>'})
+    window.Laravel.components = {'editor-custom': {header: false, footer: true}}
+    let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
+
+    paramanVue([customizedParam])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter__title-container'))
+      .toBeFalsy()
+
+      expect(vm.$el.querySelector('.parameter-meta__container'))
+      .toBeTruthy()
+
+      window.Laravel.components = {}
+      done()
+    }, 20)
+  })
+
+  it(`integrate custom components with custom settings: hide footer and keep header`, (done) => {
+    Vue.component('editor-custom', {template:'<i>foo bar</i>'})
+    window.Laravel.components = {'editor-custom': {header: true, footer: false}}
+    let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
+
+    paramanVue([customizedParam])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter-meta__container'))
+      .toBeFalsy()
+
+      expect(vm.$el.querySelector('.parameter__title-container'))
+      .toBeTruthy()
+
+      window.Laravel.components = {}
+      done()
+    }, 20)
+  })
+
+  it(`integrate custom components with custom settings: custom css container`, (done) => {
+    Vue.component('editor-custom', {template:'<i>foo bar</i>'})
+    window.Laravel.components = {'editor-custom': {cssContainer: 'foo-bar'}}
+    let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
+
+    paramanVue([customizedParam])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter').getAttribute('class'))
+      .toContain('foo-bar')
+
+      window.Laravel.components = {}
+      done()
+    }, 20)
+  })
 })
 
 let textContent = () => {return window.vm.$el.textContent}

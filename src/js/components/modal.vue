@@ -32,7 +32,7 @@ import removeParameter from './remove-parameter'
 import changeParamCategory from './change-paramCategory'
 import addParameter from './add-parameter'
 import addcategory from './add-category'
-import lang from './../LangManager'
+import lang from './../Lang'
 
 export default {
   data() {

@@ -1,4 +1,4 @@
-import lang from './../LangManager'
+import lang from './../Lang'
 
 window.Helper = new class {
   constructor() {

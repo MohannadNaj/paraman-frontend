@@ -9,6 +9,7 @@ module.exports = {
     add_parameter_label_type: 'Type',
     change_paramCategory_chose_busy: 'Wait until the previous request processed..',
     close: 'Close',
+    dropzone_upload_button_remove: 'Remove',
     installer_header_text: `Paraman couldn't find a database to work on it.`,
     installer_header_title: 'Paraman Installer',
     installer_step_createDB_action:`Create`,

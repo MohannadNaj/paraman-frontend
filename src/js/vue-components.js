@@ -1,4 +1,4 @@
-import lang from './LangManager'
+import lang from './Lang'
 
 // Merge Axios into Vue
 window.Vue.prototype.$http = window.axios

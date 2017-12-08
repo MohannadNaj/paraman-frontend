@@ -1,4 +1,4 @@
-import lang from './Lang'
+import lang from '../LangManager'
 
 export default {
   maxFiles: 1,

@@ -36,7 +36,7 @@
 
 import _package from '../../../package.json'
 import installerStep from './installer-step'
-import lang from './../Lang'
+import lang from './../LangManager'
 
 let originalRefreshStep = {
   title: lang('installer_step_refresh_title'),

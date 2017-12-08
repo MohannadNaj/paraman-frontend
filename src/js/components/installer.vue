@@ -39,7 +39,7 @@ import installerStep from './installer-step'
 import lang from './../LangManager'
 
 let originalRefreshStep = {
-  title: lang('installer__step_refresh_title'),
+  title: lang('installer_step_refresh_title'),
   icon: 'fa-refresh',
   text: lang('installer_step_refresh_text'),
   actionText: lang('installer_step_refresh_action'),

@@ -60,7 +60,7 @@ export default {
       EventBus.fire('change-paramCategory', this.parameter)
     },
     showLogs() {
-      if (!this.hasLogs) return this.alert('No Revisions found', 'warning')
+      if (!this.hasLogs) return this.alert(this.lang('parameter_meta_revisions_not_found'), 'warning')
 
       this.mapLogsHtmlData(this.getModal())
 

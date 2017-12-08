@@ -39,6 +39,7 @@ module.exports = {
     parameter_meta_log_field: 'Field',
     parameter_meta_log_new: 'New',
     parameter_meta_log_old: 'Old',
+    parameter_meta_revisions_not_found: 'No Revisions found',
     parameter_remove_response_error: 'Error in removing parameter (%s)',
     parameter_removed: `Parameter (%s) removed successfully`,
     parameter_update_response_error: 'Error in updating parameter (%s)',

@@ -16,8 +16,8 @@
             </div>
           </div>
           <div class="dropzone-upload__footer modal-footer">
-            <button type="button" class="dropzone-upload__button dropzone-upload__button--close btn btn-default" data-dismiss="modal">Close</button>
-            <button @click="saveBtn" type="button" class="dropzone-upload__button dropzone-upload__button--action dropzone-upload__button--submit btn btn-primary">Save Changes</button>
+            <button type="button" class="dropzone-upload__button dropzone-upload__button--close btn btn-default" data-dismiss="modal">{{lang('close')}}</button>
+            <button @click="saveBtn" type="button" class="dropzone-upload__button dropzone-upload__button--action dropzone-upload__button--submit btn btn-primary">{{lang('save_changes')}}</button>
           </div>
         </div>
       </div>

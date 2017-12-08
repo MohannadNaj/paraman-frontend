@@ -196,6 +196,37 @@ describe('functional: onload', () => {
     }, 20)
   })
 
+  it(`uses the lang file`, (done) => {
+    paramanVue([])
+
+    next(() => {
+      expect(typeof vm.lang)
+      .toBe('function')
+
+      expect(vm.lang('add_category_label').toLowerCase())
+      .toContain('category')
+
+      expect(vm.$el.querySelector('.sidebar').textContent)
+      .toContain(vm.lang('add_category_label'))
+
+      done()
+    }, 20)
+  })
+
+  it(`uses the defined custom lang`, (done) => {
+    window.Laravel.lang = {add_category_label: 'foo bar'}
+    paramanVue([])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.sidebar').textContent)
+      .toContain('foo bar')
+
+      window.Laravel.lang = null
+      done()
+    }, 20)
+  })
+
   it(`set the location hash to the default loaded category (first one)`, (done) => {
 
     let activeCategory = TestData.categories[0]

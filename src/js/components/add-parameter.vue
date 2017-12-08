@@ -4,7 +4,7 @@
   <div class="add-parameter">
     <form class="form-horizontal add-parameter__form" role="form" v-on:submit.prevent="submit">
       <div class="add-parameter__form-group form-group">
-        <label class="add-parameter__form-label control-label col-sm-3">Name</label>
+        <label class="add-parameter__form-label control-label col-sm-3">{{lang('add_parameter_label_name')}}</label>
         <div class="col-sm-6">
           <input type="text" class="add-parameter__form-input add-parameter__form-input--for-name form-control" v-model="data.name" placeholder="parameter_name">
           <div v-if="showErrors" class="help-block">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="add-parameter__form-group form-group">
-        <label class="add-parameter__form-label control-label col-sm-3">Label</label>
+        <label class="add-parameter__form-label control-label col-sm-3">{{lang('add_parameter_label_label')}}</label>
         <div class="col-sm-6">
           <input type="text" class="add-parameter__form-input add-parameter__form-input--for-label form-control" v-model="data.label" placeholder="parameter_label">
           <div v-if="showErrors" class="help-block">
@@ -27,7 +27,7 @@
       </div>
       <div class="add-parameter__form-group form-group">
         <label class="add-parameter__form-label control-label col-sm-3">
-							Type
+							{{lang('add_parameter_label_type')}}
 						</label>
         <div class="col-sm-6">
           <select v-model="data.type" class="add-parameter__form-input add-parameter__form-input--for-type add-parameter__form-select form-control">
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="add-parameter__button add-parameter__button--action add-parameter__button--submit col-sm-offset-1 btn btn-primary rounded-btn">Add</button>
+      <button type="submit" class="add-parameter__button add-parameter__button--action add-parameter__button--submit col-sm-offset-1 btn btn-primary rounded-btn">{{lang('add_parameter_button_add')}}</button>
     </form>
   </div>
 </template>
@@ -101,7 +101,7 @@ export default {
           EventBus.fire('created-parameter', response.data.parameter)
         })
         .catch(error => {
-          var errorMessage = 'Error in adding parameter'
+          var errorMessage = this.lang('add_parameter_error')
           var errorData = error.response.data
           if (typeof errorData == 'string') {
             if (Helper.isTokenException(errorData)) {

@@ -3,18 +3,18 @@
     <div class="col-xs-6">
       <button type="button" @click="showLogs()" class="parameter-meta__button-show-logs btn btn-default rounded-btn">
       <i class="fa fa-book"></i>
-      Revisions: {{countLogs}}
+      {{lang('parameter_meta_button_revisions')}}: {{countLogs}}
       </button>
       <span v-if="hasLogs">
         <div class="parameter-meta__logs-container hidden">
           <ul class="parameter-meta__logs-list list-group break-word">
             <li v-for="log in reverseLogs" class="parameter-meta__logs-list-item list-group-item">
               <div class="parameter-meta__log-container row">
-                <div class="col-xs-6"><b>Date:</b>{{log.date}}</div>
-                <div class="col-xs-6"><b>Field:</b>{{log.field}}</div>
-                <div class="col-xs-6"><b>Old:</b>{{parseValue(log.old)}}</div>
-                <div class="col-xs-6"><b>New:</b>{{parseValue(log.new)}}</div>
-                <div class="col-xs-12"><b>Diff:</b><span v-html="getDiff(log)"></span></div>
+                <div class="col-xs-6"><b>{{lang('parameter_meta_log_date')}}:</b>{{log.date}}</div>
+                <div class="col-xs-6"><b>{{lang('parameter_meta_log_field')}}:</b>{{log.field}}</div>
+                <div class="col-xs-6"><b>{{lang('parameter_meta_log_old')}}:</b>{{parseValue(log.old)}}</div>
+                <div class="col-xs-6"><b>{{lang('parameter_meta_log_new')}}:</b>{{parseValue(log.new)}}</div>
+                <div class="col-xs-12"><b>{{lang('parameter_meta_log_diff')}}:</b><span v-html="getDiff(log)"></span></div>
   </div>
   </li>
   </ul>
@@ -23,7 +23,7 @@
   </div>
   <div class="parameter-meta__container-category col-xs-6">
     <button type="button" @click="changeCategory()" class="parameter-meta__button parameter-meta__button-change-category btn btn-default rounded-btn">
-      Category
+      {{lang('parameter_meta_button_category')}}
       <i class="fa fa-bookmark"></i>
       </button>
   </div>
@@ -33,7 +33,7 @@
   <div class="parameter-meta__container-timestamps col-xs-6">
     <i class="glyphicon glyphicon-calendar"></i>
     <span class="meta-label">
-        updated
+        {{lang('parameter_meta_humanized_updatedAt')}}
         {{parameter.humanizedUpdatedAt}}
       </span>
   </div>

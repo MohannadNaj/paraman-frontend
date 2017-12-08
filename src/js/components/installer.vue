@@ -8,7 +8,7 @@
         </div>
         <div class="col-lg-6 text-center">
           <div class="installer__header">
-            <h2><span class="installer__header-text">Paraman Installer</span></h2>
+            <h2><span class="installer__header-text">{{lang('installer_header_title')}}</span></h2>
             <h3>
               Paraman couldn't find a database to work on it.
             </h3>
@@ -36,12 +36,13 @@
 
 import _package from '../../../package.json'
 import installerStep from './installer-step'
+import lang from './../LangManager'
 
 let originalRefreshStep = {
-  title: `Go !`,
+  title: lang('installer__step_refresh_title'),
   icon: 'fa-refresh',
-  text: `Refresh and start using Paraman!`,
-  actionText: `Refresh`,
+  text: lang('installer_step_refresh_text'),
+  actionText: lang('installer_step_refresh_action'),
   isDone: false,
   action: 'refresh',
   response: null,
@@ -57,22 +58,22 @@ export default {
       refreshTimer: null,
       steps: [
         {
-          title: `Create the database!`,
+          title: lang('installer_step_createDB_title'),
           icon: 'fa-database',
-          text: `Create the sqlite database file. the file will be created in:\r\n`,
+          text: lang('installer_step_createDB_text'),
           codeProperty: 'getFilePath',
-          actionText: `Create`,
+          actionText: lang('installer_step_createDB_action'),
           isDone: false,
           action: 'createDatabase',
           response: null,
           isActive: false
         },
         {
-          title: `Migrate the database!`,
+          title: lang('installer_step_migrate_title'),
           icon: 'fa-pencil-square-o',
-          text: `run 'php artisan migrate' to migrate the database, the migrations on the queue:\r\n`,
+          text: lang('installer_step_migrate_text'),
           codeProperty: 'getMigrations',
-          actionText: `Migrate`,
+          actionText: lang('installer_step_migrate_actionText'),
           isDone: false,
           action: 'migrate',
           response: null,
@@ -186,19 +187,19 @@ export default {
         .then(response => {
           if (!response.data.status)
             return this.alert(
-              'There is an error creating the database',
+              this.lang('installer_step_createDB_response_status_error'),
               'danger'
             )
 
-          step.response = `database file: ${response.data.path}`
+          step.response = this.lang('installer_step_createDB_response_done',response.data.path)
           step.isDone = true
-          this.alert('Database created successfully', 'primary')
+          this.alert(this.lang('installer_step_createDB_done'), 'primary')
         })
         .catch(error => {
           var errorData = error.response.data
 
           console.log(errorData)
-          this.alert(`Error! check the console to see error details`, 'danger')
+          this.alert(this.lang('installer_step_createDB_response_error'), 'danger')
         })
     },
     migrate(step) {
@@ -212,20 +213,20 @@ export default {
           if (output.toLowerCase().indexOf('migrated') === -1) {
             console.log(response)
             return this.alert(
-              'There is an error migrating the database',
+              this.lang('installer_step_migrate_response_status_error'),
               'danger'
             )
           }
 
           step.isDone = true
-          this.alert('Database migrated successfully', 'success')
+          this.alert(this.lang('installer_step_migrate_response_done'), 'success')
           this.finalizeInstallation()
         })
         .catch(error => {
           var errorData = error.response
 
           console.log(errorData)
-          this.alert(`Error! check the console to see error details`, 'danger')
+          this.alert(this.lang('installer_step_migrate_response_error'), 'danger')
         })
     },
     removeRefreshStep() {

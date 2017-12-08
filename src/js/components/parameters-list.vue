@@ -28,7 +28,7 @@
         <div class="parameters-list__add-container parameters-list__add-container--not-found" v-if="parameters.length == 0">
           <add-category v-if="isCategoriesGroup"></add-category>
           <div v-if="!isCategoriesGroup">
-            No Parameters Added, start by adding one
+            {{lang('parameters_list_not_found')}}
             <add-parameter :category_id='category_id'></add-parameter>
           </div>
         </div>

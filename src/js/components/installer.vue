@@ -10,7 +10,7 @@
           <div class="installer__header">
             <h2><span class="installer__header-text">{{lang('installer_header_title')}}</span></h2>
             <h3>
-              Paraman couldn't find a database to work on it.
+              {{lang('installer_header_text')}}
             </h3>
           </div>
           <div class="container-fluid">

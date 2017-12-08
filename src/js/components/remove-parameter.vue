@@ -3,14 +3,12 @@
 <template>
   <div class="remove-parameter__container container-fluid">
     <div class="jumbotron">
-      <p class="remove-parameter__text remove-parameter__text--confirm">
-        Are you sure you want to remove parameter: <b>{{ parameter.name }}</b>?
-      </p>
+      <p class="remove-parameter__text remove-parameter__text--confirm" v-html="lang('remove_parameter_confirmation', parameter.name)"></p>
       <div class="remove-parameter__button remove-parameter__button--cancel btn btn-default" @click="cancel">
-        No
+        {{lang('remove_parameter_no')}}
       </div>
       <div class="remove-parameter__button remove-parameter__button--remove btn btn-primary" @click="remove">
-        Yes
+        {{lang('remove_parameter_yes')}}
       </div>
     </div>
   </div>

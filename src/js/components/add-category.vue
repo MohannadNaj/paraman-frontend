@@ -26,7 +26,7 @@ export default {
       EventBus.fire('start-addCategory')
 
       axios
-        .post(window.Laravel.base_url + 'parameters/addCategory', {
+        .post(this.route('add_category'), {
           value: this.newCategoryName
         })
         .then(response => {

@@ -120,8 +120,7 @@ export default {
       //      requestParams.label = this.parameter.label
 
       axios
-        .patch(
-          window.Laravel.base_url + 'parameters/' + this.originalParameter.id,
+        .patch(this.route('update_parameter', this.originalParameter.id),
           requestParams
         )
         .then(response => {

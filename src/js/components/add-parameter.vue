@@ -96,7 +96,7 @@ export default {
     },
     submit() {
       axios
-        .post(window.Laravel.base_url + 'parameters', this.prepareRequestData())
+        .post(this.route('add_parameter'), this.prepareRequestData())
         .then(response => {
           EventBus.fire('created-parameter', response.data.parameter)
         })

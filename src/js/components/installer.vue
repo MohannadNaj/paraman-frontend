@@ -183,7 +183,7 @@ export default {
     },
     createDatabase(step) {
       axios
-        .post(`${window.Laravel.base_url}parameters/createDB`)
+        .post(this.route('installer_createDB'))
         .then(response => {
           if (!response.data.status)
             return this.alert(
@@ -204,7 +204,7 @@ export default {
     },
     migrate(step) {
       axios
-        .post(`${window.Laravel.base_url}parameters/migrate`)
+        .post(this.route('installer_migrate'))
         .then(response => {
           let output =
             typeof response.data.output === 'string' ? response.data.output : ''

@@ -81,7 +81,7 @@ export default {
     },
     confirmedRemoveParameter(parameter) {
       axios
-        .delete(window.Laravel.base_url + 'parameters/' + parameter.id)
+        .delete(this.route('delete_parameter', parameter.id))
         .then(response => {
           var data = response.data
 
@@ -203,13 +203,7 @@ export default {
       var category_id = data.category
 
       axios
-        .post(
-          window.Laravel.base_url +
-            'parameters/' +
-            parameter_id +
-            '/category/' +
-            category_id
-        )
+        .post(this.route('change_category_parameter', parameter_id, category_id))
         .then(response => {
           var updatedParameter = response.data.parameter
 

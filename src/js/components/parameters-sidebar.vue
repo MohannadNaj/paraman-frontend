@@ -13,7 +13,7 @@
         v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
       <li class="parameters-sidebar__category-list-item parameters-sidebar__category-list-item--edit-categories">
         <a @click="toggleEditCategories" :class="['parameters-sidebar__button-category-edit', editCategoriesMode ? 'parameters-sidebar__button-category-edit--active' : '']" href="javascript:void(0);">
-              ({{lang('parameters_sidebar_button_edit_categories')}})
+              {{lang('parameters_sidebar_button_edit_categories')}}
                 <i class="parameters-sidebar__icon fa fa-pencil"></i>
             </a>
       </li>

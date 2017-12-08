@@ -1,3 +1,5 @@
+import lang from './../Lang'
+
 window.Helper = new class {
   constructor() {
     this.vue = new Vue({ data: this.data, methods: this.methods })
@@ -18,7 +20,7 @@ window.Helper = new class {
         return errorData.indexOf('TokenMismatchException') != -1
       },
       getTokenExceptionMessage() {
-        return ". It looks like it's a token mismatch exception. refresh the page and try again."
+        return lang('token_mismatch_exception')
       },
       checkCommonErrors(
         errorData,

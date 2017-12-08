@@ -32,6 +32,7 @@ import removeParameter from './remove-parameter'
 import changeParamCategory from './change-paramCategory'
 import addParameter from './add-parameter'
 import addcategory from './add-category'
+import lang from './../Lang'
 
 export default {
   data() {
@@ -65,13 +66,13 @@ export default {
       default: ''
     },
     close: {
-      default: 'Close'
+      default: lang('close')
     },
     id: {
       default: 'modal_id'
     },
     save: {
-      default: 'Save'
+      default: lang('save')
     },
     title: {
       default: ''

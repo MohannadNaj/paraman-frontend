@@ -129,7 +129,7 @@ export default {
         })
         .catch(error => {
           var errorMessage =
-            'Error in updating parameter (' + this.parameter.id + ')'
+            this.lang('parameter_update_response_error', this.parameter.id)
           var errorData = error.response.data
           if (typeof errorData == 'object') {
             this.errors = _.toArray(errorData)
@@ -145,7 +145,7 @@ export default {
         if (!this.previewMode) this.togglePreview()
       })
       this.alert(
-        'Parameter: ' + parameter.label + ' has been updated successfully'
+        this.lang('parameter_updated', parameter.label)
       )
       EventBus.fire('updated-parameter', parameter)
     },

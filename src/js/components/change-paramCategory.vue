@@ -64,7 +64,7 @@ export default {
 
       if (this.isBusy)
         return this.alert(
-          'Wait until the previous request processed..',
+          this.lang('change_paramCategory_chose_busy'),
           'danger'
         )
 

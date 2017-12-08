@@ -96,13 +96,13 @@ export default {
             EventBus.fire('update-parameters', this.parameters)
           })
 
-          this.alert('Parameter (' + parameter.id + ') removed successfully')
+          this.alert(this.lang('parameter_removed', parameter.id))
 
           Helper.modal.hideModal()
         })
         .catch(error => {
           var errorMessage =
-            'Error in removing parameter (' + parameter.id + ')'
+            this.lang('parameter_remove_response_error', parameter.id)
           var errorData = error.response.data
           Helper.checkCommonErrors(errorData, errorMessage)
         })
@@ -110,7 +110,7 @@ export default {
     confirmRemoveParameter(parameter) {
       var modal = Helper.modal
 
-      var title = 'Remove parameter: ' + parameter.label
+      var title = this.lang('remove_parameter_modal_title', parameter.label)
 
       modal.showComponent('remove-parameter', title)
 
@@ -222,10 +222,7 @@ export default {
           this.$nextTick(y => {
             var newCategory = this.categories.find(x => x.target == category_id)
             var msg =
-              'Parameter (' +
-              updatedParameter.label +
-              ') Moved successfully to category: ' +
-              newCategory.title
+              this.lang('parameter_category_changed', updatedParameter.label, newCategory.title)
             EventBus.fire('changed-paramCategory', {
               data: data,
               parameter: updatedParameter,
@@ -236,7 +233,7 @@ export default {
         })
         .catch(error => {
           var errorMessage =
-            'Error in updating parameter (' + parameter_id + ')'
+            this.lang('parameter_category_changed_response_error', parameter_id)
           var errorData = error.response.data
           Helper.checkCommonErrors(errorData, errorMessage)
           EventBus.fire('changed-paramCategory', {
@@ -248,7 +245,7 @@ export default {
     changeParamCategory(data) {
       var modal = Helper.modal
 
-      var title = 'Change Category for: ' + data.label
+      var title = this.lang('parameter_category_change_modal_title',data.label)
 
       modal.showComponent('change-paramCategory', title)
 

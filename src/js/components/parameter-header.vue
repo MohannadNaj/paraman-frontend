@@ -5,7 +5,7 @@
         <div :contenteditable="!previewMode" @keyup="keyupLabelInput" :class="['parameter__parameter-label', !previewMode ? 'parameter__parameter-label--editable':'']">{{originalParameter.label}}</div>
         <span class="parameter__controls-container pull-right">
                 <span v-if="isDirty && previewMode" class="parameter__label parameter__label--unsaved label label-warning">
-                    Unsaved Changes!
+                    {{lang('parameter_header_unsaved_changes')}}
                 </span>
         <button v-if="isDirty && !previewMode" @click="undoChanges" type="button" class="parameter__button parameter__button--undo btn btn-default btn-sm">
                     <i class="parameter__icon fa fa-undo"></i>

@@ -28,3 +28,6 @@ require('../../third_party/light-bootstrap-dashboard/assets/js/chartist.min.js')
 require('../../third_party/light-bootstrap-dashboard/assets/js/bootstrap-select.js')
 require('../../third_party/light-bootstrap-dashboard/assets/js/bootstrap-notify.js')
 require('../../third_party/light-bootstrap-dashboard/assets/js/light-bootstrap-dashboard.js')
+
+window.Laravel = window.Laravel || {}
+window.Laravel.editorsMixin = require('./components/mixins/editors/base')

@@ -24,5 +24,11 @@ module.exports = {
 
       return window.Laravel.showPHPCode
     },
+    showChangeCategory() {
+      if(window.Laravel.showChangeCategory == null)
+        return true
+
+      return window.Laravel.showChangeCategory      
+    }
   }
 }

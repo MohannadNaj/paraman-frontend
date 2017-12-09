@@ -21,7 +21,7 @@
   </div>
   </span>
   </div>
-  <div class="parameter-meta__container-category col-xs-6 col-sm-3">
+  <div v-if="showChangeCategory" class="parameter-meta__container-category col-xs-6 col-sm-3">
     <button type="button" @click="changeCategory()" class="parameter-meta__button parameter-meta__button-change-category btn btn-default rounded-btn">
       {{lang('parameter_meta_button_category')}}
       <i class="fa fa-bookmark"></i>

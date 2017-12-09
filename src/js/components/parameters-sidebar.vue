@@ -11,7 +11,7 @@
     <ul class="parameters-sidebar__category-list nav">
       <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
         v-if="shouldShowCategory(category)" :related-parameter="category.relatedParameter" v-for="category in categories"></parameters-category>
-      <li class="parameters-sidebar__category-list-item parameters-sidebar__category-list-item--edit-categories">
+      <li v-if="showEditCategories" class="parameters-sidebar__category-list-item parameters-sidebar__category-list-item--edit-categories">
         <a @click="toggleEditCategories" :class="['parameters-sidebar__button-category-edit', editCategoriesMode ? 'parameters-sidebar__button-category-edit--active' : '']" href="javascript:void(0);">
               {{lang('parameters_sidebar_button_edit_categories')}}
                 <i class="parameters-sidebar__icon fa fa-pencil"></i>
@@ -29,8 +29,10 @@
 import addCategory from './add-category'
 import parametersCategory from './parameters-category'
 import _package from '../../../package.json'
+import configurableMixin from './mixins/common/configurable'
 
 export default {
+  mixins: [configurableMixin],
   components: {
     'add-category': addCategory,
     'parameters-category': parametersCategory,

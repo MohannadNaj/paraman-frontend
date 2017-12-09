@@ -15,7 +15,7 @@
               {{ title }}
               <span class="pull-right">
                 <span class="parameters-list__badge badge">{{ parameters.length }}</span>
-              <button type="button" class="parameters-list__button parameters-list__button--add btn btn-success btn-sm" @click="add">+</button>
+              <button type="button" v-if="showAddParameter" class="parameters-list__button parameters-list__button--add btn btn-success btn-sm" @click="add">+</button>
               </span>
             </h4>
           </div>
@@ -29,7 +29,7 @@
           <add-category v-if="isCategoriesGroup"></add-category>
           <div v-if="!isCategoriesGroup">
             {{lang('parameters_list_not_found')}}
-            <add-parameter :category_id='category_id'></add-parameter>
+            <add-parameter v-if="showAddParameter" :category_id='category_id'></add-parameter>
           </div>
         </div>
       </div>
@@ -42,8 +42,10 @@
 import parameter from './parameter'
 import addParameter from './add-parameter'
 import addcategory from './add-category'
+import configurableMixin from './mixins/common/configurable'
 
 export default {
+  mixins: [configurableMixin],
   data() {
     return {
       count: 0,

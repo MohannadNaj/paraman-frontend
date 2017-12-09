@@ -17,7 +17,7 @@
         <button @click="togglePreview" type="button" class="parameter__button parameter__button--edit btn btn-default btn-sm">
                     <i class="parameter__icon fa fa-pencil"></i>
                 </button>
-        <button @click="removeParameter" type="button" class="parameter__button parameter__button--remove btn btn-danger btn-sm">
+        <button @click="removeParameter" v-if="showRemoveParameter" type="button" class="parameter__button parameter__button--remove btn btn-danger btn-sm">
                     <i class="parameter__icon fa fa-times"></i>
                 </button>
         </span>
@@ -28,8 +28,9 @@
 </template>
 
 <script>
-
+import configurableMixin from './mixins/common/configurable'
 export default {
+  mixins: [configurableMixin],
   data() {
     return {}
   },

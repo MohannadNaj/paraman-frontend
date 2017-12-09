@@ -89,6 +89,90 @@ describe('functional: onload', () => {
     }, 20)
   })
 
+  it(`hides 'remove parameter' button when required`, (done) => {
+    window.Laravel.showRemoveParameter = false
+
+    paramanVue([TestData.parameters[0]])
+
+    // ensure parameter's presence
+    next(() => {
+      ['label', 'humanizedUpdatedAt', 'type']
+      .forEach((prop) => {
+         expect(textContent())
+        .toContain(TestData.parameters[0][prop])
+      })
+
+      expect(vm.$el.querySelector('.parameter__button--remove'))
+      .toBeFalsy()
+
+      delete window.Laravel.showRemoveParameter
+      done()
+    }, 20)
+  })
+
+  it(`hides 'add parameter' button when required`, (done) => {
+    window.Laravel.showAddParameter = false
+
+    paramanVue([TestData.parameters[0]])
+
+    // ensure parameter's presence
+    next(() => {
+      ['label', 'humanizedUpdatedAt', 'type']
+      .forEach((prop) => {
+         expect(textContent())
+        .toContain(TestData.parameters[0][prop])
+      })
+
+      expect(vm.$el.querySelector('.parameters-list__button--add'))
+      .toBeFalsy()
+
+      expect(vm.$el.querySelector('.add-parameter'))
+      .toBeFalsy()
+
+      delete window.Laravel.showAddParameter
+      done()
+    }, 20)
+  })
+
+  it(`hides 'add category' when 'add parameter' is set to be hidden`, (done) => {
+    window.Laravel.showAddParameter = false
+
+    paramanVue([])
+
+    next(() => {
+      expect(vm.$el.querySelector('.add-category__container'))
+      .toBeTruthy()
+      expect(vm.$el.querySelector('.add-category__form'))
+      .toBeFalsy()
+
+      delete window.Laravel.showAddParameter
+      done()
+    }, 30)
+  })
+
+
+  it(`hides 'edit categories' button when required `, (done) => {
+    window.Laravel.showEditCategories = false
+
+    paramanVue([])
+
+    next(() => {
+      let listItemSelector = '.parameters-sidebar__category-list-item--edit-categories'
+
+      expect(vm.$refs['all-parameters'].$refs['sidebar'].showEditCategories)
+      .toBe(false)
+
+      expect(vm.$el.querySelector('.parameters-sidebar__button-category-edit'))
+      .toBeFalsy()
+
+      expect(vm.$el.querySelector(listItemSelector))
+      .toBeFalsy()
+
+      delete window.Laravel.showEditCategories
+      done()
+    }, 30)
+  })
+
   it(`open the first category and shows it's parameters data`, (done) => {
     let activeCategory = TestData.categories[0] // zero index = first category
     let activeCategoryParameters = TestData.categorized_parameters.filter(x => x.category_id == activeCategory.id )

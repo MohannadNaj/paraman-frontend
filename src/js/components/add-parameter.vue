@@ -2,7 +2,7 @@
 </style>
 <template>
   <div class="add-parameter">
-    <form class="form-horizontal add-parameter__form" role="form" v-on:submit.prevent="submit">
+    <form v-if="showAddParameter" class="form-horizontal add-parameter__form" role="form" v-on:submit.prevent="submit">
       <div class="add-parameter__form-group form-group">
         <label class="add-parameter__form-label control-label col-sm-3">{{lang('add_parameter_label_name')}}</label>
         <div class="col-sm-6">
@@ -46,8 +46,10 @@
 </template>
 
 <script>
+import configurableMixin from './mixins/common/configurable'
 
 export default {
+  mixins: [configurableMixin],
   data() {
     return {
       data: {

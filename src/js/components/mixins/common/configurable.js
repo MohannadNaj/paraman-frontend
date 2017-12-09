@@ -1,34 +1,29 @@
+let __paraman_config_checker = (prop) => {
+  if(window.Paraman.editParametersOnly != null && window.Paraman.editParametersOnly)
+    return false
+
+  if(window.Paraman[prop] == null)
+    return true
+
+  return window.Paraman[prop]
+}
+
 module.exports = {
   computed: {
     showAddParameter() {
-      if(window.Paraman.showAddParameter == null)
-        return true
-
-      return window.Paraman.showAddParameter
+      return __paraman_config_checker('showAddParameter')
     },
     showRemoveParameter() {
-      if(window.Paraman.showRemoveParameter == null)
-        return true
-
-      return window.Paraman.showRemoveParameter
+      return __paraman_config_checker('showRemoveParameter')
     },
     showEditCategories() {
-      if(window.Paraman.showEditCategories == null)
-        return true
-
-      return window.Paraman.showEditCategories
+      return __paraman_config_checker('showEditCategories')
     },
     showPHPCode() {
-      if(window.Paraman.showPHPCode == null)
-        return true
-
-      return window.Paraman.showPHPCode
+      return __paraman_config_checker('showPHPCode')
     },
     showChangeCategory() {
-      if(window.Paraman.showChangeCategory == null)
-        return true
-
-      return window.Paraman.showChangeCategory      
+      return __paraman_config_checker('showChangeCategory')
     }
   }
 }

@@ -274,6 +274,29 @@ describe('functional: onload', () => {
     }, 30)
   })
 
+  it(`hide elements when it's "edit parameters only"`, (done) => {
+    window.Paraman.editParametersOnly = true
+
+    paramanVue([])
+
+    next(() => {
+      let configurableBridge = vm.$refs['all-parameters'].$refs['sidebar']
+
+      ;['showAddParameter',
+      'showRemoveParameter',
+      'showEditCategories',
+      'showPHPCode',
+      'showChangeCategory'].forEach(prop => {
+
+        expect(configurableBridge[prop])
+        .toBe(false)        
+      })
+
+      delete window.Paraman.editParametersOnly
+      done()
+    }, 30)
+  })
+
   it(`open the first category and shows it's parameters data`, (done) => {
     let activeCategory = TestData.categories[0] // zero index = first category
     let activeCategoryParameters = TestData.categorized_parameters.filter(x => x.category_id == activeCategory.id )

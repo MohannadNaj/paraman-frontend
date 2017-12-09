@@ -209,6 +209,71 @@ describe('functional: onload', () => {
     }, 30)
   })
 
+  it(`set appropriate grid columns after hiding: default`, (done) => {
+    delete window.Paraman.showAddParameter
+    delete window.Paraman.showChangeCategory
+    delete window.Paraman.showEditCategories
+    delete window.Paraman.showPHPCode
+    delete window.Paraman.showRemoveParameter
+
+    paramanVue([TestData.parameters[0]])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
+      .toContain('col-sm-3')
+
+      done()
+    }, 30)
+  })
+
+  it(`set appropriate grid columns after hiding: "change category"`, (done) => {
+    window.Paraman.showChangeCategory = false
+
+    paramanVue([TestData.parameters[0]])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
+      .toContain('col-sm-4')
+
+      delete window.Paraman.showChangeCategory
+      done()
+    }, 30)
+  })
+
+  it(`set appropriate grid columns after hiding: "php code"`, (done) => {
+    window.Paraman.showPHPCode = false
+
+    paramanVue([TestData.parameters[0]])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
+      .toContain('col-sm-4')
+
+      delete window.Paraman.showPHPCode
+      done()
+    }, 30)
+  })
+
+  it(`set appropriate grid columns after hiding: "change category" and "php code"`, (done) => {
+    window.Paraman.showPHPCode = false
+    window.Paraman.showChangeCategory = false
+
+    paramanVue([TestData.parameters[0]])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
+      .toContain('col-sm-6')
+
+      delete window.Paraman.showPHPCode
+      delete window.Paraman.showChangeCategory
+      done()
+    }, 30)
+  })
+
   it(`open the first category and shows it's parameters data`, (done) => {
     let activeCategory = TestData.categories[0] // zero index = first category
     let activeCategoryParameters = TestData.categorized_parameters.filter(x => x.category_id == activeCategory.id )

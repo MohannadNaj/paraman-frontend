@@ -1,6 +1,6 @@
 <template>
   <div class="parameter-meta__container row">
-    <div class="parameter-meta__container-revisions col-xs-6 col-sm-3">
+    <div :class="'parameter-meta__container-revisions col-xs-6 col-sm-' + gridColumnsCount">
       <button type="button" @click="showLogs()" class="parameter-meta__button-show-logs btn btn-default rounded-btn">
       <i class="fa fa-book"></i>
       {{lang('parameter_meta_button_revisions')}}: {{countLogs}}
@@ -21,16 +21,16 @@
   </div>
   </span>
   </div>
-  <div v-if="showChangeCategory" class="parameter-meta__container-category col-xs-6 col-sm-3">
+  <div v-if="showChangeCategory" :class="'parameter-meta__container-category col-xs-6 col-sm-' + gridColumnsCount">
     <button type="button" @click="changeCategory()" class="parameter-meta__button parameter-meta__button-change-category btn btn-default rounded-btn">
       {{lang('parameter_meta_button_category')}}
       <i class="fa fa-bookmark"></i>
       </button>
   </div>
-  <div v-if="showPHPCode" class="parameter-meta__container-code col-xs-6 col-sm-3">
+  <div v-if="showPHPCode" :class="'parameter-meta__container-code col-xs-6 col-sm-' + gridColumnsCount">
     <input class="parameter-meta__input parameter-meta__input--code form-control" onclick="this.select();" readonly="" v-on:input="preventChange" :value="getPHPCode">
   </div>
-  <div class="parameter-meta__container-timestamps col-xs-6 col-sm-3">
+  <div :class="'parameter-meta__container-timestamps col-xs-6 col-sm-' + gridColumnsCount">
     <i class="glyphicon glyphicon-calendar"></i>
     <span class="meta-label">
         {{lang('parameter_meta_humanized_updatedAt')}}
@@ -130,6 +130,16 @@ export default {
     getPHPCode() {
       if (this.parameter == undefined) return ''
       return "param('" + this.parameter.name + "')"
+    },
+    gridColumnsCount() {
+      let columnsCount = 3
+      if(! this.showChangeCategory || ! this.showPHPCode)
+        columnsCount = 4
+
+      if(!this.showChangeCategory && !this.showPHPCode)
+        columnsCount = 6
+
+      return columnsCount.toString()
     }
   }
 }

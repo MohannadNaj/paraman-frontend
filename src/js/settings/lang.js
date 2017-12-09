@@ -45,6 +45,7 @@ module.exports = {
     parameter_removed: `Parameter (%s) removed successfully`,
     parameter_update_response_error: 'Error in updating parameter (%s)',
     parameter_updated: 'Parameter: %s has been updated successfully',
+    parameter_label_update_validate_required: `Label can't be empty`,
     parameters_list_not_found: 'No Parameters Added, start by adding one',
     parameters_sidebar_button_edit_categories: 'Edit Categories',
     parameters_sidebar_categories_not_found: 'No Categories Found, Start by Adding one',

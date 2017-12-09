@@ -98,7 +98,12 @@ export default {
         event.target.innerText = event.target.innerText.substr(0, 255)
 
       if ((event.which || event.keyCode) == 13) {
-        this.parameter.label = $.trim(event.target.innerText)
+        let innerText = $.trim(event.target.innerText)
+
+        if(innerText.length == 0)
+          return this.alert(this.lang('parameter_label_update_validate_required'), 'danger')
+
+        this.parameter.label = innerText
         event.target.innerText = this.parameter.label
         this.submitLabel()
       }

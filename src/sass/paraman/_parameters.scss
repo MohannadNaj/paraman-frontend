@@ -15,3 +15,9 @@
         }
     }
 }
+
+@media (min-width: $screen-xs-min) { //480px & greater
+    .parameter-meta__container-category {
+        float: right;
+    }
+}

@@ -173,6 +173,24 @@ describe('functional: onload', () => {
     }, 30)
   })
 
+  it(`hides 'php Code' when required `, (done) => {
+    window.Laravel.showPHPCode = false
+
+    paramanVue([TestData.parameters[0]])
+
+    next(() => {
+
+      expect(vm.$el.querySelector('.parameter-meta__container'))
+      .toBeTruthy()
+
+      expect(vm.$el.querySelector('.parameter-meta__container-code'))
+      .toBeFalsy()
+
+      delete window.Laravel.showPHPCode
+      done()
+    }, 30)
+  })
+
   it(`open the first category and shows it's parameters data`, (done) => {
     let activeCategory = TestData.categories[0] // zero index = first category
     let activeCategoryParameters = TestData.categorized_parameters.filter(x => x.category_id == activeCategory.id )

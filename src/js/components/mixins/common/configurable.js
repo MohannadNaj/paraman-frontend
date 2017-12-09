@@ -17,6 +17,12 @@ module.exports = {
         return true
 
       return window.Laravel.showEditCategories
-    }
+    },
+    showPHPCode() {
+      if(window.Laravel.showPHPCode == null)
+        return true
+
+      return window.Laravel.showPHPCode
+    },
   }
 }

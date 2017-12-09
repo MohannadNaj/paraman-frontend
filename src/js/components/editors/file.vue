@@ -70,8 +70,8 @@ export default {
   methods: {
     getImageSrc() {
       return (
-        window.Laravel.base_url +
-        window.Laravel.images_dir +
+        window.Paraman.base_url +
+        window.Paraman.images_dir +
         '/' +
         this.paramValue
       )

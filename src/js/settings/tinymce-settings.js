@@ -1,11 +1,11 @@
 module.exports = {
   selector: 'textarea',
   skin_url:
-    window.Laravel.base_url +
+    window.Paraman.base_url +
     'vendor/parameters/css/libs/tinymce/skins/lightgray',
   height: 500,
   remove_script_host: false,
-  content_css: window.Laravel.base_url + 'vendor/parameters/css/app.css',
+  content_css: window.Paraman.base_url + 'vendor/parameters/css/app.css',
   relative_urls: false,
   theme: 'modern',
   plugins: [

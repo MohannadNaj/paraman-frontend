@@ -4,7 +4,7 @@ import _package from '../../package.json'
 describe('functional: onload', () => {
   beforeEach(()=> {
     commonBeforeEach(paraman)
-    window.Laravel.installationData = {
+    window.Paraman.installationData = {
             databasePath: 'databasePath',
             migrationPaths: 'migrationPaths'
         }
@@ -12,8 +12,8 @@ describe('functional: onload', () => {
 
   afterEach(() => {
     commonAfterEach()
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = false
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = false
   })
 
   let paramanVue = (parametersList = []) => {createVue({parametersList})}
@@ -26,7 +26,7 @@ describe('functional: onload', () => {
   })
 
   it(`shows package version on installer if needs installation`, (done) => {
-    window.Laravel.needInstallation = true
+    window.Paraman.needInstallation = true
 
     paramanVue([])
 
@@ -52,7 +52,7 @@ describe('functional: onload', () => {
   })
 
   it(`shows installer if needs installation`, (done) => {
-    window.Laravel.needInstallation = true
+    window.Paraman.needInstallation = true
 
     paramanVue([])
 
@@ -64,7 +64,7 @@ describe('functional: onload', () => {
   })
 
   it(`shows installer if needs installation even if parametersList is present`, (done) => {
-    window.Laravel.needInstallation = true
+    window.Paraman.needInstallation = true
 
     paramanVue(TestData.parameters)
 
@@ -90,7 +90,7 @@ describe('functional: onload', () => {
   })
 
   it(`hides 'remove parameter' button when required`, (done) => {
-    window.Laravel.showRemoveParameter = false
+    window.Paraman.showRemoveParameter = false
 
     paramanVue([TestData.parameters[0]])
 
@@ -105,13 +105,13 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter__button--remove'))
       .toBeFalsy()
 
-      delete window.Laravel.showRemoveParameter
+      delete window.Paraman.showRemoveParameter
       done()
     }, 20)
   })
 
   it(`hides 'add parameter' button when required`, (done) => {
-    window.Laravel.showAddParameter = false
+    window.Paraman.showAddParameter = false
 
     paramanVue([TestData.parameters[0]])
 
@@ -129,13 +129,13 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.add-parameter'))
       .toBeFalsy()
 
-      delete window.Laravel.showAddParameter
+      delete window.Paraman.showAddParameter
       done()
     }, 20)
   })
 
   it(`hides 'add category' when 'add parameter' is set to be hidden`, (done) => {
-    window.Laravel.showAddParameter = false
+    window.Paraman.showAddParameter = false
 
     paramanVue([])
 
@@ -145,14 +145,14 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.add-category__form'))
       .toBeFalsy()
 
-      delete window.Laravel.showAddParameter
+      delete window.Paraman.showAddParameter
       done()
     }, 30)
   })
 
 
   it(`hides 'edit categories' button when required `, (done) => {
-    window.Laravel.showEditCategories = false
+    window.Paraman.showEditCategories = false
 
     paramanVue([])
 
@@ -168,13 +168,13 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector(listItemSelector))
       .toBeFalsy()
 
-      delete window.Laravel.showEditCategories
+      delete window.Paraman.showEditCategories
       done()
     }, 30)
   })
 
   it(`hides 'php Code' when required `, (done) => {
-    window.Laravel.showPHPCode = false
+    window.Paraman.showPHPCode = false
 
     paramanVue([TestData.parameters[0]])
 
@@ -186,13 +186,13 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-code'))
       .toBeFalsy()
 
-      delete window.Laravel.showPHPCode
+      delete window.Paraman.showPHPCode
       done()
     }, 30)
   })
 
   it(`hides 'change category' when required `, (done) => {
-    window.Laravel.showChangeCategory = false
+    window.Paraman.showChangeCategory = false
 
     paramanVue([TestData.parameters[0]])
 
@@ -204,7 +204,7 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-category'))
       .toBeFalsy()
 
-      delete window.Laravel.showChangeCategory
+      delete window.Paraman.showChangeCategory
       done()
     }, 30)
   })
@@ -334,7 +334,7 @@ describe('functional: onload', () => {
   })
 
   it(`uses the defined custom lang`, (done) => {
-    window.Laravel.lang = {add_category_label: 'foo bar'}
+    window.Paraman.lang = {add_category_label: 'foo bar'}
     paramanVue([])
 
     next(() => {
@@ -342,7 +342,7 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.sidebar').textContent)
       .toContain('foo bar')
 
-      window.Laravel.lang = null
+      window.Paraman.lang = null
       done()
     }, 20)
   })
@@ -363,7 +363,7 @@ describe('functional: onload', () => {
   })
 
   it(`can configure the logo: image and text`, (done) => {
-    window.Laravel.logo = {
+    window.Paraman.logo = {
       text: 'foo bar',
       image: '/path/to/img'
     }
@@ -382,13 +382,13 @@ describe('functional: onload', () => {
 
       expectEvent('custom-logo')
 
-      window.Laravel.logo = null
+      window.Paraman.logo = null
       done()
     }, 20)
   })
 
   it(`can configure the logo: text only`, (done) => {
-    window.Laravel.logo = {
+    window.Paraman.logo = {
       text: 'foo bar'
     }
     paramanVue([])
@@ -406,7 +406,7 @@ describe('functional: onload', () => {
 
       expectEvent('custom-logo')
 
-      window.Laravel.logo = null
+      window.Paraman.logo = null
       done()
     }, 20)
   })
@@ -429,7 +429,7 @@ describe('functional: onload', () => {
 
   it(`integrate custom components with custom settings: hide header and keep footer`, (done) => {
     Vue.component('editor-custom', {template:'<i>foo bar</i>'})
-    window.Laravel.components = {'editor-custom': {header: false, footer: true}}
+    window.Paraman.components = {'editor-custom': {header: false, footer: true}}
     let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
 
     paramanVue([customizedParam])
@@ -442,14 +442,14 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container'))
       .toBeTruthy()
 
-      window.Laravel.components = {}
+      window.Paraman.components = {}
       done()
     }, 20)
   })
 
   it(`integrate custom components with custom settings: hide footer and keep header`, (done) => {
     Vue.component('editor-custom', {template:'<i>foo bar</i>'})
-    window.Laravel.components = {'editor-custom': {header: true, footer: false}}
+    window.Paraman.components = {'editor-custom': {header: true, footer: false}}
     let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
 
     paramanVue([customizedParam])
@@ -462,14 +462,14 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter__title-container'))
       .toBeTruthy()
 
-      window.Laravel.components = {}
+      window.Paraman.components = {}
       done()
     }, 20)
   })
 
   it(`integrate custom components with custom settings: custom css container`, (done) => {
     Vue.component('editor-custom', {template:'<i>foo bar</i>'})
-    window.Laravel.components = {'editor-custom': {cssContainer: 'foo-bar'}}
+    window.Paraman.components = {'editor-custom': {cssContainer: 'foo-bar'}}
     let customizedParam = Object.assign(TestData.parameters[0], {type:'custom'})
 
     paramanVue([customizedParam])
@@ -479,7 +479,7 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter').getAttribute('class'))
       .toContain('foo-bar')
 
-      window.Laravel.components = {}
+      window.Paraman.components = {}
       done()
     }, 20)
   })

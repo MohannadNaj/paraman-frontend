@@ -3,11 +3,11 @@ import paraman from '../src/js/components/paraman'
 describe('paraman Component', () => {
   beforeEach(()=> {
     commonBeforeEach(paraman)
-    window.Laravel.installationData = {
+    window.Paraman.installationData = {
             databasePath: 'databasePath',
             migrationPaths: 'migrationPaths'
         }
-    window.Laravel.logo = null
+    window.Paraman.logo = null
   })
 
   afterEach(commonAfterEach)
@@ -23,7 +23,7 @@ describe('paraman Component', () => {
   it(`fire 'need-installation' event if it's need installation`, (done) => {
     EventBus.listen('need-installation', done)
 
-    window.Laravel.needInstallation = true
+    window.Paraman.needInstallation = true
 
     paramanVue([])
   })
@@ -31,15 +31,15 @@ describe('paraman Component', () => {
   it(`fire 'need-installation' event if it's need migration`, (done) => {
     EventBus.listen('need-installation', done)
 
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = true
 
     paramanVue([])
   })
 
   it(`event 'need-installation' isn't fired if installation isn't required`, (done) => {
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = false
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = false
 
     paramanVue([])
 
@@ -70,13 +70,13 @@ describe('paraman Component', () => {
   it(`fire 'custom-logo' event if it uses custom logo`, (done) => {
     EventBus.listen('custom-logo', done)
 
-    window.Laravel.logo = {}
+    window.Paraman.logo = {}
 
     paramanVue([])
   })
 
   it(`event 'custom-logo' isn't fired if logo isn't set`, (done) => {
-    window.Laravel.logo = null
+    window.Paraman.logo = null
 
     paramanVue([])
 

@@ -3,7 +3,7 @@ let routes = require('./settings/routes.js')
 
 class Route {
     get(key, ...args) {
-        args = [window.Laravel.base_url, ...args]
+        args = [window.Paraman.base_url, ...args]
 
         return format(routes[key] , ...args)
     }

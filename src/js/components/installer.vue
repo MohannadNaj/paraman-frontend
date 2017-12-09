@@ -91,10 +91,10 @@ export default {
   },
   computed: {
     getFilePath() {
-      return window.Laravel.installationData.databasePath
+      return window.Paraman.installationData.databasePath
     },
     getMigrations() {
-      let migrations = window.Laravel.installationData.migrationPaths
+      let migrations = window.Paraman.installationData.migrationPaths
 
       return Object.keys(migrations)
         .map(k => migrations[k])
@@ -143,10 +143,10 @@ export default {
       }
     },
     setStepsState() {
-      this.getStepByAction('createDatabase').isDone = !window.Laravel
+      this.getStepByAction('createDatabase').isDone = !window.Paraman
         .needInstallation
 
-      this.getStepByAction('migrate').isDone = !window.Laravel.needMigration
+      this.getStepByAction('migrate').isDone = !window.Paraman.needMigration
 
       if (!this.getStepByAction('migrate').isDone) this.setActiveStep('migrate')
 

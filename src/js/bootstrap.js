@@ -6,8 +6,8 @@ if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 }
 
-window.Laravel = window.Laravel || {}
-window.Laravel.components = window.Laravel.components || {}
+window.Paraman = window.Paraman || {}
+window.Paraman.components = window.Paraman.components || {}
 
 require('./utils/EventBus')
 require('./vue-components')

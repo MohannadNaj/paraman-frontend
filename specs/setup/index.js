@@ -6,7 +6,7 @@ Promise = require('promise-polyfill')
 require('./testUtils.js')
 require('./fakeDataHelper.js')
 
-window.Laravel = TestData.clientData
+window.Paraman = TestData.clientData
 
 require('../../src/js/core.js')
 require('../../src/js/bootstrap.js')

@@ -23,7 +23,7 @@ export default {
   mixins: [configurableMixin],
   data() {
     return {
-      parameter: window.Laravel.parametersColumns,
+      parameter: window.Paraman.parametersColumns,
       categories: [],
       isBusy: false
     }

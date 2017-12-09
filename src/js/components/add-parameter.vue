@@ -67,7 +67,7 @@ export default {
     category_id: ''
   },
   mounted() {
-    this.parametersTypes = window.Laravel.parametersTypes
+    this.parametersTypes = window.Paraman.parametersTypes
 
     _.each(_.keys(this.data), x => {
       this.errors[x + '_errors'] = []

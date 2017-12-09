@@ -3,7 +3,7 @@ import installer from '../src/js/components/installer'
 describe('installer Component', () => {
   beforeEach(()=> {
     commonBeforeEach(installer)
-    window.Laravel.installationData = {
+    window.Paraman.installationData = {
             databasePath: 'databasePath',
             migrationPaths: 'migrationPaths'
         }
@@ -21,13 +21,13 @@ describe('installer Component', () => {
   let stubs = {
     success: {
        createDBRequest(response = {status: true, path: dbPath}) {
-        moxios.stubRequest(`${window.Laravel.base_url}parameters/createDB`, {
+        moxios.stubRequest(`${window.Paraman.base_url}parameters/createDB`, {
           status: 200,
           response: response
         })
       },
        migrate(response = {output:'migrated'}) {
-        moxios.stubRequest(`${window.Laravel.base_url}parameters/migrate`, {
+        moxios.stubRequest(`${window.Paraman.base_url}parameters/migrate`, {
           status: 200,
           response: response
         })
@@ -35,13 +35,13 @@ describe('installer Component', () => {
     },
     failure: {
       createDatabase(response = {}) {
-        moxios.stubRequest(`${window.Laravel.base_url}parameters/createDB`, {
+        moxios.stubRequest(`${window.Paraman.base_url}parameters/createDB`, {
           status: 422,
           response: response
         })
       },
        migrate(response = {}) {
-        moxios.stubRequest(`${window.Laravel.base_url}parameters/migrate`, {
+        moxios.stubRequest(`${window.Paraman.base_url}parameters/migrate`, {
           status: 422,
           response: response
         })
@@ -69,8 +69,8 @@ describe('installer Component', () => {
   })
 
   it('shows only the active step', (done) => {
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = true
 
     createVue()
 
@@ -85,7 +85,7 @@ describe('installer Component', () => {
   })
 
   it(`set the correct step state for 'createDatabase'`, (done) => {
-    window.Laravel.needInstallation = false
+    window.Paraman.needInstallation = false
 
     createVue()
 
@@ -100,7 +100,7 @@ describe('installer Component', () => {
   })
 
   it(`set the correct step state for 'migrate'`, () => {
-    window.Laravel.needMigration = false
+    window.Paraman.needMigration = false
 
     createVue()
 
@@ -109,8 +109,8 @@ describe('installer Component', () => {
   })
 
   it(`if 'createDatabase' and 'migrate' is not done, set 'createDatabase' as the active step`, (done) => {
-    window.Laravel.needInstallation = true
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = true
+    window.Paraman.needMigration = true
 
     createVue()
     .then(() => {
@@ -121,8 +121,8 @@ describe('installer Component', () => {
   })
 
   it(`if 'createDatabase' is done and 'migrate' is not, set 'migrate' as the active step`, (done) => {
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = true
 
     createVue()
     .then(() => {
@@ -133,8 +133,8 @@ describe('installer Component', () => {
   })
 
   it(`fire 'activated-installerStep' event after step activation`, done => {
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = true
 
     EventBus.listen('activated-installerStep', done)
 
@@ -142,8 +142,8 @@ describe('installer Component', () => {
   })
 
   it(`pass the correct data on 'activated-installerStep' event`, done => {
-    window.Laravel.needInstallation = false
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = false
+    window.Paraman.needMigration = true
 
     EventBus.listen('activated-installerStep', (data) => {
       expect(data.new.action)
@@ -155,8 +155,8 @@ describe('installer Component', () => {
   })
 
   it(`notify user after successful 'createDatabase' request`, (done) => {
-    window.Laravel.needInstallation = true
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = true
+    window.Paraman.needMigration = true
 
     createVue()
 
@@ -173,8 +173,8 @@ describe('installer Component', () => {
   })
 
   it(`show database path after successful 'createDatabase' request`, (done) => {
-    window.Laravel.needInstallation = true
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = true
+    window.Paraman.needMigration = true
 
     createVue()
 
@@ -191,8 +191,8 @@ describe('installer Component', () => {
   })
 
   it(`set the correct 'isDone' state after successful 'createDatabase' request`, (done) => {
-    window.Laravel.needInstallation = true
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = true
+    window.Paraman.needMigration = true
 
     createVue()
 
@@ -212,8 +212,8 @@ describe('installer Component', () => {
   })
 
   it(`set the correct 'isDone' state after successful 'createDatabase' request`, (done) => {
-    window.Laravel.needInstallation = true
-    window.Laravel.needMigration = true
+    window.Paraman.needInstallation = true
+    window.Paraman.needMigration = true
 
     createVue()
 

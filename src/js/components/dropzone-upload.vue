@@ -37,9 +37,9 @@ export default {
       window: window,
       handlerInstance: null,
       header_msg: '',
-      target_action: window.Laravel.base_url + this._target,
+      target_action: window.Paraman.base_url + this._target,
       additionalParams: {},
-      update_target: window.Laravel.base_url + this._update_target
+      update_target: window.Paraman.base_url + this._update_target
     }
   },
   props: {

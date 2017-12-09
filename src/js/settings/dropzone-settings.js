@@ -4,7 +4,7 @@ export default {
   maxFiles: 1,
   handlerInstance: null,
   headers: {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken
+    'X-CSRF-TOKEN': window.Paraman.csrfToken
   },
 
   init: function() {

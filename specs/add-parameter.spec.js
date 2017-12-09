@@ -85,7 +85,7 @@ describe('add-parameter Component', () => {
     // arrange
     createVue({ category_id: null })
     spy('prepareRequestData')
-    moxios.stubRequest(window.Laravel.base_url + 'parameters', {
+    moxios.stubRequest(window.Paraman.base_url + 'parameters', {
       status: 200,
       response: { parameter: { id: 1 } }
     })

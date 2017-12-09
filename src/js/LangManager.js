@@ -3,8 +3,8 @@ let lang = require('./settings/lang.js')
 
 class Lang {
     get(key, ...args) {
-        if(window.Laravel.lang != null && window.Laravel.lang[key] != null)
-            return format(window.Laravel.lang[key] , ...args)
+        if(window.Paraman.lang != null && window.Paraman.lang[key] != null)
+            return format(window.Paraman.lang[key] , ...args)
 
         return format(lang[key] , ...args)
     }

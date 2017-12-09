@@ -34,12 +34,12 @@ export default {
     Helper.modal = this.$refs['modal']
     Helper.dropzoneModal = this.$refs['dropzone-modal']
 
-    if (window.Laravel.needInstallation || window.Laravel.needMigration) {
+    if (window.Paraman.needInstallation || window.Paraman.needMigration) {
       EventBus.fire('need-installation')
     }
 
-    if (window.Laravel.logo) {
-      EventBus.fire('custom-logo', window.Laravel.logo)
+    if (window.Paraman.logo) {
+      EventBus.fire('custom-logo', window.Paraman.logo)
     }
   }
 }

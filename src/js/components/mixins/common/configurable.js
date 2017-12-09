@@ -1,34 +1,34 @@
 module.exports = {
   computed: {
     showAddParameter() {
-      if(window.Laravel.showAddParameter == null)
+      if(window.Paraman.showAddParameter == null)
         return true
 
-      return window.Laravel.showAddParameter
+      return window.Paraman.showAddParameter
     },
     showRemoveParameter() {
-      if(window.Laravel.showRemoveParameter == null)
+      if(window.Paraman.showRemoveParameter == null)
         return true
 
-      return window.Laravel.showRemoveParameter
+      return window.Paraman.showRemoveParameter
     },
     showEditCategories() {
-      if(window.Laravel.showEditCategories == null)
+      if(window.Paraman.showEditCategories == null)
         return true
 
-      return window.Laravel.showEditCategories
+      return window.Paraman.showEditCategories
     },
     showPHPCode() {
-      if(window.Laravel.showPHPCode == null)
+      if(window.Paraman.showPHPCode == null)
         return true
 
-      return window.Laravel.showPHPCode
+      return window.Paraman.showPHPCode
     },
     showChangeCategory() {
-      if(window.Laravel.showChangeCategory == null)
+      if(window.Paraman.showChangeCategory == null)
         return true
 
-      return window.Laravel.showChangeCategory      
+      return window.Paraman.showChangeCategory      
     }
   }
 }

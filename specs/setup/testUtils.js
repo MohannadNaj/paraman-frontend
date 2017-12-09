@@ -58,7 +58,7 @@ spy = (method, component = null) => {
 }
 
 submitFailedRequest = (response, target = 'parameters') => {
-  moxios.stubRequest(window.Laravel.base_url + target, {
+  moxios.stubRequest(window.Paraman.base_url + target, {
     status: 422,
     response: response
   })

@@ -33,7 +33,7 @@ describe('add-category Component', () => {
     // arrange
     createVue()
     vm.newCategoryName = 'new category'
-    moxios.stubRequest(window.Laravel.base_url + 'parameters/addCategory', {
+    moxios.stubRequest(window.Paraman.base_url + 'parameters/addCategory', {
       status: 200,
       response: { parameter: { id: 1 } }
     })

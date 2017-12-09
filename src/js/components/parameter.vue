@@ -46,7 +46,7 @@ export default {
       previewMode: true,
       errors: [],
       childComponent: null,
-      originalParameter: window.Laravel.parametersColumns
+      originalParameter: window.Paraman.parametersColumns
     }
   },
   components: {
@@ -61,7 +61,7 @@ export default {
   props: {
     parameter: {
       default: function() {
-        return window.Laravel.parametersColumns
+        return window.Paraman.parametersColumns
       }
     }
   },
@@ -177,7 +177,7 @@ export default {
       return this.isDirty ? 'warning-bg' : 'default-bg'
     },
     customSettings() {
-      return window.Laravel.components[this.getEditorComponentName] || {}
+      return window.Paraman.components[this.getEditorComponentName] || {}
     },
     showHeader() {
       if(this.customSettings.header != null)

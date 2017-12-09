@@ -24,6 +24,12 @@ module.exports = {
     },
     showChangeCategory() {
       return __paraman_config_checker('showChangeCategory')
+    },
+    editableLabels() {
+      if(window.Paraman.editableLabels == null)
+        return __paraman_config_checker('editableLabels')
+
+      return window.Paraman.editableLabels
     }
   }
 }

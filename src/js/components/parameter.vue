@@ -39,7 +39,9 @@ import parameterMeta from './parameter-meta'
 import editors from '../settings/editors'
 import parameterHeader from './parameter-header'
 
+import configurableMixin from './mixins/common/configurable'
 export default {
+  mixins: [configurableMixin],
   data() {
     return {
       isDirty: false,
@@ -94,6 +96,9 @@ export default {
       this.$on('save-change', this.submit)
     },
     keyupLabelInput(event) {
+      if(! this.editableLabels)
+        return null
+
       if (event.target.innerText.length > 255)
         event.target.innerText = event.target.innerText.substr(0, 255)
 

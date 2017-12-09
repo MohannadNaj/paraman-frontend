@@ -2,7 +2,7 @@
   <div>
     <h3 class="parameter__title-container title container-fluid">
       <div>
-        <div :contenteditable="!previewMode" @keyup="keyupLabelInput" :class="['parameter__parameter-label', !previewMode ? 'parameter__parameter-label--editable':'']">{{originalParameter.label}}</div>
+        <div :contenteditable="editableLabels && !previewMode" @keyup="keyupLabelInput" :class="['parameter__parameter-label', editableLabels && !previewMode ? 'parameter__parameter-label--editable':'']">{{originalParameter.label}}</div>
         <span class="parameter__controls-container pull-right">
                 <span v-if="isDirty && previewMode" class="parameter__label parameter__label--unsaved label label-warning">
                     {{lang('parameter_header_unsaved_changes')}}

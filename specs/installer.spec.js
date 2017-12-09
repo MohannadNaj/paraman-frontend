@@ -94,7 +94,7 @@ describe('installer Component', () => {
 
     then(() => {
       expect(vm.$el.querySelector('.installer-step__container--done'))
-      .toBeDefined()
+      .toBeTruthy()
       done()
     })
   })

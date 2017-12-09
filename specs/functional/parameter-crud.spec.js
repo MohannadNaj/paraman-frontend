@@ -35,7 +35,7 @@ describe('parameter: crud', () => {
     }, 30)
   })
 
-  it(`wouldn't edit parameter's labels if it's configured to not be editable`, (done) => {
+  it(`disable editing labels if it's configured to not be editable`, (done) => {
     window.Paraman.editableLabels = false
 
     paramanVue([TestData.textfield[0]])

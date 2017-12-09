@@ -1,7 +1,24 @@
-.parameters__container {
-    .parameters-sidebar__container {
-        background: $base-color;
-        font-size: 1.5rem;
+.parameters-sidebar__container {
+    background: $base-color;
+    font-size: 1.5rem;
+    
+    .add-category__form {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .add-category__input {
+        font-size: 20px;
+    }
+
+    .add-category__button--submit {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            color: white;
+            border-color: white;
+        }        
     }
 }
 
@@ -32,3 +49,4 @@
     font-size: 1.5rem;
     background: #314e56;
 }
+

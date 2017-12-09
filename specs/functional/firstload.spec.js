@@ -1,7 +1,7 @@
 import paraman from '../../src/js/components/paraman'
 import _package from '../../package.json'
 
-describe('functional: onload', () => {
+describe('functional: firstload', () => {
   beforeEach(()=> {
     commonBeforeEach(paraman)
     window.Paraman.installationData = {
@@ -14,6 +14,12 @@ describe('functional: onload', () => {
     commonAfterEach()
     window.Paraman.needInstallation = false
     window.Paraman.needMigration = false
+    delete window.Paraman.editParametersOnly
+    delete window.Paraman.showAddParameter
+    delete window.Paraman.showChangeCategory
+    delete window.Paraman.showEditCategories
+    delete window.Paraman.showPHPCode
+    delete window.Paraman.showRemoveParameter
   })
 
   let paramanVue = (parametersList = []) => {createVue({parametersList})}
@@ -105,7 +111,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter__button--remove'))
       .toBeFalsy()
 
-      delete window.Paraman.showRemoveParameter
       done()
     }, 20)
   })
@@ -129,7 +134,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.add-parameter'))
       .toBeFalsy()
 
-      delete window.Paraman.showAddParameter
       done()
     }, 20)
   })
@@ -145,7 +149,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.add-category__form'))
       .toBeFalsy()
 
-      delete window.Paraman.showAddParameter
       done()
     }, 30)
   })
@@ -168,7 +171,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector(listItemSelector))
       .toBeFalsy()
 
-      delete window.Paraman.showEditCategories
       done()
     }, 30)
   })
@@ -186,7 +188,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-code'))
       .toBeFalsy()
 
-      delete window.Paraman.showPHPCode
       done()
     }, 30)
   })
@@ -204,17 +205,11 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-category'))
       .toBeFalsy()
 
-      delete window.Paraman.showChangeCategory
       done()
     }, 30)
   })
 
   it(`set appropriate grid columns after hiding: default`, (done) => {
-    delete window.Paraman.showAddParameter
-    delete window.Paraman.showChangeCategory
-    delete window.Paraman.showEditCategories
-    delete window.Paraman.showPHPCode
-    delete window.Paraman.showRemoveParameter
 
     paramanVue([TestData.parameters[0]])
 
@@ -237,7 +232,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
       .toContain('col-sm-4')
 
-      delete window.Paraman.showChangeCategory
       done()
     }, 30)
   })
@@ -252,7 +246,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
       .toContain('col-sm-4')
 
-      delete window.Paraman.showPHPCode
       done()
     }, 30)
   })
@@ -268,8 +261,6 @@ describe('functional: onload', () => {
       expect(vm.$el.querySelector('.parameter-meta__container-revisions').getAttribute('class'))
       .toContain('col-sm-6')
 
-      delete window.Paraman.showPHPCode
-      delete window.Paraman.showChangeCategory
       done()
     }, 30)
   })
@@ -292,7 +283,6 @@ describe('functional: onload', () => {
         .toBe(false)        
       })
 
-      delete window.Paraman.editParametersOnly
       done()
     }, 30)
   })

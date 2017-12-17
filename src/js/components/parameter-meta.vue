@@ -63,7 +63,11 @@ export default {
       EventBus.fire('change-paramCategory', this.parameter)
     },
     showLogs() {
-      if (!this.hasLogs) return this.alert(this.lang('parameter_meta_revisions_not_found'), 'warning')
+      if (!this.hasLogs)
+        return this.alert(
+          this.lang('parameter_meta_revisions_not_found'),
+          'warning'
+        )
 
       this.mapLogsHtmlData(this.getModal())
 
@@ -133,11 +137,9 @@ export default {
     },
     gridColumnsCount() {
       let columnsCount = 3
-      if(! this.showChangeCategory || ! this.showPHPCode)
-        columnsCount = 4
+      if (!this.showChangeCategory || !this.showPHPCode) columnsCount = 4
 
-      if(!this.showChangeCategory && !this.showPHPCode)
-        columnsCount = 6
+      if (!this.showChangeCategory && !this.showPHPCode) columnsCount = 6
 
       return columnsCount.toString()
     }

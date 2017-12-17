@@ -1,9 +1,11 @@
-let __paraman_config_checker = (prop) => {
-  if(window.Paraman.editParametersOnly != null && window.Paraman.editParametersOnly)
+let __paraman_config_checker = prop => {
+  if (
+    window.Paraman.editParametersOnly != null &&
+    window.Paraman.editParametersOnly
+  )
     return false
 
-  if(window.Paraman[prop] == null)
-    return true
+  if (window.Paraman[prop] == null) return true
 
   return window.Paraman[prop]
 }
@@ -26,7 +28,7 @@ module.exports = {
       return __paraman_config_checker('showChangeCategory')
     },
     editableLabels() {
-      if(window.Paraman.editableLabels == null)
+      if (window.Paraman.editableLabels == null)
         return __paraman_config_checker('editableLabels')
 
       return window.Paraman.editableLabels

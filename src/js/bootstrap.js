@@ -12,4 +12,3 @@ window.Paraman.components = window.Paraman.components || {}
 require('./utils/EventBus')
 require('./vue-components')
 require('./tinymce-plugins')
-

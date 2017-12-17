@@ -96,8 +96,7 @@ export default {
       this.$on('save-change', this.submit)
     },
     keyupLabelInput(event) {
-      if(! this.editableLabels)
-        return null
+      if (!this.editableLabels) return null
 
       if (event.target.innerText.length > 255)
         event.target.innerText = event.target.innerText.substr(0, 255)
@@ -105,8 +104,11 @@ export default {
       if ((event.which || event.keyCode) == 13) {
         let innerText = $.trim(event.target.innerText)
 
-        if(innerText.length == 0)
-          return this.alert(this.lang('parameter_label_update_validate_required'), 'danger')
+        if (innerText.length == 0)
+          return this.alert(
+            this.lang('parameter_label_update_validate_required'),
+            'danger'
+          )
 
         this.parameter.label = innerText
         event.target.innerText = this.parameter.label
@@ -130,15 +132,18 @@ export default {
       //      requestParams.label = this.parameter.label
 
       axios
-        .patch(this.route('update_parameter', this.originalParameter.id),
+        .patch(
+          this.route('update_parameter', this.originalParameter.id),
           requestParams
         )
         .then(response => {
           this.parameterChanged(response.data)
         })
         .catch(error => {
-          var errorMessage =
-            this.lang('parameter_update_response_error', this.parameter.id)
+          var errorMessage = this.lang(
+            'parameter_update_response_error',
+            this.parameter.id
+          )
           var errorData = error.response.data
           if (typeof errorData == 'object') {
             this.errors = _.toArray(errorData)
@@ -153,9 +158,7 @@ export default {
         this.isDirty = false
         if (!this.previewMode) this.togglePreview()
       })
-      this.alert(
-        this.lang('parameter_updated', parameter.label)
-      )
+      this.alert(this.lang('parameter_updated', parameter.label))
       EventBus.fire('updated-parameter', parameter)
     },
     togglePreview() {
@@ -185,22 +188,19 @@ export default {
       return window.Paraman.components[this.getEditorComponentName] || {}
     },
     showHeader() {
-      if(this.customSettings.header != null)
-        return this.customSettings.header
+      if (this.customSettings.header != null) return this.customSettings.header
       return true
     },
     showErrors() {
-      if(this.customSettings.errors != null)
-        return this.customSettings.errors
+      if (this.customSettings.errors != null) return this.customSettings.errors
       return true
     },
     showFooter() {
-      if(this.customSettings.footer != null)
-        return this.customSettings.footer
+      if (this.customSettings.footer != null) return this.customSettings.footer
       return true
     },
     customCssClass() {
-      if(this.customSettings.cssContainer != null)
+      if (this.customSettings.cssContainer != null)
         return this.customSettings.cssContainer
       return ''
     }

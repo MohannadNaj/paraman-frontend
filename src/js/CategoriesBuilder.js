@@ -1,14 +1,17 @@
 import _ from 'lodash'
 
 export default class CategoriesBuilder {
-  constructor (parameters) {
+  constructor(parameters) {
     this.categories = []
     this.parameters = parameters
   }
 
   getCategoriesKeysFromParameters() {
     return _.keys(
-      _.groupBy(this.parameters.filter(x => x.is_category != true), 'category_id')
+      _.groupBy(
+        this.parameters.filter(x => x.is_category != true),
+        'category_id'
+      )
     )
   }
 
@@ -24,16 +27,19 @@ export default class CategoriesBuilder {
   }
 
   buildCategoriesKeys() {
-      // first, we will consider the `categories keys`, the keys that exist as a
-      // an id for the "category_id" field of any parameter, we will consider
-      // this keys as our primary wanted keys.
-      let categoriesKeys = this.getCategoriesKeysFromParameters()
+    // first, we will consider the `categories keys`, the keys that exist as a
+    // an id for the "category_id" field of any parameter, we will consider
+    // this keys as our primary wanted keys.
+    let categoriesKeys = this.getCategoriesKeysFromParameters()
 
-      // then we will add to the `categories keys` the defined categories that
-      // doesn't have parameters. a defined category is a parameters defined
-      // as category: `is_category=true`
-      let definedCategories = this.getDefinedCategories()
-      return this.mergeCategoriesWithCategoriesIds(categoriesKeys, definedCategories)
+    // then we will add to the `categories keys` the defined categories that
+    // doesn't have parameters. a defined category is a parameters defined
+    // as category: `is_category=true`
+    let definedCategories = this.getDefinedCategories()
+    return this.mergeCategoriesWithCategoriesIds(
+      categoriesKeys,
+      definedCategories
+    )
   }
 
   buildCategories() {
@@ -52,10 +58,7 @@ export default class CategoriesBuilder {
     if (key == 'null') key = null
 
     var preparedCategory = {}
-    var categoryRelatedParameter = _.findLast(
-      this.parameters,
-      x => x.id == key
-    )
+    var categoryRelatedParameter = _.findLast(this.parameters, x => x.id == key)
     var title = ''
 
     if (

@@ -28,6 +28,7 @@
 </template>
 
 <script>
+
 import configurableMixin from './mixins/common/configurable'
 export default {
   mixins: [configurableMixin],

@@ -191,7 +191,10 @@ export default {
               'danger'
             )
 
-          step.response = this.lang('installer_step_createDB_response_done',response.data.path)
+          step.response = this.lang(
+            'installer_step_createDB_response_done',
+            response.data.path
+          )
           step.isDone = true
           this.alert(this.lang('installer_step_createDB_done'), 'primary')
         })
@@ -199,7 +202,10 @@ export default {
           var errorData = error.response.data
 
           console.log(errorData)
-          this.alert(this.lang('installer_step_createDB_response_error'), 'danger')
+          this.alert(
+            this.lang('installer_step_createDB_response_error'),
+            'danger'
+          )
         })
     },
     migrate(step) {
@@ -219,14 +225,20 @@ export default {
           }
 
           step.isDone = true
-          this.alert(this.lang('installer_step_migrate_response_done'), 'success')
+          this.alert(
+            this.lang('installer_step_migrate_response_done'),
+            'success'
+          )
           this.finalizeInstallation()
         })
         .catch(error => {
           var errorData = error.response
 
           console.log(errorData)
-          this.alert(this.lang('installer_step_migrate_response_error'), 'danger')
+          this.alert(
+            this.lang('installer_step_migrate_response_error'),
+            'danger'
+          )
         })
     },
     removeRefreshStep() {

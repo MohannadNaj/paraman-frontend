@@ -26,7 +26,9 @@ export default {
 
     this.on('addedfile', function(file) {
       var removeButton = Dropzone.createElement(
-        `<button class='btn btn-warning btn-sm'>${lang('dropzone_upload_button_remove')}</button>`
+        `<button class='btn btn-warning btn-sm'>${lang(
+          'dropzone_upload_button_remove'
+        )}</button>`
       )
 
       var _this = this

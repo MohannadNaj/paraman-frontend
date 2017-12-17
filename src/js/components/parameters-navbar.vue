@@ -32,8 +32,7 @@ export default {
   },
   methods: {
     useCustomLogo(data) {
-      if(data.text)
-        this.brand = data.text
+      if (data.text) this.brand = data.text
     }
   }
 }

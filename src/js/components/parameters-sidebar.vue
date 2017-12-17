@@ -1,12 +1,12 @@
 <template>
   <div class="parameters-sidebar__container sidebar-wrapper">
     <div class="parameters-sidebar__logo logo">
-        <img class="parameters-sidebar__logo-img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo" v-if="logoImage.length == 0">
-        <img class="parameters-sidebar__logo-img rounded img-fluid" :src="logoImage" v-if="logoImage.length != 0">
-        <a v-if="logoText.length == 0" class="parameters-sidebar__logo-text simple-text">
+      <img class="parameters-sidebar__logo-img rounded img-fluid" src="../../img/paraman-logo.png" alt="Paraman Logo" v-if="logoImage.length == 0">
+      <img class="parameters-sidebar__logo-img rounded img-fluid" :src="logoImage" v-if="logoImage.length != 0">
+      <a v-if="logoText.length == 0" class="parameters-sidebar__logo-text simple-text">
             Paraman<br>{{version}}
         </a>
-        <a v-if="logoText.length != 0" class="parameters-sidebar__logo-text simple-text" v-text="logoText"></a>
+      <a v-if="logoText.length != 0" class="parameters-sidebar__logo-text simple-text" v-text="logoText"></a>
     </div>
     <ul class="parameters-sidebar__category-list nav">
       <parameters-category :ref="category.target + '_parameter_category'" :key="category.target + '_cat'" :title="category.title" :parameters="category.parameters" :is-categories-group="category.isCategoriesGroup" :blocked="category.blocked" :target="category.target"
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 import addCategory from './add-category'
 import parametersCategory from './parameters-category'
 import _package from '../../../package.json'
@@ -35,7 +36,7 @@ export default {
   mixins: [configurableMixin],
   components: {
     'add-category': addCategory,
-    'parameters-category': parametersCategory,
+    'parameters-category': parametersCategory
   },
   data() {
     return {
@@ -46,9 +47,11 @@ export default {
     }
   },
   props: {
-    categories:  {
+    categories: {
       type: Array,
-      default: function () { return [] }
+      default: function() {
+        return []
+      }
     }
   },
   mounted() {
@@ -56,8 +59,8 @@ export default {
   },
   methods: {
     useCustomLogo(data) {
-      this.logoImage = data.image || ""
-      this.logoText = data.text || ""
+      this.logoImage = data.image || ''
+      this.logoText = data.text || ''
     },
     shouldShowCategory(category) {
       if (category.isCategoriesGroup) {
@@ -94,7 +97,8 @@ export default {
 
       this.$nextTick(x => {
         this.$parent.openCategoryByHash(
-          this.$parent.openedCategory == null || this.$parent.openedCategory == ''
+          this.$parent.openedCategory == null ||
+          this.$parent.openedCategory == ''
             ? this.$parent.categories[0].target
             : this.$parent.openedCategory
         )
@@ -103,4 +107,5 @@ export default {
     }
   }
 }
+
 </script>

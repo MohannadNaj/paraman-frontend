@@ -101,8 +101,10 @@ export default {
           Helper.modal.hideModal()
         })
         .catch(error => {
-          var errorMessage =
-            this.lang('parameter_remove_response_error', parameter.id)
+          var errorMessage = this.lang(
+            'parameter_remove_response_error',
+            parameter.id
+          )
           var errorData = error.response.data
           Helper.checkCommonErrors(errorData, errorMessage)
         })
@@ -125,14 +127,15 @@ export default {
       this.categories = categoriesBuilder.buildCategories()
 
       this.$nextTick(() => {
-        if (typeof this.$refs['sidebar'] != "undefined" &&
-          this.$refs['sidebar'].editCategoriesMode)
+        if (
+          typeof this.$refs['sidebar'] != 'undefined' &&
+          this.$refs['sidebar'].editCategoriesMode
+        )
           this.$refs['sidebar'].enableEditCategoriesMode()
       })
     },
     getCategoriesRefs() {
-      if(typeof this.$refs['sidebar'] == "undefined")
-        return []
+      if (typeof this.$refs['sidebar'] == 'undefined') return []
 
       return _.keys(this.$refs['sidebar'].$refs).filter(
         x => x.indexOf('_parameter_category') > -1
@@ -147,7 +150,9 @@ export default {
     },
     openCategory(data) {
       EventBus.fire('open-category', data)
-      this.$refs['sidebar'].$refs[data.target + '_parameter_category'][0].activate()
+      this.$refs['sidebar'].$refs[
+        data.target + '_parameter_category'
+      ][0].activate()
       window.location.hash = data.target
       var categoriesCategory = _.find(this.categories, category => {
         return category.isCategoriesGroup
@@ -165,7 +170,9 @@ export default {
         // since "..._parameter_category" refs in the "parameters-list"
         // was in a for loop, it will return array and should be retrieved by
         // the key. but we will get the first one only.
-        var categoryToOpen = this.$refs['sidebar'].$refs[hash + '_parameter_category'][0]
+        var categoryToOpen = this.$refs['sidebar'].$refs[
+          hash + '_parameter_category'
+        ][0]
 
         if (categoryToOpen != undefined) return categoryToOpen.openCategory()
       }
@@ -203,7 +210,9 @@ export default {
       var category_id = data.category
 
       axios
-        .post(this.route('change_category_parameter', parameter_id, category_id))
+        .post(
+          this.route('change_category_parameter', parameter_id, category_id)
+        )
         .then(response => {
           var updatedParameter = response.data.parameter
 
@@ -215,8 +224,11 @@ export default {
           this.loadParameters()
           this.$nextTick(y => {
             var newCategory = this.categories.find(x => x.target == category_id)
-            var msg =
-              this.lang('parameter_category_changed', updatedParameter.label, newCategory.title)
+            var msg = this.lang(
+              'parameter_category_changed',
+              updatedParameter.label,
+              newCategory.title
+            )
             EventBus.fire('changed-paramCategory', {
               data: data,
               parameter: updatedParameter,
@@ -226,8 +238,10 @@ export default {
           })
         })
         .catch(error => {
-          var errorMessage =
-            this.lang('parameter_category_changed_response_error', parameter_id)
+          var errorMessage = this.lang(
+            'parameter_category_changed_response_error',
+            parameter_id
+          )
           var errorData = error.response.data
           Helper.checkCommonErrors(errorData, errorMessage)
           EventBus.fire('changed-paramCategory', {
@@ -239,7 +253,7 @@ export default {
     changeParamCategory(data) {
       var modal = Helper.modal
 
-      var title = this.lang('parameter_category_change_modal_title',data.label)
+      var title = this.lang('parameter_category_change_modal_title', data.label)
 
       modal.showComponent('change-paramCategory', title)
 
